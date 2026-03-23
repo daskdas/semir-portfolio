@@ -139,19 +139,39 @@
   .js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ── ABOUT PHOTO ── */
+  .about-photo-wrap {
+    position: relative;
+    margin-top: 2rem;
+    padding: 10px 0 0 10px;
+  }
+  .about-photo-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 10px;
+    bottom: 10px;
+    border: 1.5px solid var(--accent);
+    border-radius: 2px;
+    animation: borderReveal 0.8s 0.4s both;
+  }
   .about-photo {
     width: 100%;
-    margin-top: 2rem;
-    filter: grayscale(100%);
     display: block;
+    filter: grayscale(100%);
     object-fit: cover;
     object-position: center top;
-    clip-path: polygon(0% 15%, 15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%);
-    animation: floatPhoto 6s ease-in-out infinite;
+    position: relative;
+    border-radius: 2px;
+    animation: photoReveal 0.8s 0.2s both;
   }
-  @keyframes floatPhoto {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  @keyframes borderReveal {
+    from { opacity: 0; transform: translate(-6px, -6px); }
+    to { opacity: 1; transform: translate(0, 0); }
+  }
+  @keyframes photoReveal {
+    from { opacity: 0; transform: translate(6px, 6px); }
+    to { opacity: 1; transform: translate(0, 0); }
   }
 
   /* ── EDUCATION ── */
@@ -246,7 +266,7 @@
     <div class="about-grid">
       <div>
         <h2 class="about-headline">Research first.<br><em>Craft always.</em></h2>
-        <img src="semir.jpg" alt="Semir Ugljanin" class="about-photo" />
+        <div class="about-photo-wrap"><img src="semir.jpg" alt="Semir Ugljanin" class="about-photo" /></div>
       </div>
       <div>
         <div class="about-body reveal">
