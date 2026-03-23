@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Help Experience Redesign — Saxo Bank · Semir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0e0e0d;
+    --white: #f5efe4;
+    --warm-mid: #e5d9c8;
+    --warm-dark: #2c2a26;
+    --accent: #c9521a;
+    --accent-light: #f0e8e0;
+    --muted: #7a7670;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max: 780px;
+    --max-wide: 1080px;
+    --gutter: clamp(1.5rem, 5vw, 5rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem var(--gutter);
+    background: rgba(245, 239, 228, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--warm-mid);
+  }
+
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--black); }
+  .nav-back-arrow { transition: transform 0.2s; }
+  .nav-back:hover .nav-back-arrow { transform: translateX(-3px); }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  /* ── HERO ── */
+  .case-hero {
+    padding: 9rem var(--gutter) 5rem;
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  .case-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .meta-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .meta-value { font-size: 0.85rem; color: var(--muted); }
+
+  .case-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .case-intro {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  /* ── HERO IMAGE ── */
+  .hero-image-wrap {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .placeholder-img {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    background: var(--warm-mid);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .placeholder-img .img-icon {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--muted);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .placeholder-img.tall { aspect-ratio: 4 / 3; }
+  .placeholder-img.medium { aspect-ratio: 16 / 9; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 0.5px;
+    background: var(--warm-mid);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  /* ── CONTENT SECTIONS ── */
+  .content-section {
+    padding: 5rem var(--gutter);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .content-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 0.3rem;
+    position: sticky;
+    top: 5rem;
+  }
+
+  .content-body h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 1.25rem;
+  }
+
+  .content-body p {
+    font-size: 1rem;
+    color: #4a4844;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .content-body p:last-child { margin-bottom: 0; }
+
+  .content-body ul {
+    list-style: none;
+    margin: 1.25rem 0;
+  }
+
+  .content-body ul li {
+    font-size: 1rem;
+    color: #4a4844;
+    line-height: 1.7;
+    padding: 0.6rem 0;
+    border-bottom: 0.5px solid var(--warm-mid);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .content-body ul li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  /* ── CONSTRAINT CARDS ── */
+  .constraint-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--warm-mid);
+    border: 1.5px solid var(--warm-mid);
+    margin-top: 2rem;
+  }
+
+  .constraint-card {
+    background: var(--white);
+    padding: 1.75rem;
+  }
+
+  .constraint-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+  }
+
+  .constraint-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PROCESS STEPS ── */
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .process-step.reverse { direction: rtl; }
+  .process-step.reverse > * { direction: ltr; }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── INSIGHT CALLOUT ── */
+  .insight {
+    border-left: 2px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--accent-light);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .insight-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .insight p {
+    font-size: 0.95rem;
+    color: #4a4844;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--warm-mid);
+    border: 1.5px solid var(--warm-mid);
+    margin-top: 2rem;
+  }
+
+  .outcome-card {
+    background: var(--white);
+    padding: 2rem 1.75rem;
+  }
+
+  .outcome-stat {
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .outcome-stat em { color: var(--accent); font-style: normal; }
+
+  .outcome-stat .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--warm-mid);
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .outcome-stat .arrow-down { color: #a32d2d; }
+  .outcome-stat .arrow-up { color: #2d6a2d; }
+  .outcome-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── LEARNINGS ── */
+  .learnings {
+    background: var(--black);
+    padding: 5rem var(--gutter);
+  }
+
+  .learnings-inner { max-width: var(--max-wide); margin: 0 auto; }
+
+  .learnings-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .learnings p {
+    font-size: 1rem;
+    color: #a8a49c;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── NEXT PROJECT ── */
+  .next-project {
+    padding: 5rem var(--gutter);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .next-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .next-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .next-title:hover { color: var(--accent); }
+
+  .next-arrow {
+    font-size: 2.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: transform 0.2s, color 0.2s;
+    display: block;
+  }
+
+  .next-arrow:hover { transform: translateX(6px); color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 2rem var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: #a8a49c;
+    text-decoration: none;
+  }
+
+  .footer-copy { font-size: 0.75rem; color: #5a5752; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-top: 2rem; border-top: 0.5px solid var(--warm-mid); }
+
+  .accordion-item { border-bottom: 0.5px solid var(--warm-mid); }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .accordion-header::-webkit-details-marker { display: none; }
+
+  .accordion-num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 1.5rem;
+  }
+
+  .accordion-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--black);
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .accordion-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .accordion-icon::before,
+  .accordion-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--muted);
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .accordion-icon::before { width: 10px; height: 1.5px; top: 8px; left: 4px; }
+  .accordion-icon::after  { width: 1.5px; height: 10px; top: 4px; left: 8px; }
+
+  details[open] .accordion-icon::after { transform: rotate(90deg); opacity: 0; }
+  details[open] .accordion-title { color: var(--accent); }
+
+  .accordion-body {
+    padding: 0 0 1.75rem 2.5rem;
+  }
+
+  .accordion-body p {
+    font-size: 0.95rem;
+    color: #4a4844;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .accordion-body ul {
+    list-style: none;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .accordion-body ul li {
+    font-size: 0.95rem;
+    color: #4a4844;
+    line-height: 1.7;
+    padding: 0.5rem 0;
+    border-bottom: 0.5px solid var(--warm-mid);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .accordion-body ul li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  /* ── SIDE NAV ── */
+  .page-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: start;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .side-nav {
+    position: sticky;
+    top: 5.5rem;
+    padding: 0 1.5rem 0 var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .side-nav a {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.4rem 0 0.4rem 0.75rem;
+    border-left: 1.5px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1.4;
+  }
+
+  .side-nav a:hover { color: var(--black); }
+  .side-nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
+
+  .page-content { min-width: 0; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 1024px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .side-nav { display: none; }
+  }
+
+  @media (max-width: 720px) {
+    .content-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .content-label { position: static; }
+    .process-step { grid-template-columns: 1fr; }
+    .process-step.reverse { direction: ltr; }
+    .outcomes-grid, .constraint-grid { grid-template-columns: 1fr; }
+    .next-project { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">
+    <span class="nav-back-arrow">←</span> All work
+  </a>
+  <a href="index.html" class="nav-name">Semir</a>
+</nav>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div class="case-meta">
+    <div class="meta-item">
+      <span class="meta-label">Company</span>
+      <span class="meta-value">Saxo Bank</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Role</span>
+      <span class="meta-value">Senior Product Designer</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Timeline</span>
+      <span class="meta-value">3 weeks</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Platforms</span>
+      <span class="meta-value">Investor · TraderGO · Mobile</span>
+    </div>
+  </div>
+
+  <h1 class="case-title">Two Ways to Get Help. One Way Forward.</h1>
+  <p class="case-intro">Redesigning the help experience across Saxo Bank's three platforms — unifying a fragmented support system around a new AI chatbot, without removing the human options users still needed.</p>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="hero-image-wrap">
+  <img src="images/slide-36.jpg" style="width:100%; border-radius:4px; display:block;" alt="Unified help modal across Saxo platforms" />
+</div>
+
+<!-- RESULTS SNAPSHOT -->
+<div class="content-section" id="results" style="padding-bottom: 3rem;">
+  <div class="reveal">
+    <div style="font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">Results at a glance<span style="height: 0.5px; width: 60px; background: var(--accent); display: block;"></span></div>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-stat"><em>+70%</em></div>
+        <div class="outcome-label">Engaged chatbot conversations in one month — from 20,830 to 35,282</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat"><span class="arrow arrow-down">↓</span></div>
+        <div class="outcome-label">Calls and emails to human agents — the improved AI brain resolved more cases end-to-end without escalation</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat"><span class="arrow arrow-up">↑</span></div>
+        <div class="outcome-label">Article engagement — more users self-serving through the help centre</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="page-layout">
+
+  <aside class="side-nav">
+    <a href="#results">Results</a>
+    <a href="#brief">Brief</a>
+    <a href="#problem">Problem</a>
+    <a href="#research">Research</a>
+    <a href="#process">Process</a>
+    <a href="#solution">Solution</a>
+    <a href="#reflection">Reflection</a>
+  </aside>
+
+  <div class="page-content">
+<div class="content-section" id="brief">
+  <div class="content-grid reveal">
+    <div class="content-label">The brief</div>
+    <div class="content-body">
+      <h2>A new chatbot brain had arrived. The business wanted it everywhere — fast.</h2>
+      <p>Saxo Bank had just upgraded its AI chatbot engine. The directive from leadership was clear: make it the default support channel across all platforms. There was also a more radical idea on the table — remove all other help options entirely and go chatbot-only.</p>
+      <p>Before I touched a single frame, I needed to test that assumption. In a financial context, where a wrong answer or a dead end can mean real money lost, I wasn't going to recommend removing safety nets without evidence.</p>
+
+      <div class="constraint-grid">
+        <div class="constraint-card">
+          <div class="constraint-title">3 weeks</div>
+          <div class="constraint-desc">Fixed sprint. Discovery, design, testing, and handoff — all within the same window.</div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-title">Design system locked</div>
+          <div class="constraint-desc">No new components. No modifications. The solution had to live within what already existed.</div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-title">Must scale</div>
+          <div class="constraint-desc">Whatever we built needed to support future chatbot expansion without structural redesign.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<div class="content-section" id="problem">
+  <div class="content-grid reveal">
+    <div class="content-label">The problem</div>
+    <div class="content-body">
+      <h2>Two platforms, two different help experiences — both broken in different ways</h2>
+      <p>Saxo Investor used a full help page that felt spacious but abandoned users the moment they navigated away. Saxo TraderGO used a persistent modal that was always there but cramped, stateless, and required users to start over every session.</p>
+      <p>Mobile inherited the modal pattern wholesale — same hierarchy, same problems, just smaller.</p>
+      <ul>
+        <li>Help pages broke context — users left their workflow to get help, and couldn't easily return</li>
+        <li>The modal had no state persistence — minimizing it meant losing your conversation</li>
+        <li>Two inconsistent entry points across platforms created confusion for users on multiple products</li>
+        <li>The "Chat with us" button was prominently placed but led to an experience users didn't trust yet</li>
+      </ul>
+
+      <div class="insight">
+        <div class="insight-label">The critical question</div>
+        <p>Management wanted chatbot-only. I needed to find out whether that was actually what users wanted — or whether we'd be removing something they still relied on.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESEARCH -->
+<div class="content-section" id="research">
+  <div class="content-grid reveal">
+    <div class="content-label">Research</div>
+    <div class="content-body">
+      <h2>Week one was entirely research. No wireframes until we knew what we were solving.</h2>
+      <p>With only three weeks total, it would have been easy to jump straight into design. Instead I spent the entire first week understanding the problem space — through three parallel streams running simultaneously.</p>
+
+      <div class="accordion">
+
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">01</span>
+            <span class="accordion-title">User interviews — 12 sessions, testing the chatbot-only assumption</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>I ran structured interviews with 12 active users across both Saxo Investor and TraderGO. The recruitment was intentionally mixed — newer users who might lean on help more, and experienced traders who'd been on the platform for years and had existing habits.</p>
+            <p>Every interview was built around the same five questions, designed to surface real behaviour rather than stated preferences:</p>
+            <ul>
+              <li>When you need help, what do you do first — and why that channel specifically?</li>
+              <li>When would you choose chat — and when would you actively avoid it?</li>
+              <li>What makes a help solution feel reliable in a financial context?</li>
+              <li>If chat doesn't solve your issue, what do you expect to happen next?</li>
+              <li>What does "resolved" actually feel like to you — how do you know the issue is closed?</li>
+            </ul>
+            <div class="insight">
+              <div class="insight-label">What we heard</div>
+              <p>Support behaviour split clearly across three groups: users who went straight to chat for quick questions, users who preferred to find an article and self-serve, and users who wanted a human for anything involving money movement. No single channel dominated — and several users said they'd lose trust in the platform entirely if chatbot was the only option.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">02</span>
+            <span class="accordion-title">UX audit — two platforms, documented side by side</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>I audited the existing help experience across Saxo Investor (desktop), TraderGO (desktop), and both on mobile — mapping every entry point, interaction state, and context break against the same set of criteria.</p>
+            <ul>
+              <li><strong style="font-weight: 500; color: var(--black);">Investor (desktop)</strong> — full-page help centre. Spacious and well-organised, but navigating to it meant leaving the product entirely. Users lost their place and had no way back to what they were doing.</li>
+              <li><strong style="font-weight: 500; color: var(--black);">TraderGO (desktop)</strong> — persistent modal in the corner. Always accessible, but cramped, stateless, and reset on every session. Power users had learned to ignore it.</li>
+              <li><strong style="font-weight: 500; color: var(--black);">Mobile (both)</strong> — identical to the TraderGO modal pattern. Same hierarchy, same problems, just on a smaller screen with less tolerance for friction.</li>
+            </ul>
+            <div class="insight">
+              <div class="insight-label">The audit finding</div>
+              <p>The problem wasn't the content of the help experience — the articles were good and the chatbot was capable. The problem was access and context. Users were getting lost or giving up before they even reached the help they needed.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">03</span>
+            <span class="accordion-title">Competitive analysis — every comparable platform offered more than a chatbot</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>I reviewed how other platforms in the fintech and SaaS space structured their support — specifically Intercom and Binance, which had both invested heavily in AI support tooling while maintaining multi-channel help.</p>
+            <p>Both used a floating chat interface that co-existed with a searchable help centre, quick links, and a clear escalation path to human support. Neither had gone chatbot-only. Both had CSAT scores that were publicly cited.</p>
+            <p>The competitive sweep reinforced what interviews had shown: the industry consensus pointed toward AI as the primary channel, not the exclusive one. Presenting this alongside the user data made the case to stakeholders without friction.</p>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="insight" style="margin-top: 2rem;">
+        <div class="insight-label">Research summary</div>
+        <p>All three streams pointed to the same place: unify the fragmented experience, make the chatbot prominent and easy to reach, but keep the help centre and escalation path intact. The solution direction was clear before the first wireframe was drawn.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROCESS -->
+<div class="content-section" id="process">
+  <div class="content-grid reveal">
+    <div class="content-label">Process</div>
+    <div class="content-body">
+      <h2>Three weeks. One sprint. Discover, define, deliver.</h2>
+      <div class="process-steps">
+
+        <div class="process-step">
+          <div class="step-text">
+            <div class="step-num">Week 1 — Discover</div>
+            <div class="step-title">Validating the scope before designing anything</div>
+            <p class="step-desc">Stakeholder interviews, UX audit across Investor and TraderGO, competitive analysis, and desk research on self-help behaviour in financial products. The goal was to surface the real problem — not just execute the brief as given.</p>
+          </div>
+          <img src="images/slide-18.jpg" style="width:100%; border-radius:4px; display:block;" alt="UX audit — Saxo Investor desktop help page" />
+        </div>
+
+        <div class="process-step reverse">
+          <div class="step-text">
+            <div class="step-num">Week 2 — Define & develop</div>
+            <div class="step-title">Requirements first, wireframes second</div>
+            <p class="step-desc">I ran a mini workshop with the team to translate research findings into design requirements: preserve task context, reduce access friction, stay within the design system, maintain support optionality, and enable future scalability. Low-fidelity wireframes followed, with in-house testing for early alignment.</p>
+          </div>
+          <img src="images/slide-31.jpg" style="width:100%; border-radius:4px; display:block;" alt="Wireframe explorations" />
+        </div>
+
+        <div class="process-step">
+          <div class="step-text">
+            <div class="step-num">Week 3 — Deliver</div>
+            <div class="step-title">Guerrilla testing in the wild, then handoff</div>
+            <p class="step-desc">Built an interactive prototype and tested with 8 participants in a guerrilla format. Validated the tab separation, chat-first presentation, and state persistence behaviour. Then went straight to high-fidelity across all three platforms and handed off with full specs, annotations, and design system documentation.</p>
+          </div>
+          <img src="images/slide-38.jpg" style="width:100%; border-radius:4px; display:block;" alt="Interactive prototype flow" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<div class="content-section" id="solution">
+  <div class="content-grid reveal">
+    <div class="content-label">The solution</div>
+    <div class="content-body">
+      <h2>One unified modal. Built for real use across all three platforms.</h2>
+      <p>Instead of maintaining two broken help experiences, I unified them into a single modal pattern that works consistently across Investor, TraderGO, and mobile. The modal opens chat-first — putting the new AI chatbot front and centre — but keeps the help centre one tap away via a persistent tab.</p>
+      <p>Three states were designed and handed off: the default chat view, the help centre view with article browsing and search, and an expanded view for reading longer articles without losing context. The modal is resizable and minimisable, with full state persistence — users can collapse it mid-conversation and pick up exactly where they left off.</p>
+      <ul>
+        <li>Chat-first tab exposure increases chatbot visibility without forcing behaviour change</li>
+        <li>Help centre remains accessible — respecting the diversity of support preferences found in research</li>
+        <li>Context is never broken — the modal stays within the platform instead of redirecting externally</li>
+        <li>One template supports all three platforms — Investor, TraderGO, and mobile</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FULL WIDTH IMAGE -->
+<div style="padding: 0 var(--gutter) 4rem; max-width: var(--max-wide); margin: 0 auto;" class="reveal">
+  <img src="images/slide-41.jpg" style="width:100%; border-radius:4px; display:block;" alt="High fidelity designs — all states across platforms" />
+</div>
+
+<div class="divider"></div>
+
+<!-- OUTCOMES BOTTOM -->
+<div class="content-section" id="outcomes">
+  <div class="content-grid reveal">
+    <div class="content-label">Results</div>
+    <div class="content-body">
+      <h2>More conversations. Fewer support calls. Users helping themselves.</h2>
+      <p>Within the first month post-launch, chatbot engagement increased significantly. Rather than cannibalising other support channels, the redesign grew the total volume of self-service — more users were getting answers without needing to escalate to a human agent.</p>
+      <div class="outcomes-grid">
+        <div class="outcome-card">
+          <div class="outcome-stat"><em>+70%</em></div>
+          <div class="outcome-label">Engaged chatbot conversations in one month — from 20,830 to 35,282</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-stat"><span class="arrow arrow-down">↓</span></div>
+          <div class="outcome-label">Calls and emails to human agents — the improved AI brain resolved more cases end-to-end without escalation</div>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-stat"><span class="arrow arrow-up">↑</span></div>
+          <div class="outcome-label">Article engagement — more users self-serving through the help centre</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEARNINGS -->
+<div class="learnings" id="reflection">
+  <div class="learnings-inner">
+    <div class="content-label" style="color: #c9521a; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 2rem;">Reflection</div>
+    <h2 class="learnings-headline">What I pushed back on — and what I'd do differently</h2>
+    <p>The most important design decision on this project happened before I opened Figma: resisting the chatbot-only brief. Research gave me the evidence to push back, and the team was receptive. That conversation early on shaped everything that followed — and the results validated it.</p>
+    <p>What I'd do differently: the usability testing didn't validate long-term behaviour change. We knew users understood the new interface and were willing to try the chatbot. We didn't know whether they'd keep choosing it over time, or how well it resolved genuinely complex issues. I'd build in a follow-up research checkpoint at 60 days post-launch to close that gap.</p>
+    <p>I'd also push earlier for clearer success metrics shared across design, product, and customer support — we aligned on them late, which made the post-launch story harder to tell internally.</p>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<!-- NEXT PROJECT -->
+<div class="next-project reveal">
+  <div>
+    <div class="next-label">Next project</div>
+    <a href="saxo-reporting.html" class="next-title">Portfolio & Reporting — Saxo Bank →</a>
+  </div>
+  <a href="saxo-reporting.html" class="next-arrow">→</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-name">Semir</a>
+  <span class="footer-copy">Copenhagen, Denmark — 2025</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.side-nav a');
+  const scrollSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => scrollSpy.observe(s));
+</script>
+</body>
+</html>
