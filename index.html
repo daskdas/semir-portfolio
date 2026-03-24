@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
 <style>
-  <style>
   /* 1. THE FOUNDATION */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
@@ -129,7 +128,26 @@
     .work-grid, .about-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
-</style>
+  /* 8. ABOUT PHOTO STYLING */
+  .about-photo-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    line-height: 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .about-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%); /* Keeps that sophisticated designer look */
+    transition: filter 0.5s ease;
+  }
+
+  .about-photo:hover {
+    filter: grayscale(0%); /* Subtle "reveal" when someone hovers */
+  }
 </style>
 </head>
 <body>
