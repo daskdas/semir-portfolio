@@ -60,20 +60,18 @@
   .hero-scroll { display: flex; align-items: center; gap: 0.75rem; padding: 1.5rem 0; max-width: var(--max); margin: 0 auto; width: 100%; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
   .scroll-line { width: 40px; height: 0.5px; background: var(--muted); flex-shrink: 0; }
 
- /* ── HERO SCRIBBLE ── */
-.hero {
-  position: relative; /* allow absolute child positioning */
-}
-
+/* HERO SCRIBBLE - more dynamic */
 .hero-scribble {
   position: absolute;
-  top: 10%;
-  right: var(--gutter);
-  width: 220px;
-  height: 220px;
-  opacity: 0.3;
+  top: 15%;
+  right: 5%;
+  width: 400px;       /* bigger */
+  height: 400px;
+  opacity: 0.25;      /* softer behind text */
   pointer-events: none;
-  z-index: 0; /* behind text */
+  z-index: 0;
+  transform: rotate(-10deg); /* slight rotation for natural feel */
+  animation: floatScribble 6s ease-in-out infinite alternate;
 }
 
 .scribble-path {
@@ -88,9 +86,19 @@
   }
 }
 
+@keyframes floatScribble {
+  0% { transform: rotate(-12deg) translateY(0px); }
+  50% { transform: rotate(-10deg) translateY(-8px); }
+  100% { transform: rotate(-8deg) translateY(0px); }
+}
+
 @media (max-width: 720px) {
   .hero-scribble {
-    display: none; /* hide on mobile */
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 0;
+    opacity: 0.15;  /* smaller and more behind text */
   }
 }
 
