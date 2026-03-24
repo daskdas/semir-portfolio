@@ -134,6 +134,10 @@
     opacity: 0;
     animation: fadeUp 0.8s 0.5s forwards;
   }
+  .img-full-bleed {
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
 
   .placeholder-img {
     width: 100%;
@@ -165,6 +169,44 @@
 
   .placeholder-img.tall { aspect-ratio: 4 / 3; }
   .placeholder-img.medium { aspect-ratio: 16 / 9; }
+
+  /* ── IMAGE TREATMENTS ── */
+  .img-full-bleed {
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
+  .img-full-bleed img {
+    width: 100%;
+    display: block;
+  }
+  .img-breakout {
+    margin: 3rem 0;
+    background: #141311;
+    padding: 3rem;
+    border-radius: 4px;
+  }
+  .img-breakout img {
+    width: 100%;
+    display: block;
+    border-radius: 2px;
+  }
+  .img-caption {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+  .img-breakout .img-caption { color: #4a4845; }
+  .img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .img-pair img { width: 100%; display: block; border-radius: 2px; }
+  @media (max-width: 720px) { .img-pair { grid-template-columns: 1fr; } }
 
   /* ── DIVIDER ── */
   .divider {
@@ -653,8 +695,8 @@
 </div>
 
 <!-- HERO IMAGE -->
-<div class="hero-image-wrap">
-  <img src="images/slide-36.jpg" style="width:100%; border-radius:4px; display:block;" alt="Unified help modal across Saxo platforms" />
+<div class="img-full-bleed">
+  <img src="images/slide-36.jpg" alt="Unified help modal across Saxo platforms" />
 </div>
 
 <!-- RESULTS SNAPSHOT -->
@@ -839,7 +881,19 @@
             <div class="step-title">Validating the scope before designing anything</div>
             <p class="step-desc">Stakeholder interviews, UX audit across Investor and TraderGO, competitive analysis, and desk research on self-help behaviour in financial products. The goal was to surface the real problem — not just execute the brief as given.</p>
           </div>
-          <img src="images/slide-18.jpg" style="width:100%; border-radius:4px; display:block;" alt="UX audit — Saxo Investor desktop help page" />
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="img-breakout reveal">
+    <img src="images/slide-18.jpg" alt="UX audit — Saxo Investor desktop help page" />
+    <p class="img-caption">UX audit — Saxo Investor desktop help page vs TraderGO modal</p>
+  </div>
+  <div class="content-section" style="padding-top: 0; display:none;">
+    <div class="content-grid">
+      <div></div>
+      <div>
         </div>
 
         <div class="process-step reverse">
@@ -848,7 +902,19 @@
             <div class="step-title">Requirements first, wireframes second</div>
             <p class="step-desc">I ran a mini workshop with the team to translate research findings into design requirements: preserve task context, reduce access friction, stay within the design system, maintain support optionality, and enable future scalability. Low-fidelity wireframes followed, with in-house testing for early alignment.</p>
           </div>
-          <img src="images/slide-31.jpg" style="width:100%; border-radius:4px; display:block;" alt="Wireframe explorations" />
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="img-breakout reveal">
+    <img src="images/slide-31.jpg" alt="Wireframe explorations" />
+    <p class="img-caption">Early wireframe explorations — testing different interaction models</p>
+  </div>
+  <div class="content-section" style="padding-top: 0; display:none;">
+    <div class="content-grid">
+      <div></div>
+      <div>
         </div>
 
         <div class="process-step">
@@ -857,7 +923,19 @@
             <div class="step-title">Guerrilla testing in the wild, then handoff</div>
             <p class="step-desc">Built an interactive prototype and tested with 8 participants in a guerrilla format. Validated the tab separation, chat-first presentation, and state persistence behaviour. Then went straight to high-fidelity across all three platforms and handed off with full specs, annotations, and design system documentation.</p>
           </div>
-          <img src="images/slide-38.jpg" style="width:100%; border-radius:4px; display:block;" alt="Interactive prototype flow" />
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="img-breakout reveal">
+    <img src="images/slide-38.jpg" alt="Interactive prototype flow" />
+    <p class="img-caption">Interactive prototype — flow used in guerrilla testing</p>
+  </div>
+  <div class="content-section" style="padding-top: 0; display:none;">
+    <div class="content-grid">
+      <div></div>
+      <div>
         </div>
 
       </div>
@@ -886,8 +964,11 @@
 </div>
 
 <!-- FULL WIDTH IMAGE -->
-<div style="padding: 0 var(--gutter) 4rem; max-width: var(--max-wide); margin: 0 auto;" class="reveal">
-  <img src="images/slide-41.jpg" style="width:100%; border-radius:4px; display:block;" alt="High fidelity designs — all states across platforms" />
+<div class="img-full-bleed reveal">
+  <img src="images/slide-41.jpg" alt="High fidelity designs — all states across platforms" />
+</div>
+<div style="padding: 0 var(--gutter) 2rem; max-width: var(--max-wide); margin: 0 auto;">
+  <p class="img-caption">Final hi-fi designs — all states across Investor, TraderGO and mobile</p>
 </div>
 
 <div class="divider"></div>
