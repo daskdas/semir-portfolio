@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Semir — Senior Product Designer</title>
+<title>Semir — Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
@@ -34,9 +34,10 @@
   .hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; padding: 0 var(--gutter); padding-top: 5rem; }
   .hero-inner { display: flex; flex-direction: column; justify-content: center; max-width: var(--max); margin: 0 auto; width: 100%; padding-bottom: 4rem; }
   .hero-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
-  .hero-headline { font-family: var(--serif); font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1.0; letter-spacing: -0.02em; color: var(--black); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-headline { font-family: var(--serif); font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.0; letter-spacing: -0.02em; color: var(--black); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
   .hero-headline em { font-style: italic; color: var(--accent); }
   .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300; color: var(--muted); max-width: 520px; line-height: 1.6; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
+  .hero-intro { font-size: clamp(1.1rem, 2.2vw, 1.4rem); font-weight: 300; color: var(--muted); max-width: 560px; line-height: 1.65; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
   .hero-cta { display: flex; gap: 1rem; margin-top: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; flex-wrap: wrap; }
   .btn { display: inline-block; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; border-radius: 2px; text-decoration: none; transition: background 0.2s, color 0.2s; cursor: pointer; border: none; }
   .btn-primary { background: var(--black); color: var(--white); }
@@ -130,6 +131,10 @@
   footer { background: var(--black); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .footer-name { font-family: var(--serif); font-size: 1rem; color: #a8a49c; }
   .footer-copy { font-size: 0.75rem; color: #5a5752; }
+  .footer-linkedin { display: flex; align-items: center; opacity: 0.6; transition: opacity 0.2s; }
+  .footer-linkedin:hover { opacity: 1; }
+  .footer-linkedin:hover rect { fill: #f5efe4; }
+  .footer-linkedin:hover path { fill: #1c1a18; }
 
 
   /* ── EDUCATION (in about) ── */
@@ -191,6 +196,11 @@
   .edu-year { font-size: 0.8rem; color: #a8a49c; font-weight: 400; padding-top: 0.1rem; }
   .edu-degree { font-size: 0.9rem; color: #f5efe4; font-weight: 400; line-height: 1.4; margin-bottom: 0.15rem; }
   .edu-school { font-size: 0.8rem; color: #a8a49c; }
+
+  .work-more { font-size: 0.85rem; color: var(--muted); margin-top: 1.5rem; font-style: italic; letter-spacing: 0.01em; }
+
+  .work-more { font-size: 0.85rem; color: var(--muted); margin-top: 1.5rem; font-style: italic; }
+  .exp-linkedin { font-size: 0.85rem; color: var(--muted); margin-top: 2rem; }
 
   /* ── BURGER MENU ── */
   .burger {
@@ -302,11 +312,9 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-label">Senior Product Designer — Copenhagen</div>
-    <h1 class="hero-headline">
-      Designing systems<br>people <em>actually</em><br>want to use.
-    </h1>
-    <p class="hero-sub">Six years designing complex, data-heavy digital products where clarity, trust and precision are critical — from opportunity framing and discovery through to high-fidelity execution.</p>
+    <div class="hero-label">Product Designer — Copenhagen</div>
+    <h1 class="hero-headline">Hey, I'm Semir.</h1>
+    <p class="hero-intro">A Product Designer based in Copenhagen. Six+ years making complex financial and telecom products feel intuitive — most recently at Saxo Bank, before that at YouSee.</p>
     <div class="hero-cta">
       <a href="#work" class="btn btn-primary">View selected work</a>
       <a href="#contact" class="btn btn-ghost">Get in touch</a>
@@ -342,27 +350,8 @@
         <span class="work-card-arrow">↗</span>
         </div>
       </a>
-      <a href="saxo-help-chatbot.html" class="work-card reveal">
-        <div class="work-card-bg" style="background-image:url('images/slide-36.jpg');"></div>
-        <div class="work-card-overlay"></div>
-        <div class="work-card-content">
-        <h2 class="work-card-title">Help & Chatbot — Saxo Bank</h2>
-        <p class="work-card-desc">Designing a contextual help system and conversational interface that reduced support tickets and improved self-service rates among B2B clients.</p>
-        <div class="work-card-tags"><span class="tag">Conversational UI</span><span class="tag">User research</span><span class="tag">B2B SaaS</span></div>
-        <span class="work-card-arrow">↗</span>
-        </div>
-      </a>
-      <a href="#" class="work-card reveal">
-        <div class="work-card-bg" style="background-image:url('images/retention-hero.png');"></div>
-        <div class="work-card-overlay"></div>
-        <div class="work-card-content">
-        <h2 class="work-card-title">Retention Journeys — Saxo Bank</h2>
-        <p class="work-card-desc">Mapping and redesigning key retention touchpoints using behavioural data and in-depth interviews. Created a blueprint adopted across product teams.</p>
-        <div class="work-card-tags"><span class="tag">Retention</span><span class="tag">Service blueprint</span><span class="tag">Cross-functional</span></div>
-        <span class="work-card-arrow">↗</span>
-        </div>
-      </a>
     </div>
+    <p class="work-more reveal">More case studies coming soon — including Help &amp; Chatbot and Retention Journeys at Saxo Bank.</p>
   </div>
 </section>
 
@@ -376,7 +365,7 @@
       </div>
       <div>
         <div class="about-body reveal">
-          <p>I'm a Senior Product Designer based in Copenhagen with six years of experience designing complex, data-heavy digital products where clarity, trust and precision are critical. I've owned UX and UI end to end across multiple product areas — from opportunity framing and discovery through validation, delivery and iteration.</p>
+          <p>I'm a Product Designer based in Copenhagen with six years of experience designing complex, data-heavy digital products where clarity, trust and precision are critical. I've owned UX and UI end to end across multiple product areas — from opportunity framing and discovery through validation, delivery and iteration.</p>
           <p>My strength lies in translating complex workflows and operational processes into intuitive, coherent experiences. I map the system logic first, then follow that thinking through to interface detail. Strong product thinking, a service design sensibility, and deep expertise in Figma and scalable design systems.</p>
           <p>Outside of work I'm into martial arts, running, and hobbyist game development. Currently learning Japanese.</p>
         </div>
@@ -401,6 +390,13 @@
               <div class="edu-year">2014</div>
               <div class="edu-detail">
                 <div class="edu-degree">Bachelor's Degree in Digital Concept Development</div>
+                <div class="edu-school">KEA Copenhagen</div>
+              </div>
+            </div>
+            <div class="edu-row">
+              <div class="edu-year">2011</div>
+              <div class="edu-detail">
+                <div class="edu-degree">AP Degree in Multimedia Design</div>
                 <div class="edu-school">KEA Copenhagen</div>
               </div>
             </div>
@@ -440,28 +436,43 @@
           <p class="exp-desc">Owned end-to-end design of online onboarding experiences including broadband customer flows, and evolved Mit YouSee mobile self-service journeys to help customers manage their subscriptions. Contributed to self-help and support experiences across Help, Speedtest and other service flows — with a consistent focus on customer activation, self-service adoption and support deflection at consumer scale.</p>
         </div>
       </div>
+      <div class="exp-item reveal">
+        <div class="exp-period">Nov 2013 — Jul 2014</div>
+        <div>
+          <div class="exp-company">Frostkostfirmaet</div>
+          <div class="exp-role">Graphic Designer</div>
+          <p class="exp-desc">Responsible for all graphical work including banners, flyers, brochures, fleet livery, t-shirt design and more.</p>
+        </div>
+      </div>
     </div>
+    <p class="exp-linkedin reveal">Want the full detail? <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" style="color:var(--accent);text-decoration:none;border-bottom:0.5px solid var(--accent);">View full CV on LinkedIn →</a></p>
   </div>
 </section>
 
 
 <section class="contact" id="contact">
   <div class="section-inner">
-    <h2 class="contact-headline reveal">Let's make<br>something <em>good.</em></h2>
-    <p class="contact-sub reveal">Open to senior product design roles in Copenhagen and remote.</p>
+    <h2 class="contact-headline reveal">Say <em>hello.</em></h2>
+    <p class="contact-sub reveal">Open to product design roles in Copenhagen and remote.</p>
     <div class="contact-links reveal">
-      <a href="/cdn-cgi/l/email-protection#f083959d9982c0c0c3c7b0979d91999cde939f9d" class="btn btn-primary">Write to me</a>
+      <a href="/cdn-cgi/l/email-protection#3f575a535350114c5a52564d115b5a4c5658517f58525e5653115c5052" class="btn btn-primary">Reach out</a>
+      
       <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="btn btn-ghost">LinkedIn</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-name">Semir</span>
-  <span class="footer-copy">Copenhagen, Denmark — 2025</span>
+  <span class="footer-copy">© 2025 Semir Ugljanin</span>
+  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin" aria-label="LinkedIn">
+    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#5a5752"/>
+      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
+    </svg>
+  </a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.addEventListener('DOMContentLoaded', function() {
 
     document.body.classList.add('js-ready');
@@ -496,17 +507,4 @@
     }
 
     var els = document.querySelectorAll('.reveal');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0 });
-    els.forEach(function(el) { observer.observe(el); });
-
-  });
-</script>
-</body>
-</html>
+    var observer = new IntersectionObserver(function(entrie
