@@ -245,7 +245,8 @@
     margin: 2rem 0;
   }
   .img-pair img { width: 100%; display: block; border-radius: 2px; }
-  @media (max-width: 720px) { .img-pair { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) {
+     .img-pair { grid-template-columns: 1fr; } }
 
   /* ── DIVIDER ── */
   .divider {
@@ -689,6 +690,7 @@
   }
 
   @media (max-width: 720px) {
+    
     .content-grid { grid-template-columns: 1fr; gap: 1rem; }
     .content-label { position: static; }
     .process-step { grid-template-columns: 1fr; }
@@ -743,7 +745,11 @@
   .mobile-menu a:active { color: var(--accent); }
   .mobile-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9290; display: none; background: transparent; }
   .mobile-backdrop.open { display: block; }
-  @media (max-width: 720px) { .burger { display: flex; } }
+  @media (max-width: 720px) {
+      
+    .nav-links { display: none; }
+    .burger { display: flex; }
+  }
 
 </style>
 </head>
@@ -793,12 +799,10 @@
 <div class="content-section" id="results" style="padding-bottom: 3rem;">
   <div class="reveal">
     <div style="font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;">Results at a glance<span style="height:0.5px;width:60px;background:var(--accent);display:block;"></span></div>
-    <div class="outcomes-grid">
+    <div class="outcomes-grid" style="grid-template-columns: repeat(4,1fr);">
       <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year of launch</div></div>
       <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Increase in sign-ups from referred users</div></div>
       <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Increase in funded accounts from referrals</div></div>
-    </div>
-    <div class="outcomes-grid" style="margin-top:1.5px;">
       <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Reduction in referral-related support questions</div></div>
     </div>
   </div>
@@ -933,10 +937,12 @@
         <div class="content-body">
           <h2>Referred users tripled. Support dropped by half.</h2>
           <p>Within one year of launch, the redesigned referral programme delivered measurable impact across the full funnel. The 50% drop in referral-related support questions was a particularly strong signal — users were no longer confused about how the programme worked.</p>
-          <div class="outcomes-grid" style="margin-top:1.5rem;">
-            <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year</div></div>
+          <div class="outcomes-grid" style="margin-top:1.5rem;grid-template-columns:repeat(4,1fr);">
+            <div class="outcome-card"><div class="outcome-stat"><em>3×</em>
+            <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Referral support questions reduced</div></div></div><div class="outcome-label">Referred users within one year</div></div>
             <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Sign-ups from referred users</div></div>
             <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Funded accounts from referrals</div></div>
+            <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Referral support questions reduced</div></div>
           </div>
           <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--muted);font-style:italic;">External factors including Saxo's broader pricing strategy influenced overall engagement. The metrics above reflect the operational impact of the referral flow specifically.</p>
         </div>
@@ -972,17 +978,6 @@
 </footer>
 
 <script>
-  (function() {
-    var entered = sessionStorage.getItem('portfolio_auth');
-    if (entered !== 'yes') {
-      var pw = prompt('This case study is password protected.\nEnter password to continue:');
-      if (pw === 'design123') {
-        sessionStorage.setItem('portfolio_auth', 'yes');
-      } else {
-        window.location.href = 'index.html';
-      }
-    }
-  })();
 
 
   const observer = new IntersectionObserver((entries) => {
