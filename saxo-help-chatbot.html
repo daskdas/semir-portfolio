@@ -688,19 +688,21 @@
     .next-project { flex-direction: column; align-items: flex-start; }
   }
 
-  .burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 8px;
-    background: none;
-    border: none;
-    z-index: 9999;
-    position: relative;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    -webkit-appearance: none;
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 12px; /* increased tap area */
+  margin-right: -8px; /* keeps visual alignment */
+  background: none;
+  border: none;
+  z-index: 9999;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-appearance: none;
   }
   .burger span {
     display: block;
@@ -713,21 +715,22 @@
   .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .burger.open span:nth-child(2) { opacity: 0; }
   .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-  .mobile-menu {
-    position: fixed;
-    top: 4.5rem;
-    right: 1rem;
-    width: 200px;
-    background: var(--black);
-    border-radius: 12px;
-    z-index: 9500;
-    padding: 0.4rem 0;
-    opacity: 0;
-    transform: scale(0.92) translateY(-6px);
-    transform-origin: top right;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
+.mobile-menu {
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  width: 220px;
+  background: var(--black);
+  border-radius: 14px;
+  z-index: 9500;
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: scale(0.95) translateY(-8px);
+  transform-origin: top right;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* added depth */
+}
   .mobile-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
   .mobile-menu a { display: block; font-family: var(--serif); font-size: 1.15rem; color: #f5efe4; text-decoration: none; padding: 0.8rem 1.25rem; border-bottom: 0.5px solid #2c2a26; letter-spacing: -0.01em; transition: color 0.15s; }
   .mobile-menu a:last-child { border-bottom: none; }
