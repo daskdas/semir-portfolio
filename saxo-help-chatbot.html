@@ -69,6 +69,19 @@
   .nav-back-arrow { transition: transform 0.2s; }
   .nav-back:hover .nav-back-arrow { transform: translateX(-3px); }
 
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.1em;
+  }
+  .nav-logo .dash { font-style: normal; margin: 0 0.05em; color: var(--muted); }
+
   .nav-name {
     font-family: var(--serif);
     font-size: 1.1rem;
@@ -663,10 +676,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-back">
-    <span class="nav-back-arrow">←</span> All work
-  </a>
-  <a href="index.html" class="nav-name">Semir</a>
+  <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
 </nav>
 
 <!-- HERO -->
