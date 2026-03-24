@@ -25,7 +25,7 @@
   html { scroll-behavior: smooth; }
   body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
   .nav-name { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -0.01em; color: var(--black); text-decoration: none; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -198,10 +198,13 @@
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    padding: 4px;
+    padding: 8px;
     background: none;
     border: none;
-    z-index: 200;
+    z-index: 350;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .burger span {
     display: block;
@@ -219,7 +222,7 @@
     position: fixed;
     inset: 0;
     background: var(--black);
-    z-index: 150;
+    z-index: 250;
     display: flex;
     flex-direction: column;
     align-items: center;
