@@ -62,7 +62,7 @@
 
   .divider { height: 0.5px; background: var(--warm-mid); max-width: var(--max-wide); margin: 0 auto; }
 
-  .content-section { padding: 5rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; }
+  .content-section { padding: 5rem 0; max-width: var(--max-wide); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
   .content-grid { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; align-items: start; }
   .content-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); padding-top: 0.3rem; position: sticky; top: 5rem; }
   .content-body h2 { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1.25rem; }
@@ -101,12 +101,9 @@
   .learnings-headline { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--white); max-width: 560px; margin-bottom: 2rem; }
   .learnings p { font-size: 1rem; color: #a8a49c; line-height: 1.8; max-width: 600px; margin-bottom: 1.25rem; }
 
-  .next-project { padding: 5rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-  .next-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-  .next-title { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.02em; color: var(--black); text-decoration: none; display: block; transition: color 0.2s; }
-  .next-title:hover { color: var(--accent); }
-  .next-arrow { font-size: 2.5rem; color: var(--muted); text-decoration: none; transition: transform 0.2s, color 0.2s; display: block; }
-  .next-arrow:hover { transform: translateX(6px); color: var(--accent); }
+  .back-top { padding: 3rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; display: flex; justify-content: center; }
+  .back-top a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; transition: color 0.2s; border-bottom: 0.5px solid var(--warm-mid); padding-bottom: 0.2rem; }
+  .back-top a:hover { color: var(--accent); border-color: var(--accent); }
 
   footer { background: var(--black); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .footer-copy { font-size: 0.75rem; color: #5a5752; }
@@ -136,9 +133,36 @@
     .nav-links { display: none; }
     .burger { display: flex; }
   }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-top: 2rem; border-top: 0.5px solid var(--warm-mid); }
+  .accordion-item { border-bottom: 0.5px solid var(--warm-mid); }
+  .accordion-header { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 0; cursor: pointer; list-style: none; user-select: none; }
+  .accordion-header::-webkit-details-marker { display: none; }
+  .accordion-num { font-family: var(--serif); font-size: 0.85rem; color: var(--accent); flex-shrink: 0; width: 1.5rem; }
+  .accordion-title { font-size: 0.95rem; font-weight: 400; color: var(--black); flex: 1; line-height: 1.4; }
+  .accordion-icon { width: 18px; height: 18px; flex-shrink: 0; position: relative; }
+  .accordion-icon::before, .accordion-icon::after { content: ''; position: absolute; background: var(--muted); border-radius: 1px; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .accordion-icon::before { width: 10px; height: 1.5px; top: 8px; left: 4px; }
+  .accordion-icon::after { width: 1.5px; height: 10px; top: 4px; left: 8px; }
+  details[open] .accordion-icon::after { transform: rotate(90deg); opacity: 0; }
+  details[open] .accordion-title { color: var(--accent); }
+  .accordion-body { padding: 0 0 1.75rem 2.5rem; }
+  .accordion-body p { font-size: 0.95rem; color: #4a4844; line-height: 1.8; margin-bottom: 1rem; }
+  .accordion-body ul { list-style: none; margin: 0.75rem 0 1rem; }
+  .accordion-body ul li { font-size: 0.95rem; color: #4a4844; line-height: 1.7; padding: 0.5rem 0; border-bottom: 0.5px solid var(--warm-mid); display: flex; align-items: baseline; gap: 0.75rem; }
+  .accordion-body ul li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; }
+
+  /* ── PROCESS BLOCKS ── */
+  .process-block { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 0.5px solid var(--warm-mid); }
+  .process-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .process-step-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .process-step-title { font-family: var(--serif); font-size: 1.3rem; letter-spacing: -0.01em; color: var(--black); margin-bottom: 0.75rem; }
+  .process-block p { font-size: 0.95rem; color: #4a4844; line-height: 1.8; margin-bottom: 1rem; }
+  .process-img { width: 100%; display: block; border-radius: 4px; margin-top: 1.25rem; margin-bottom: 0.5rem; }
 </style>
 </head>
-<body>
+<body id="top">
 
 <nav>
   <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
@@ -241,261 +265,62 @@
     <div class="divider"></div>
 
     <!-- RESEARCH -->
-    <div class="content-section" id="research">
-      <div class="content-grid reveal">
-        <div class="content-label">Research</div>
-        <div class="content-body">
-          <h2>The problem wasn't motivation — it was visibility and clarity</h2>
-          <p>Before touching any designs, I ran a full discovery phase to understand where and why the funnel was failing.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-section" style="padding-top: 0;">
-      <div class="content-grid reveal">
-        <div class="content-label">01 — Funnel analysis</div>
-        <div class="content-body">
-          <h2>Drop-off happened after link generation — before funding</h2>
-          <p>Working with data analysts via the PM, I mapped the referral funnel end-to-end. The clearest signal: most users who generated a referral link never saw it convert to a funded account. The drop happened at two points — referred users not completing sign-up, and referred sign-ups not funding their accounts.</p>
-          <div class="insight">
-            <div class="insight-label">Key finding</div>
-            <p>The funnel was leaking at completion, not at initiation. People were willing to share — they just couldn't get their referrals over the finish line.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider" style="max-width: var(--max-wide); margin: 0 auto;"></div>
-
-    <div class="content-section">
-      <div class="content-grid reveal">
-        <div class="content-label">02 — Usability testing</div>
-        <div class="content-body">
-          <h2>7 speak-aloud sessions with both referrers and referred users</h2>
-          <p>I ran structured usability tests with participants on both sides of the flow — the person doing the referring and the person receiving the referral. Testing both sides was critical because the experience breaks in different places depending on which role you're in.</p>
-          <p>Five consistent pain points emerged:</p>
-          <ul>
-            <li>Confusion about "commission credits" — users didn't understand what they were, how they were earned, or where to find them</li>
-            <li>Entry points were invisible — the profile button and portfolio banner were largely ignored</li>
-            <li>The referred landing page felt untrustworthy and inconsistent with the main platform</li>
-            <li>A large terms & conditions CTA overshadowed the main action buttons — completely backwards hierarchy</li>
-            <li>No progress tracking — users had no way to know if their referral was working</li>
-          </ul>
-          <div class="insight">
-            <div class="insight-label">The insight that changed everything</div>
-            <p>Users weren't disinterested in the programme — they were confused and unsupported. Fix the clarity and the visibility, and the motivation was already there.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider" style="max-width: var(--max-wide); margin: 0 auto;"></div>
-
-    <div class="content-section">
-      <div class="content-grid reveal">
-        <div class="content-label">03 — Competitive analysis</div>
-        <div class="content-body">
-          <h2>Best-in-class referral programmes use behavioural reinforcement</h2>
-          <p>I reviewed referral mechanics across fintech and beyond — looking at how platforms like Revolut, Trading 212, and others structured their programmes. The pattern was consistent: the most effective referral flows used persistent reminders, clear progress indicators, and multiple sharing surfaces rather than a single buried entry point.</p>
-          <p>This validated the direction: the solution needed to meet users at multiple points in their journey, not just when they happened to find the referral page.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- PROCESS -->
-    <div class="content-section" id="process">
-      <div class="content-grid reveal">
-        <div class="content-label">Process</div>
-        <div class="content-body">
-          <h2>From wireframes to full ownership</h2>
-          <p>The project started as a collaboration between myself and UI designers, but mid-project I took on full end-to-end ownership — wireframes, flows, and final high-fidelity designs — after other designers left. This meant moving faster and making more decisions independently, while staying closely aligned with the PM, legal, and compliance teams.</p>
-          <div class="process-steps">
-            <div class="process-step">
-              <div class="step-text">
-                <div class="step-num">01 — Discovery</div>
-                <div class="step-title">Mapping the full funnel before designing anything</div>
-                <p class="step-desc">Funnel analysis, 7 usability tests, competitive review. The goal was to understand exactly where the programme was failing before proposing any solutions. Legal and compliance alignment happened in parallel — essential given the regulatory complexity.</p>
-              </div>
-              <div class="placeholder-img">⬚ Discovery artefacts</div>
-            </div>
-            <div class="process-step reverse">
-              <div class="step-text">
-                <div class="step-num">02 — Concept & alignment</div>
-                <div class="step-title">Testing old vs new concepts before going hi-fi</div>
-                <p class="step-desc">I tested concepts against the old designs in usability sessions to validate the direction before investing in high-fidelity work. The biggest structural decision — replacing the dialog with a dedicated page — was validated here. More space meant more clarity.</p>
-              </div>
-              <div class="placeholder-img">⬚ Wireframe concepts</div>
-            </div>
-            <div class="process-step">
-              <div class="step-text">
-                <div class="step-num">03 — Design & delivery</div>
-                <div class="step-title">Full hi-fi, cross-platform, within the design system</div>
-                <p class="step-desc">High-fidelity designs across web, platform and mobile. Every component had to work within the existing design system — no custom components. Delivered with full specs, annotations, and legal-approved copy for each market variant.</p>
-              </div>
-              <div class="placeholder-img">⬚ Hi-fi screens</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- SOLUTION -->
-    <div class="content-section" id="solution">
-      <div class="content-grid reveal">
-        <div class="content-label">The solution</div>
-        <div class="content-body">
-          <h2>Visibility, clarity, and behavioural reinforcement — at every step</h2>
-          <p>The redesign addressed every failure point identified in research. Rather than a single fix, it was a systemic overhaul of the entire referral experience — from first discovery through to completion.</p>
-          <ul>
-            <li><strong style="font-weight:500;color:var(--black);">Dedicated page over dialog</strong> — replaced the cramped dialog with a full page, giving room for proper explanation of how the programme works</li>
-            <li><strong style="font-weight:500;color:var(--black);">Commission credits hub</strong> — a clear explanation of what credits are, how they're earned, where to find them, and how to use them — solving the single biggest confusion point</li>
-            <li><strong style="font-weight:500;color:var(--black);">Persistent funding reminder</strong> — visible until the referred user funds their account or the 90-day window expires, keeping the referrer informed and motivated</li>
-            <li><strong style="font-weight:500;color:var(--black);">Improved landing page</strong> — trustworthy, consistent with the platform, with clear instructions for referred users on what to do next</li>
-            <li><strong style="font-weight:500;color:var(--black);">Reduced friction everywhere</strong> — QR code sharing, simplified copy, redesigned trigger emails, and helpful empty states guiding first-time users</li>
-            <li><strong style="font-weight:500;color:var(--black);">Cross-platform consistency</strong> — aligned experience between web and the trading platform</li>
-          </ul>
-          <div class="insight">
-            <div class="insight-label">The paused feature</div>
-            <p>A leaderboard and referral status dashboard were fully designed and internally validated — they tested well for social reinforcement. They were paused pre-launch due to compliance concerns around competitive framing in regulated markets. The rest shipped.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="img-breakout reveal">
-  <img src="images/refer-solution.png" alt="Refer a Friend — final solution screens" style="max-width: var(--max-wide); margin: 0 auto; display: block;" />
-  <p class="img-caption" style="padding: 0 var(--gutter);">Final hi-fi — dedicated referral page, commission credits hub, and persistent funding reminder</p>
-</div>
-
-<!-- OUTCOMES BOTTOM -->
-<div class="content-section" id="outcomes">
+<div class="content-section" id="research">
   <div class="content-grid reveal">
-    <div class="content-label">Results</div>
+    <div class="content-label">Research</div>
     <div class="content-body">
-      <h2>Tripled referred users. Halved support questions.</h2>
-      <p>Within one year post-launch, the redesigned programme delivered measurable impact across every key metric. The 50% reduction in support questions is particularly telling — it signals that users understood the experience well enough to not need help, which was exactly the goal.</p>
-      <div class="outcomes-grid">
-        <div class="outcome-card">
-          <div class="outcome-stat"><em>3×</em></div>
-          <div class="outcome-label">Referred users within one year post-launch</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-stat"><em>+25%</em></div>
-          <div class="outcome-label">Sign-ups, with funded accounts up 20%</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-stat"><em>−50%</em></div>
-          <div class="outcome-label">Referral-related support questions</div>
-        </div>
+      <h2>Two parallel tracks — funnel data and usability testing — running simultaneously.</h2>
+      <p>Discovery combined quantitative drop-off analysis with qualitative speak-aloud testing to understand both where users were failing and why.</p>
+
+      <div class="accordion">
+
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">01</span>
+            <span class="accordion-title">Funnel analysis — mapping the drop-off</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>Working with data analysts and PMs, I mapped the referral funnel end to end. The clearest signal: users were generating referral links, but referred users weren't completing sign-up or funding their accounts. Drop-off happened at two points — referred users abandoning the landing page, and referrers losing track of the process.</p>
+            <div class="insight">
+              <div class="insight-label">What the data showed</div>
+              <p>The problem wasn't awareness of the reward — it was trust and clarity. Referred users arrived on landing pages that felt inconsistent with the main platform, and referrers had no way to track whether their referral had done anything.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">02</span>
+            <span class="accordion-title">Usability testing — 7 speak-aloud sessions, both sides of the loop</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>I ran 7 speak-aloud usability tests covering both the referrer and the referred user. Testing old and new concepts in parallel helped isolate what was genuinely broken versus what could be improved.</p>
+            <p>Key issues surfaced:</p>
+            <ul>
+              <li>Confusion about how "commission credits" are earned, where they appear, and how to spend them</li>
+              <li>Entry points in the profile menu and portfolio banner were largely ignored — users scrolled past them entirely</li>
+              <li>Landing pages for referred users felt inconsistent and untrustworthy</li>
+              <li>A large terms & conditions CTA dominated the visual hierarchy, overshadowing the actual action</li>
+              <li>No feedback or progress tracking — referrers had no idea if their contact had signed up or funded</li>
+            </ul>
+            <div class="insight">
+              <div class="insight-label">The key insight</div>
+              <p>Users weren't confused about what a referral programme was. They were confused about what would happen next — and that uncertainty was enough to stop them from acting.</p>
+            </div>
+          </div>
+        </details>
+
       </div>
+
+      <div class="insight" style="margin-top: 2rem;">
+        <div class="insight-label">Research summary</div>
+        <p>Both streams pointed to the same root cause: visibility, clarity, and feedback. Users needed to find the feature, understand the reward, and know where they stood in the process at all times.</p>
+      </div>
+
     </div>
   </div>
 </div>
 
-<!-- LEARNINGS -->
-<div class="learnings" id="reflection">
-  <div class="learnings-inner">
-    <div style="font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9521a; margin-bottom: 2rem;">Reflection</div>
-    <h2 class="learnings-headline">Compliance killed the leaderboard. I'd find another way.</h2>
-    <p>The leaderboard and referral dashboard were the features I was most excited about — they tested well and would have added real social reinforcement to the programme. Losing them to compliance concerns late in the process was frustrating, but the lesson was clear: involve legal earlier in the ideation phase, not just the delivery phase.</p>
-    <p>If I were doing this again, I'd build a milestone-based progress indicator as the primary feedback loop from the start — less regulatory risk than a public leaderboard, but still gives users the sense of momentum that drives completion.</p>
-    <p>I'd also push for A/B testing on reward framing and copy earlier. We had strong hypotheses about what would motivate different user segments, but didn't have the infrastructure to test them at launch. That's a conversation worth having with product and engineering before the project starts, not after.</p>
-  </div>
-</div>
 
-<!-- NEXT PROJECT -->
-<div class="next-project reveal">
-  <div>
-    <div class="next-label">Next project</div>
-    <a href="saxo-help-chatbot.html" class="next-title">Help & Chatbot — Saxo Bank →</a>
-  </div>
-  <a href="saxo-help-chatbot.html" class="next-arrow">→</a>
-</div>
-
-<footer>
-  <span class="footer-copy">© 2025 Semir Ugljanin</span>
-  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin" aria-label="LinkedIn">
-    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#5a5752"/>
-      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
-    </svg>
-  </a>
-</footer>
-
-<script>
-  (function() {
-    var entered = sessionStorage.getItem('portfolio_auth');
-    if (entered !== 'yes') {
-      var pw = prompt('This case study is password protected.\nEnter password to continue:');
-      if (pw === 'design123') {
-        sessionStorage.setItem('portfolio_auth', 'yes');
-      } else {
-        window.location.href = 'index.html';
-      }
-    }
-  })();
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var burger = document.getElementById('burger');
-    var mobileMenu = document.getElementById('mobileMenu');
-    var mobileBackdrop = document.getElementById('mobileBackdrop');
-    if (burger && mobileMenu) {
-      burger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        burger.classList.toggle('open');
-        mobileMenu.classList.toggle('open');
-        if (mobileBackdrop) mobileBackdrop.classList.toggle('open');
-      });
-      if (mobileBackdrop) {
-        mobileBackdrop.addEventListener('click', function() {
-          burger.classList.remove('open');
-          mobileMenu.classList.remove('open');
-          mobileBackdrop.classList.remove('open');
-        });
-      }
-      document.querySelectorAll('.mobile-link').forEach(function(link) {
-        link.addEventListener('click', function() {
-          burger.classList.remove('open');
-          mobileMenu.classList.remove('open');
-          if (mobileBackdrop) mobileBackdrop.classList.remove('open');
-        });
-      });
-    }
-
-    var els = document.querySelectorAll('.reveal');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0 });
-    els.forEach(function(el) { observer.observe(el); });
-
-    var sections = document.querySelectorAll('[id]');
-    var navLinks = document.querySelectorAll('.side-nav a');
-    var scrollSpy = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          navLinks.forEach(function(link) {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + entry.target.id) {
-              link.classList.add('active');
-            }
-          });
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    sections.forEach(function(s) { scrollSpy.observe(s); });
-  });
-</script>
-</body>
-</html>
