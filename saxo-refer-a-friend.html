@@ -8,7 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
 <style>
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
     --black: #0e0e0d;
     --white: #f5efe4;
@@ -23,135 +25,181 @@
     --max-wide: 1080px;
     --gutter: clamp(1.5rem, 5vw, 5rem);
   }
+
   html { scroll-behavior: smooth; }
-  body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9000; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
-  .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-style: italic; letter-spacing: -0.02em; color: var(--black); text-decoration: none; display: flex; align-items: baseline; gap: 0.1em; }
-  .nav-logo .dash { font-style: normal; margin: 0 0.05em; color: var(--muted); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--black); }
-  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 9999; position: relative; -webkit-tap-highlight-color: transparent; touch-action: manipulation; -webkit-appearance: none; }
-  .burger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
-  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .burger.open span:nth-child(2) { opacity: 0; }
-  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-  .mobile-menu { position: fixed; top: 4.5rem; right: 1rem; width: 200px; background: var(--black); border-radius: 12px; z-index: 9500; padding: 0.4rem 0; opacity: 0; transform: scale(0.92) translateY(-6px); transform-origin: top right; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; }
-  .mobile-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
-  .mobile-menu a { display: block; font-family: var(--serif); font-size: 1.15rem; color: #f5efe4; text-decoration: none; padding: 0.8rem 1.25rem; border-bottom: 0.5px solid #2c2a26; letter-spacing: -0.01em; transition: color 0.15s; }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:active { color: var(--accent); }
-  .mobile-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9290; display: none; background: transparent; }
-  .mobile-backdrop.open { display: block; }
-
-  .case-hero { padding: 9rem var(--gutter) 5rem; max-width: var(--max-wide); margin: 0 auto; }
-  .case-meta { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
-  .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
-  .meta-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-  .meta-value { font-size: 0.85rem; color: var(--muted); }
-  .case-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -0.025em; color: var(--black); margin-bottom: 1.5rem; max-width: 700px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .case-intro { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300; color: var(--muted); max-width: 600px; line-height: 1.65; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
-
-  .img-full-bleed { width: 100%; display: block; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
-  .img-full-bleed img { width: 100%; display: block; }
-  .img-breakout { margin: 3rem 0; background: #141311; padding: 2.5rem var(--gutter); }
-  .img-breakout img { width: 100%; display: block; border-radius: 2px; max-width: var(--max-wide); margin: 0 auto; }
-  .img-caption { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; letter-spacing: 0.04em; font-style: italic; max-width: var(--max-wide); }
-  .img-breakout .img-caption { color: #4a4845; margin-left: auto; margin-right: auto; }
-
-  .divider { height: 0.5px; background: var(--warm-mid); max-width: var(--max-wide); margin: 0 auto; }
-
-  .content-section { padding: 5rem 0; max-width: var(--max-wide); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
-  .content-grid { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; align-items: start; }
-  .content-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); padding-top: 0.3rem; position: sticky; top: 5rem; }
-  .content-body h2 { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1.25rem; }
-  .content-body p { font-size: 1rem; color: #4a4844; line-height: 1.8; margin-bottom: 1.25rem; }
-  .content-body p:last-child { margin-bottom: 0; }
-  .content-body ul { list-style: none; margin: 1.25rem 0; }
-  .content-body ul li { font-size: 1rem; color: #4a4844; line-height: 1.7; padding: 0.6rem 0; border-bottom: 0.5px solid var(--warm-mid); display: flex; align-items: baseline; gap: 0.75rem; }
-  .content-body ul li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; }
-
-  .insight { border-left: 2px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; background: var(--accent-light); border-radius: 0 4px 4px 0; }
-  .insight-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
-  .insight p { font-size: 0.95rem; color: #4a4844; line-height: 1.7; margin: 0; }
-
-  .constraint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
-  .constraint-card { background: var(--white); padding: 1.75rem; }
-  .constraint-title { font-family: var(--serif); font-size: 1.1rem; color: var(--black); margin-bottom: 0.5rem; }
-  .constraint-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
-
-  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
-  .outcome-card { background: var(--white); padding: 2rem 1.75rem; }
-  .outcome-stat { font-family: var(--serif); font-size: 3rem; color: var(--black); line-height: 1; margin-bottom: 0.5rem; }
-  .outcome-stat em { color: var(--accent); font-style: normal; }
-  .outcome-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
-
-  .process-steps { display: flex; flex-direction: column; gap: 4rem; margin-top: 2rem; }
-  .process-step { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-  .process-step.reverse { direction: rtl; }
-  .process-step.reverse > * { direction: ltr; }
-  .step-num { font-family: var(--serif); font-size: 0.9rem; color: var(--accent); margin-bottom: 0.75rem; }
-  .step-title { font-family: var(--serif); font-size: 1.4rem; letter-spacing: -0.01em; color: var(--black); margin-bottom: 0.75rem; }
-  .step-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
-  .placeholder-img { width: 100%; aspect-ratio: 4/3; background: var(--warm-mid); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
-
-  .learnings { background: var(--black); padding: 5rem var(--gutter); }
-  .learnings-inner { max-width: var(--max-wide); margin: 0 auto; }
-  .learnings-headline { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--white); max-width: 560px; margin-bottom: 2rem; }
-  .learnings p { font-size: 1rem; color: #a8a49c; line-height: 1.8; max-width: 600px; margin-bottom: 1.25rem; }
-
-  .back-top { padding: 3rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; display: flex; justify-content: center; }
-  .back-top a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; transition: color 0.2s; border-bottom: 0.5px solid var(--warm-mid); padding-bottom: 0.2rem; }
-  .back-top a:hover { color: var(--accent); border-color: var(--accent); }
-
-  footer { background: var(--black); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-  .footer-copy { font-size: 0.75rem; color: #5a5752; }
-  .footer-linkedin { display: flex; align-items: center; opacity: 0.6; transition: opacity 0.2s; }
-  .footer-linkedin:hover { opacity: 1; }
-
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* Page layout with side nav */
-  .page-layout { display: grid; grid-template-columns: 180px 1fr; align-items: start; max-width: var(--max-wide); margin: 0 auto; }
-  .side-nav { position: sticky; top: 5.5rem; padding: 0 1rem 0 0; display: flex; flex-direction: column; gap: 0.15rem; }
-  .side-nav a { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; padding: 0.4rem 0 0.4rem 0.75rem; border-left: 1.5px solid transparent; transition: color 0.2s, border-color 0.2s; line-height: 1.4; }
-  .side-nav a:hover { color: var(--black); }
-  .side-nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
-  .page-content { min-width: 0; }
-
-  @media (max-width: 1024px) { .page-layout { grid-template-columns: 1fr; } .side-nav { display: none; } }
-  @media (max-width: 720px) {
-    .content-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .content-label { position: static; }
-    .process-step { grid-template-columns: 1fr; }
-    .process-step.reverse { direction: ltr; }
-    .outcomes-grid, .constraint-grid { grid-template-columns: 1fr; }
-    .next-project { flex-direction: column; align-items: flex-start; }
-    .nav-links { display: none; }
-    .burger { display: flex; }
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ── ACCORDION ── */
-  .accordion { margin-top: 2rem; border-top: 0.5px solid var(--warm-mid); }
-  .accordion-item { border-bottom: 0.5px solid var(--warm-mid); }
-  .accordion-header { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 0; cursor: pointer; list-style: none; user-select: none; }
-  .accordion-header::-webkit-details-marker { display: none; }
-  .accordion-num { font-family: var(--serif); font-size: 0.85rem; color: var(--accent); flex-shrink: 0; width: 1.5rem; }
-  .accordion-title { font-size: 0.95rem; font-weight: 400; color: var(--black); flex: 1; line-height: 1.4; }
-  .accordion-icon { width: 18px; height: 18px; flex-shrink: 0; position: relative; }
-  .accordion-icon::before, .accordion-icon::after { content: ''; position: absolute; background: var(--muted); border-radius: 1px; transition: transform 0.25s ease, opacity 0.25s ease; }
-  .accordion-icon::before { width: 10px; height: 1.5px; top: 8px; left: 4px; }
-  .accordion-icon::after { width: 1.5px; height: 10px; top: 4px; left: 8px; }
-  details[open] .accordion-icon::after { transform: rotate(90deg); opacity: 0; }
-  details[open] .accordion-title { color: var(--accent); }
-  .accordion-body { padding: 0 0 1.75rem 2.5rem; }
-  .accordion-body p { font-size: 0.95rem; color: #4a4844; line-height: 1.8; margin-bottom: 1rem; }
-  .accordion-body ul { list-style: none; margin: 0.75rem 0 1rem; }
-  .accordion-body ul li { font-size: 0.95rem; color: #4a4844; line-height: 1.7; padding: 0.5rem 0; border-bottom: 0.5px solid var(--warm-mid); display: flex; align-items: baseline; gap: 0.75rem; }
-  .accordion-body ul li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; }
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem var(--gutter);
+    background: rgba(245, 239, 228, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--warm-mid);
+  }
+
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--black); }
+  .nav-back-arrow { transition: transform 0.2s; }
+  .nav-back:hover .nav-back-arrow { transform: translateX(-3px); }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.1em;
+  }
+  .nav-logo .dash { font-style: normal; margin: 0 0.05em; color: var(--muted); }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  /* ── HERO ── */
+  .case-hero {
+    padding: 9rem var(--gutter) 5rem;
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  .case-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .meta-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .meta-value { font-size: 0.85rem; color: var(--muted); }
+
+  .case-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .case-intro {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  /* ── HERO IMAGE ── */
+  .hero-image-wrap {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .img-full-bleed {
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .placeholder-img {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    background: var(--warm-mid);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .placeholder-img .img-icon {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--muted);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .placeholder-img.tall { aspect-ratio: 4 / 3; }
+  .placeholder-img.medium { aspect-ratio: 16 / 9; }
 
   /* ── PROCESS BLOCKS ── */
   .process-block { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 0.5px solid var(--warm-mid); }
@@ -160,6 +208,543 @@
   .process-step-title { font-family: var(--serif); font-size: 1.3rem; letter-spacing: -0.01em; color: var(--black); margin-bottom: 0.75rem; }
   .process-block p { font-size: 0.95rem; color: #4a4844; line-height: 1.8; margin-bottom: 1rem; }
   .process-img { width: 100%; display: block; border-radius: 4px; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+
+  /* ── IMAGE TREATMENTS ── */
+  .img-full-bleed {
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
+  .img-full-bleed img {
+    width: 100%;
+    display: block;
+  }
+  .img-breakout {
+    margin: 3rem 0;
+    background: #141311;
+    padding: 3rem;
+    border-radius: 4px;
+  }
+  .img-breakout img {
+    width: 100%;
+    display: block;
+    border-radius: 2px;
+  }
+  .img-caption {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+  .img-breakout .img-caption { color: #4a4845; }
+  .img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .img-pair img { width: 100%; display: block; border-radius: 2px; }
+  @media (max-width: 720px) { .img-pair { grid-template-columns: 1fr; } }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 0.5px;
+    background: var(--warm-mid);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  /* ── CONTENT SECTIONS ── */
+  .content-section {
+    padding: 5rem var(--gutter);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .content-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 0.3rem;
+    position: sticky;
+    top: 5rem;
+  }
+
+  .content-body h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 1.25rem;
+  }
+
+  .content-body p {
+    font-size: 1rem;
+    color: #4a4844;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .content-body p:last-child { margin-bottom: 0; }
+
+  .content-body ul {
+    list-style: none;
+    margin: 1.25rem 0;
+  }
+
+  .content-body ul li {
+    font-size: 1rem;
+    color: #4a4844;
+    line-height: 1.7;
+    padding: 0.6rem 0;
+    border-bottom: 0.5px solid var(--warm-mid);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .content-body ul li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  /* ── CONSTRAINT CARDS ── */
+  .constraint-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--warm-mid);
+    border: 1.5px solid var(--warm-mid);
+    margin-top: 2rem;
+  }
+
+  .constraint-card {
+    background: var(--white);
+    padding: 1.75rem;
+  }
+
+  .constraint-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+  }
+
+  .constraint-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PROCESS STEPS ── */
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .process-step.reverse { direction: rtl; }
+  .process-step.reverse > * { direction: ltr; }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── INSIGHT CALLOUT ── */
+  .insight {
+    border-left: 2px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--accent-light);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .insight-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .insight p {
+    font-size: 0.95rem;
+    color: #4a4844;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--warm-mid);
+    border: 1.5px solid var(--warm-mid);
+    margin-top: 2rem;
+  }
+
+  .outcome-card {
+    background: var(--white);
+    padding: 2rem 1.75rem;
+  }
+
+  .outcome-stat {
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .outcome-stat em { color: var(--accent); font-style: normal; }
+
+  .outcome-stat .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--warm-mid);
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .outcome-stat .arrow-down { color: #a32d2d; }
+  .outcome-stat .arrow-up { color: #2d6a2d; }
+  .outcome-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── LEARNINGS ── */
+  .learnings {
+    background: var(--black);
+    padding: 5rem var(--gutter);
+  }
+
+  .learnings-inner { max-width: var(--max-wide); margin: 0 auto; }
+
+  .learnings-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .learnings p {
+    font-size: 1rem;
+    color: #a8a49c;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── NEXT PROJECT ── */
+  .next-project {
+    padding: 5rem var(--gutter);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .next-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .next-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .next-title:hover { color: var(--accent); }
+
+  .next-arrow {
+    font-size: 2.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: transform 0.2s, color 0.2s;
+    display: block;
+  }
+
+  .next-arrow:hover { transform: translateX(6px); color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 2rem var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: #a8a49c;
+    text-decoration: none;
+  }
+
+  .footer-copy { font-size: 0.75rem; color: #5a5752; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-top: 2rem; border-top: 0.5px solid var(--warm-mid); }
+
+  .accordion-item { border-bottom: 0.5px solid var(--warm-mid); }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .accordion-header::-webkit-details-marker { display: none; }
+
+  .accordion-num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 1.5rem;
+  }
+
+  .accordion-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--black);
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .accordion-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .accordion-icon::before,
+  .accordion-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--muted);
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .accordion-icon::before { width: 10px; height: 1.5px; top: 8px; left: 4px; }
+  .accordion-icon::after  { width: 1.5px; height: 10px; top: 4px; left: 8px; }
+
+  details[open] .accordion-icon::after { transform: rotate(90deg); opacity: 0; }
+  details[open] .accordion-title { color: var(--accent); }
+
+  .accordion-body {
+    padding: 0 0 1.75rem 2.5rem;
+  }
+
+  .accordion-body p {
+    font-size: 0.95rem;
+    color: #4a4844;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .accordion-body ul {
+    list-style: none;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .accordion-body ul li {
+    font-size: 0.95rem;
+    color: #4a4844;
+    line-height: 1.7;
+    padding: 0.5rem 0;
+    border-bottom: 0.5px solid var(--warm-mid);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .accordion-body ul li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  /* ── SIDE NAV ── */
+  .page-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: start;
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+
+  .side-nav {
+    position: sticky;
+    top: 5.5rem;
+    padding: 0 1rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .side-nav a {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.4rem 0 0.4rem 0.75rem;
+    border-left: 1.5px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1.4;
+  }
+
+  .side-nav a:hover { color: var(--black); }
+  .side-nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
+
+  .page-content { min-width: 0; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 1024px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .side-nav { display: none; }
+  }
+
+  @media (max-width: 720px) {
+    .content-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .content-label { position: static; }
+    .process-step { grid-template-columns: 1fr; }
+    .process-step.reverse { direction: ltr; }
+    .outcomes-grid, .constraint-grid { grid-template-columns: 1fr; }
+    .next-project { flex-direction: column; align-items: flex-start; }
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+    z-index: 9999;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+  }
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--black);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed;
+    top: 4.5rem;
+    right: 1rem;
+    width: 200px;
+    background: var(--black);
+    border-radius: 12px;
+    z-index: 9500;
+    padding: 0.4rem 0;
+    opacity: 0;
+    transform: scale(0.92) translateY(-6px);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .mobile-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+  .mobile-menu a { display: block; font-family: var(--serif); font-size: 1.15rem; color: #f5efe4; text-decoration: none; padding: 0.8rem 1.25rem; border-bottom: 0.5px solid #2c2a26; letter-spacing: -0.01em; transition: color 0.15s; }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:active { color: var(--accent); }
+  .mobile-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9290; display: none; background: transparent; }
+  .mobile-backdrop.open { display: block; }
+  @media (max-width: 720px) { .burger { display: flex; } }
+
 </style>
 </head>
 <body id="top">
@@ -185,6 +770,7 @@
   <a href="index.html#contact" class="mobile-link">Contact</a>
 </div>
 
+<!-- HERO -->
 <div class="case-hero">
   <div class="case-meta">
     <div class="meta-item"><span class="meta-label">Company</span><span class="meta-value">Saxo Bank</span></div>
@@ -192,43 +778,38 @@
     <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">1–3 months</span></div>
     <div class="meta-item"><span class="meta-label">Platforms</span><span class="meta-value">Web · Platform · Mobile</span></div>
   </div>
-  <h1 class="case-title">Refer a Friend — Revitalising a Dormant Growth Channel</h1>
-  <p class="case-intro">Saxo Bank had a referral programme that technically existed but barely worked. Low visibility, unclear rewards, and a confusing flow meant users weren't engaging. I redesigned it end-to-end — and tripled referred users within a year.</p>
+  <h1 class="case-title">Refer a Friend</h1>
+  <p class="case-intro">Revitalising a dormant referral programme at a global investment bank — turning a feature users ignored into one that tripled referred users within a year.</p>
 </div>
 
+<!-- HERO IMAGE -->
 <div class="img-full-bleed">
   <img src="images/refer-hero.png" alt="Refer a Friend — Saxo Bank" />
 </div>
 
+<div class="divider"></div>
+
 <!-- RESULTS SNAPSHOT -->
 <div class="content-section" id="results" style="padding-bottom: 3rem;">
   <div class="reveal">
-    <div style="font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">Results at a glance<span style="height: 0.5px; width: 60px; background: var(--accent); display: block;"></span></div>
+    <div style="font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;">Results at a glance<span style="height:0.5px;width:60px;background:var(--accent);display:block;"></span></div>
     <div class="outcomes-grid">
-      <div class="outcome-card">
-        <div class="outcome-stat"><em>3×</em></div>
-        <div class="outcome-label">Referred users within one year post-launch</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-stat"><em>+25%</em></div>
-        <div class="outcome-label">Sign-ups, with a 20% increase in funded accounts</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-stat"><em>−50%</em></div>
-        <div class="outcome-label">Referral-related support questions — a signal of increased clarity and trust</div>
-      </div>
+      <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year of launch</div></div>
+      <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Increase in sign-ups from referred users</div></div>
+      <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Increase in funded accounts from referrals</div></div>
+    </div>
+    <div class="outcomes-grid" style="margin-top:1.5px;">
+      <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Reduction in referral-related support questions</div></div>
     </div>
   </div>
 </div>
-
-<div class="divider"></div>
 
 <div class="page-layout">
   <aside class="side-nav">
     <a href="#results">Results</a>
     <a href="#brief">Brief</a>
     <a href="#research">Research</a>
-    <a href="#process">Process</a>
+    <a href="#insights">Insights</a>
     <a href="#solution">Solution</a>
     <a href="#outcomes">Outcomes</a>
     <a href="#reflection">Reflection</a>
@@ -236,27 +817,21 @@
 
   <div class="page-content">
 
+    <div class="divider"></div>
+
     <!-- BRIEF -->
     <div class="content-section" id="brief">
       <div class="content-grid reveal">
         <div class="content-label">The brief</div>
         <div class="content-body">
-          <h2>A programme that existed on paper but failed in practice</h2>
-          <p>Saxo Bank had a referral programme, but it wasn't doing much. The design and entry points failed to motivate action — users either didn't know it existed or couldn't figure out how the rewards worked. The business goal was clear: revitalise the programme to increase engagement, referral completions, and funded accounts.</p>
-          <p>Added complexity came from regulatory constraints. Denmark's Pyramid Scheme Act placed specific limits on how referral rewards could be structured and communicated, and cross-market variations (Denmark vs Dubai, among others) required careful legal alignment throughout.</p>
+          <h2>A referral programme that existed — but nobody used.</h2>
+          <p>Saxo Bank had a referral programme in place, but it was generating almost no engagement. The technical infrastructure was there. The incentive structure was there. But users simply weren't finding it, understanding it, or completing the journey.</p>
+          <p>The goal was to revitalise the programme — make it discoverable, make the reward mechanics understandable, and design a flow that actually motivated users to refer their network and follow through to a funded account.</p>
+          <p>Layered on top: strict legal and regulatory requirements across markets. Denmark's Pyramid Scheme Act limited how referral rewards could be structured. GDPR compliance shaped what data could be used. Any solution had to work across Saxo's different market contexts without creating compliance risk.</p>
           <div class="constraint-grid">
-            <div class="constraint-card">
-              <div class="constraint-title">1–3 months</div>
-              <div class="constraint-desc">Timeline shaped by legal review cycles and cross-market compliance requirements.</div>
-            </div>
-            <div class="constraint-card">
-              <div class="constraint-title">Full ownership</div>
-              <div class="constraint-desc">Started as UX + UI collaboration, became solo ownership mid-project when UI designers left due to illness and attrition.</div>
-            </div>
-            <div class="constraint-card">
-              <div class="constraint-title">Design system locked</div>
-              <div class="constraint-desc">No modifications to existing components. Solution had to live within what already existed.</div>
-            </div>
+            <div class="constraint-card"><div class="constraint-title">1–3 months</div><div class="constraint-desc">Timeline varied with legal review cycles and cross-market compliance sign-off.</div></div>
+            <div class="constraint-card"><div class="constraint-title">Full ownership</div><div class="constraint-desc">Started as a UX/UI collaboration — ended with sole ownership after team changes mid-project.</div></div>
+            <div class="constraint-card"><div class="constraint-title">Design system locked</div><div class="constraint-desc">No new components. Solution had to live within existing patterns across web and platform.</div></div>
           </div>
         </div>
       </div>
@@ -265,62 +840,205 @@
     <div class="divider"></div>
 
     <!-- RESEARCH -->
-<div class="content-section" id="research">
-  <div class="content-grid reveal">
-    <div class="content-label">Research</div>
-    <div class="content-body">
-      <h2>Two parallel tracks — funnel data and usability testing — running simultaneously.</h2>
-      <p>Discovery combined quantitative drop-off analysis with qualitative speak-aloud testing to understand both where users were failing and why.</p>
-
-      <div class="accordion">
-
-        <details class="accordion-item">
-          <summary class="accordion-header">
-            <span class="accordion-num">01</span>
-            <span class="accordion-title">Funnel analysis — mapping the drop-off</span>
-            <span class="accordion-icon"></span>
-          </summary>
-          <div class="accordion-body">
-            <p>Working with data analysts and PMs, I mapped the referral funnel end to end. The clearest signal: users were generating referral links, but referred users weren't completing sign-up or funding their accounts. Drop-off happened at two points — referred users abandoning the landing page, and referrers losing track of the process.</p>
-            <div class="insight">
-              <div class="insight-label">What the data showed</div>
-              <p>The problem wasn't awareness of the reward — it was trust and clarity. Referred users arrived on landing pages that felt inconsistent with the main platform, and referrers had no way to track whether their referral had done anything.</p>
-            </div>
-          </div>
-        </details>
-
-        <details class="accordion-item">
-          <summary class="accordion-header">
-            <span class="accordion-num">02</span>
-            <span class="accordion-title">Usability testing — 7 speak-aloud sessions, both sides of the loop</span>
-            <span class="accordion-icon"></span>
-          </summary>
-          <div class="accordion-body">
-            <p>I ran 7 speak-aloud usability tests covering both the referrer and the referred user. Testing old and new concepts in parallel helped isolate what was genuinely broken versus what could be improved.</p>
-            <p>Key issues surfaced:</p>
-            <ul>
-              <li>Confusion about how "commission credits" are earned, where they appear, and how to spend them</li>
-              <li>Entry points in the profile menu and portfolio banner were largely ignored — users scrolled past them entirely</li>
-              <li>Landing pages for referred users felt inconsistent and untrustworthy</li>
-              <li>A large terms & conditions CTA dominated the visual hierarchy, overshadowing the actual action</li>
-              <li>No feedback or progress tracking — referrers had no idea if their contact had signed up or funded</li>
-            </ul>
-            <div class="insight">
-              <div class="insight-label">The key insight</div>
-              <p>Users weren't confused about what a referral programme was. They were confused about what would happen next — and that uncertainty was enough to stop them from acting.</p>
-            </div>
-          </div>
-        </details>
-
+    <div class="content-section" id="research">
+      <div class="content-grid reveal">
+        <div class="content-label">Research</div>
+        <div class="content-body">
+          <h2>Seven usability tests and a funnel that told the real story.</h2>
+          <p>Discovery ran across two parallel tracks — quantitative funnel analysis and qualitative usability testing — to understand both where users were dropping off and why.</p>
+        </div>
       </div>
-
-      <div class="insight" style="margin-top: 2rem;">
-        <div class="insight-label">Research summary</div>
-        <p>Both streams pointed to the same root cause: visibility, clarity, and feedback. Users needed to find the feature, understand the reward, and know where they stood in the process at all times.</p>
-      </div>
-
     </div>
+
+    <div class="content-section" style="padding-top:0;">
+      <div class="content-grid reveal">
+        <div class="content-label">01 — Funnel analysis</div>
+        <div class="content-body">
+          <h2>The drop-off happened after link generation</h2>
+          <p>Working with data analysts and PMs, I mapped the referral funnel end to end. The clearest signal: users were generating referral links, but referred users weren't completing sign-up or funding their accounts. Drop-off happened at two points — referred users abandoning the landing page, and referrers losing track of progress.</p>
+          <div class="insight">
+            <div class="insight-label">What the data showed</div>
+            <p>The problem wasn't awareness of the reward — it was trust and clarity. Referred users were arriving on landing pages that felt inconsistent with the main platform, and referrers had no way to track whether their referral had done anything.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content-section">
+      <div class="content-grid reveal">
+        <div class="content-label">02 — Usability testing</div>
+        <div class="content-body">
+          <h2>7 speak-aloud sessions — both referrers and referred users</h2>
+          <p>I ran 7 speak-aloud usability tests covering both sides of the referral loop. Testing old and new concepts in parallel helped isolate what was genuinely broken versus what could be improved.</p>
+          <ul>
+            <li>Confusion about how "commission credits" are earned, where they appear, and how to spend them</li>
+            <li>Entry points in the profile menu and portfolio banner were largely ignored</li>
+            <li>Landing pages for referred users felt inconsistent and untrustworthy</li>
+            <li>A large terms &amp; conditions CTA dominated the visual hierarchy</li>
+            <li>No feedback or progress tracking — referrers had no idea if their contact had signed up</li>
+          </ul>
+          <div class="insight">
+            <div class="insight-label">The key insight from testing</div>
+            <p>Users weren't confused about what a referral programme was. They were confused about what would happen next — and that uncertainty was enough to stop them from acting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- INSIGHTS -->
+    <div class="content-section" id="insights">
+      <div class="content-grid reveal">
+        <div class="content-label">Key insights</div>
+        <div class="content-body">
+          <h2>Three things that shaped everything.</h2>
+          <ul>
+            <li><strong style="font-weight:500;color:var(--black);">Visibility drives engagement.</strong> Users weren't finding the referral feature. Entry points needed to be prominent, contextual, and hard to miss.</li>
+            <li><strong style="font-weight:500;color:var(--black);">Clarity and feedback matter as much as the reward.</strong> Users didn't understand the commission credit mechanic. Until that was resolved, the incentive wasn't motivating — it was confusing.</li>
+            <li><strong style="font-weight:500;color:var(--black);">Behavioural reinforcement keeps the loop alive.</strong> A referral isn't complete when someone clicks a link. The design needed to keep both sides engaged throughout the gap to a funded account.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SOLUTION -->
+    <div class="content-section" id="solution">
+      <div class="content-grid reveal">
+        <div class="content-label">The solution</div>
+        <div class="content-body">
+          <h2>A complete redesign of the referral journey — from entry point to funded account.</h2>
+          <ul>
+            <li><strong style="font-weight:500;color:var(--black);">Dedicated referral page</strong> — replaced the cramped dialog with a full page that had space for clear instructions, reward explanation, and sharing options</li>
+            <li><strong style="font-weight:500;color:var(--black);">Commission credits hub</strong> — explains what credits are, how they're earned, where they appear, and how to use them</li>
+            <li><strong style="font-weight:500;color:var(--black);">Persistent funding reminder</strong> — shown until the referred user funds their account or the 90-day window closes</li>
+            <li><strong style="font-weight:500;color:var(--black);">Improved landing page</strong> — redesigned for trust and consistency with the main platform</li>
+            <li><strong style="font-weight:500;color:var(--black);">Friction reduction throughout</strong> — QR code sharing, simplified copy, redesigned trigger emails, empty states that guide next actions</li>
+            <li><strong style="font-weight:500;color:var(--black);">Leaderboard &amp; status dashboard (designed, paused)</strong> — fully designed and validated internally, paused pending compliance sign-off</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- OUTCOMES -->
+    <div class="content-section" id="outcomes">
+      <div class="content-grid reveal">
+        <div class="content-label">Results</div>
+        <div class="content-body">
+          <h2>Referred users tripled. Support dropped by half.</h2>
+          <p>Within one year of launch, the redesigned referral programme delivered measurable impact across the full funnel. The 50% drop in referral-related support questions was a particularly strong signal — users were no longer confused about how the programme worked.</p>
+          <div class="outcomes-grid" style="margin-top:1.5rem;">
+            <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year</div></div>
+            <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Sign-ups from referred users</div></div>
+            <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Funded accounts from referrals</div></div>
+          </div>
+          <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--muted);font-style:italic;">External factors including Saxo's broader pricing strategy influenced overall engagement. The metrics above reflect the operational impact of the referral flow specifically.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
+<!-- LEARNINGS -->
+<div class="learnings" id="reflection">
+  <div class="learnings-inner">
+    <div class="content-label" style="color:#c9521a;margin-bottom:2rem;">Reflection</div>
+    <h2 class="learnings-headline">What I'd push for next time.</h2>
+    <p>The leaderboard and referral status dashboard were the features I was most confident in — both tested well internally and addressed a real gap in the experience. Having them paused by compliance was frustrating but understandable. Next time I'd build compliance alignment into the discovery phase rather than treating it as a final gate.</p>
+    <p>I'd also introduce A/B testing earlier — particularly around reward framing and copy. The commission credits explanation worked, but there's meaningful optimisation still on the table around how the incentive is positioned for different user segments.</p>
+    <p>Taking full ownership of both UX and UI mid-project was demanding, but it meant every decision was coherent. The tradeoff was speed — more hands would have allowed faster iteration.</p>
+  </div>
+</div>
 
+<div class="back-top">
+  <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2025 Semir Ugljanin</span>
+  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin" aria-label="LinkedIn">
+    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#5a5752"/>
+      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
+    </svg>
+  </a>
+</footer>
+
+<script>
+  (function() {
+    var entered = sessionStorage.getItem('portfolio_auth');
+    if (entered !== 'yes') {
+      var pw = prompt('This case study is password protected.\nEnter password to continue:');
+      if (pw === 'design123') {
+        sessionStorage.setItem('portfolio_auth', 'yes');
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+  })();
+
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.side-nav a');
+  const scrollSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => scrollSpy.observe(s));
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var burger = document.getElementById('burger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileBackdrop = document.getElementById('mobileBackdrop');
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        burger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        if (mobileBackdrop) mobileBackdrop.classList.toggle('open');
+      });
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          mobileBackdrop.classList.remove('open');
+        });
+      }
+      document.querySelectorAll('.mobile-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+        });
+      });
+    }
+  });
+
+</script>
+</body>
+</html>
