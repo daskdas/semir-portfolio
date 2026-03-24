@@ -60,47 +60,57 @@
   .hero-scroll { display: flex; align-items: center; gap: 0.75rem; padding: 1.5rem 0; max-width: var(--max); margin: 0 auto; width: 100%; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
   .scroll-line { width: 40px; height: 0.5px; background: var(--muted); flex-shrink: 0; }
 
-/* LAYERED ART-SCRIBBLES */
-.hero-scribble {
+.hero-inner {
+  position: relative; /* anchor scribbles to this container */
+  overflow: hidden;   /* prevent scribbles from spilling */
+  z-index: 1;         /* text content above scribbles */
+}
+
+.hero-scribble-container {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  z-index: 0; 
+  z-index: 0;         /* behind text */
+}
+
+.scribble {
+  position: absolute;
   opacity: 0.15;
 }
 
-/* Individual layer tweaks */
-.hero-scribble.layer1 {
+/* Layer-specific tweaks */
+.scribble.layer1 {
   width: 70%;
-  max-width: 800px;
   top: 0;
   right: 0;
-  transform: translate(10%, -10%) rotate(-5deg);
-  animation: float1 12s ease-in-out infinite alternate;
+  transform: rotate(-5deg);
 }
 
-.hero-scribble.layer2 {
+.scribble.layer2 {
   width: 60%;
-  max-width: 700px;
-  top: 5%;
+  top: 10%;
   right: 5%;
   opacity: 0.1;
-  transform: translate(8%, -12%) rotate(7deg);
-  animation: float2 10s ease-in-out infinite alternate;
+  transform: rotate(7deg);
 }
 
-/* subtle floating animations */
-@keyframes float1 {
-  0% { transform: translate(10%, -10%) rotate(-7deg); }
-  50% { transform: translate(12%, -12%) rotate(-4deg); }
-  100% { transform: translate(10%, -10%) rotate(-5deg); }
+/* optional floating animation */
+@keyframes floatScribble {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5%) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
-@keyframes float2 {
-  0% { transform: translate(8%, -12%) rotate(5deg); }
-  50% { transform: translate(10%, -14%) rotate(9deg); }
-  100% { transform: translate(8%, -12%) rotate(7deg); }
-}
+.scribble.layer1 { animation: floatScribble 12s ease-in-out infinite; }
+.scribble.layer2 { animation: floatScribble 10s ease-in-out infinite; }
 
+/* mobile */
+@media (max-width: 720px) {
+  .scribble { width: 150px; top: 5%; right: 0; opacity: 0.1; transform: rotate(-5deg); }
+}
 /* MOBILE RESPONSIVE */
 @media (max-width: 720px) {
   .hero-scribble.layer1,
@@ -463,14 +473,11 @@
 
 <div class="hero">
 <div class="hero-inner">
-  <!-- Scribble Layer 1 -->
-  <div class="hero-scribble layer1">
-    <img src="scribble1.png" alt="" />
+  <div class="hero-scribble-container">
+    <img src="scribble1.png" class="scribble layer1" alt="" />
+    <img src="scribble2.png" class="scribble layer2" alt="" />
   </div>
-  <!-- Scribble Layer 2 -->
-  <div class="hero-scribble layer2">
-    <img src="scribble2.png" alt="" />
-  </div>
+
   <p class="hero-label">Product Designer — Copenhagen</p>
   <h1 class="hero-headline">Hey, I'm Semir.</h1>
   <p class="hero-sub">A Product Designer based in Copenhagen...</p>
