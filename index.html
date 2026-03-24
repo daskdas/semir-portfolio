@@ -66,7 +66,7 @@
   .section-label::after { content: ''; height: 0.5px; width: 60px; background: var(--accent); display: block; }
 
   .work { background: var(--white); }
-  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); }
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); position: relative; z-index: 1; }
   .work-card {
     position: relative;
     overflow: hidden;
@@ -148,8 +148,7 @@
     .work-card-overlay { opacity: 0.88; }
     .work-card-bg { opacity: 0.15; }
     .work-card-company, .work-card-title, .work-card-tags { opacity: 1; transform: translateY(0); }
-  }}
-  .work-card-num { display: none; }
+  }
   .work-card-num { font-family: var(--serif); font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
   .work-card-title { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1rem; }
 
