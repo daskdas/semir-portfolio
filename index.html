@@ -55,6 +55,14 @@
   .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); }
   .work-card { background: var(--white); padding: 2.5rem; cursor: pointer; position: relative; overflow: hidden; transition: background 0.3s; text-decoration: none; display: block; color: inherit; }
   .work-card:hover { background: var(--accent-light); }
+  .work-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center top; opacity: 0; transition: opacity 0.5s ease; filter: grayscale(20%); }
+  .work-card-overlay { position: absolute; inset: 0; background: rgba(14,14,13,0.75); opacity: 0; transition: opacity 0.5s ease; }
+  .work-card:hover .work-card-bg, .work-card:hover .work-card-overlay { opacity: 1; }
+  .work-card:hover .work-card-title { color: #f5efe4; }
+  .work-card:hover .work-card-desc { color: #a8a49c; }
+  .work-card:hover .tag { color: #a8a49c; border-color: rgba(255,255,255,0.2); }
+  .work-card-content { position: relative; z-index: 1; }
+  .work-card-num { display: none; }
   .work-card-num { font-family: var(--serif); font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
   .work-card-title { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1rem; }
   .work-card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 2rem; }
@@ -229,32 +237,44 @@
     <div class="section-label">Selected work</div>
     <div class="work-grid">
       <a href="#" class="work-card reveal">
-        <div class="work-card-num">01</div>
+        <div class="work-card-bg" style="background-image:url('images/yousee-hero.png');"></div>
+        <div class="work-card-overlay"></div>
+        <div class="work-card-content">
         <h2 class="work-card-title">Digital Onboarding — YouSee</h2>
         <p class="work-card-desc">End-to-end ownership of mobile onboarding, self-service and help experiences for Denmark's largest telecom — focused on activation, self-help and support deflection at consumer scale.</p>
         <div class="work-card-tags"><span class="tag">Service design</span><span class="tag">Journey mapping</span><span class="tag">B2C</span></div>
         <span class="work-card-arrow">↗</span>
+        </div>
       </a>
       <a href="saxo-reporting.html" class="work-card reveal">
-        <div class="work-card-num">02</div>
+        <div class="work-card-bg" style="background-image:url('images/saxo-reporting-hero.png');"></div>
+        <div class="work-card-overlay"></div>
+        <div class="work-card-content">
         <h2 class="work-card-title">Portfolio & Reporting — Saxo Bank</h2>
         <p class="work-card-desc">Lead designer for core portfolio and account-critical surfaces across a global investment platform — money movement, analysis, and regulated high-risk account flows.</p>
         <div class="work-card-tags"><span class="tag">Fintech</span><span class="tag">Data visualisation</span><span class="tag">Design system</span></div>
         <span class="work-card-arrow">↗</span>
+        </div>
       </a>
       <a href="saxo-help-chatbot.html" class="work-card reveal">
-        <div class="work-card-num">03</div>
+        <div class="work-card-bg" style="background-image:url('images/slide-36.jpg');"></div>
+        <div class="work-card-overlay"></div>
+        <div class="work-card-content">
         <h2 class="work-card-title">Help & Chatbot — Saxo Bank</h2>
         <p class="work-card-desc">Designing a contextual help system and conversational interface that reduced support tickets and improved self-service rates among B2B clients.</p>
         <div class="work-card-tags"><span class="tag">Conversational UI</span><span class="tag">User research</span><span class="tag">B2B SaaS</span></div>
         <span class="work-card-arrow">↗</span>
+        </div>
       </a>
       <a href="#" class="work-card reveal">
-        <div class="work-card-num">04</div>
+        <div class="work-card-bg" style="background-image:url('images/retention-hero.png');"></div>
+        <div class="work-card-overlay"></div>
+        <div class="work-card-content">
         <h2 class="work-card-title">Retention Journeys — Saxo Bank</h2>
         <p class="work-card-desc">Mapping and redesigning key retention touchpoints using behavioural data and in-depth interviews. Created a blueprint adopted across product teams.</p>
         <div class="work-card-tags"><span class="tag">Retention</span><span class="tag">Service blueprint</span><span class="tag">Cross-functional</span></div>
         <span class="work-card-arrow">↗</span>
+        </div>
       </a>
     </div>
   </div>
