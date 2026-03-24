@@ -25,7 +25,7 @@
   html { scroll-behavior: smooth; }
   body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9000; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
   .nav-logo {
     font-family: var(--serif);
     font-size: 1.1rem;
@@ -67,19 +67,92 @@
 
   .work { background: var(--white); }
   .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); }
-  .work-card { background: var(--white); padding: 2.5rem; cursor: pointer; position: relative; overflow: hidden; transition: background 0.3s; text-decoration: none; display: block; color: inherit; }
-  .work-card:hover { background: var(--accent-light); }
-  .work-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center top; opacity: 0; transition: opacity 0.5s ease; filter: grayscale(20%); }
-  .work-card-overlay { position: absolute; inset: 0; background: rgba(14,14,13,0.75); opacity: 0; transition: opacity 0.5s ease; }
-  .work-card:hover .work-card-bg, .work-card:hover .work-card-overlay { opacity: 1; }
-  .work-card:hover .work-card-title { color: #f5efe4; }
-  .work-card:hover .work-card-desc { color: #a8a49c; }
-  .work-card:hover .tag { color: #a8a49c; border-color: rgba(255,255,255,0.2); }
-  .work-card-content { position: relative; z-index: 1; }
+  .work-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    background: #c8c2b8;
+  }
+  .work-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+    filter: grayscale(60%);
+  }
+  .work-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--white);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .work-card:hover .work-card-overlay { opacity: 0.88; }
+  .work-card:hover .work-card-bg { opacity: 0.15; }
+  .work-card-content {
+    position: absolute;
+    inset: 0;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
+  }
+  .work-card-company {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .work-card-title {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+  }
+  .work-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+  }
+  .work-card:hover .work-card-company,
+  .work-card:hover .work-card-title,
+  .work-card:hover .work-card-tags {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .work-card-arrow { display: none; }
+
+  /* Mobile — always show content */
+  @media (hover: none) {
+    .work-card-overlay { opacity: 0.88; }
+    .work-card-bg { opacity: 0.15; }
+    .work-card-company, .work-card-title, .work-card-tags { opacity: 1; transform: translateY(0); }
+  }}
   .work-card-num { display: none; }
   .work-card-num { font-family: var(--serif); font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
   .work-card-title { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1rem; }
-  .work-card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 2rem; }
+
   .work-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.75rem; border: 0.5px solid var(--warm-mid); color: var(--muted); border-radius: 2px; }
   .work-card-arrow { position: absolute; bottom: 2rem; right: 2rem; font-size: 1.2rem; color: var(--muted); transition: transform 0.2s, color 0.2s; }
@@ -224,10 +297,11 @@
     padding: 8px;
     background: none;
     border: none;
-    z-index: 350;
+    z-index: 9999;
     position: relative;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    -webkit-appearance: none;
   }
   .burger span {
     display: block;
@@ -251,7 +325,7 @@
     width: 200px;
     background: var(--black);
     border-radius: 12px;
-    z-index: 300;
+    z-index: 9500;
     padding: 0.4rem 0;
     opacity: 0;
     transform: scale(0.92) translateY(-6px);
@@ -346,32 +420,30 @@
         <div class="work-card-bg" style="background-image:url('images/refer-hero.png');"></div>
         <div class="work-card-overlay"></div>
         <div class="work-card-content">
-        <h2 class="work-card-title">Refer a Friend — Saxo Bank</h2>
-        <p class="work-card-desc">Redesigning the referral programme to significantly increase participation — from discovery and research through to a high-fidelity solution across Saxo's trading platforms.</p>
+          <div class="work-card-company">Saxo Bank</div>
+          <h2 class="work-card-title">Refer a Friend</h2>
           <div class="work-card-tags">
             <span class="tag">Growth design</span>
             <span class="tag">User research</span>
             <span class="tag">Fintech</span>
           </div>
-          <span class="work-card-arrow">↗</span>
         </div>
       </a>
       <a href="saxo-help-chatbot.html" class="work-card reveal">
         <div class="work-card-bg" style="background-image:url('images/slide-36.jpg');"></div>
         <div class="work-card-overlay"></div>
         <div class="work-card-content">
-        <h2 class="work-card-title">Help & Chatbot — Saxo Bank</h2>
-        <p class="work-card-desc">Redesigning the help experience across three platforms around a new AI chatbot — increasing engaged conversations by 70% while keeping human support options intact.</p>
+          <div class="work-card-company">Saxo Bank</div>
+          <h2 class="work-card-title">Help & Chatbot</h2>
           <div class="work-card-tags">
             <span class="tag">Conversational UI</span>
             <span class="tag">User research</span>
             <span class="tag">B2B SaaS</span>
           </div>
-          <span class="work-card-arrow">↗</span>
         </div>
       </a>
     </div>
-    <p class="work-more reveal">More case studies coming soon — including Digital Onboarding at YouSee and Retention Journeys at Saxo Bank.</p>
+    <p class="work-more reveal">More case studies coming soon.</p>
   </div>
 </section>
 
