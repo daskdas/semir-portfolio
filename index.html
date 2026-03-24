@@ -25,7 +25,7 @@
   html { scroll-behavior: smooth; }
   body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9000; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
   .nav-logo {
     font-family: var(--serif);
     font-size: 1.1rem;
@@ -324,7 +324,7 @@
     width: 200px;
     background: var(--black);
     border-radius: 12px;
-    z-index: 9500;
+    z-index: 99998;
     padding: 0.4rem 0;
     opacity: 0;
     transform: scale(0.92) translateY(-6px);
@@ -353,7 +353,7 @@
   .mobile-backdrop {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 290;
+    z-index: 99997;
     display: none;
     background: transparent;
   }
