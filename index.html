@@ -145,9 +145,36 @@
 
   /* Mobile — always show content */
   @media (hover: none) {
+    .work-card { aspect-ratio: 4 / 3; }
     .work-card-overlay { opacity: 0; }
     .work-card-bg { opacity: 1; }
-    .work-card-content { display: none; }
+    .work-card-content {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 1rem 1.25rem;
+    }
+    .work-card-company {
+      opacity: 1;
+      transform: none;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.2rem;
+    }
+    .work-card-title {
+      opacity: 1;
+      transform: none;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 0;
+    }
+    .work-card-tags { display: none; }
   }
   .work-card-num { font-family: var(--serif); font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
   .work-card-title { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1rem; }
