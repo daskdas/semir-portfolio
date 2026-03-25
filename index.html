@@ -52,7 +52,7 @@
   .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
   .nav-links a:hover { color: var(--accent); }
 
-  /* ── 3. HERO SECTION ── */
+  /* ── 3. HERO SECTION & BUTTONS ── */
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 6rem var(--gutter) 2rem var(--gutter); }
   .hero-inner { max-width: var(--max); margin: 0 auto; width: 100%; }
   .hero-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.1s forwards; }
@@ -60,9 +60,12 @@
   .hero-intro { font-size: clamp(1.1rem, 2.2vw, 1.4rem); color: var(--muted); max-width: 600px; font-weight: 300; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; }
   
   .hero-cta { margin-top: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  
   .btn { display: inline-block; padding: 0.8rem 2rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 500; border-radius: 100px; text-decoration: none; transition: 0.3s; cursor: pointer; border: 1px solid transparent; }
   .btn-ghost { background: var(--glass-bg); backdrop-filter: blur(8px); border: 1px solid var(--black); color: var(--black); }
   .btn-ghost:hover { background: var(--black); color: var(--white); }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-primary:hover { background: var(--accent); }
 
   /* ── 4. GLOBAL LAYOUT & REVEALS ── */
   section { padding: 8rem var(--gutter); }
@@ -116,8 +119,8 @@
 
   /* ── 6. ABOUT SECTION (DARK POD) ── */
   .about-wrapper { background: var(--black); color: var(--white); border-radius: 40px; margin: 0 clamp(1rem, 3vw, 3rem); padding: 6rem clamp(2rem, 5vw, 5rem); }
-  .about .section-label { color: #c9521a; }
-  .about .section-label::after { background: #c9521a; }
+  .about-wrapper .section-label { color: var(--accent); }
+  .about-wrapper .section-label::after { background: var(--accent); }
   .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
   
   .about-headline { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.15; margin-bottom: 2rem; color: #fff; }
@@ -131,6 +134,16 @@
   .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
   .skill-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem; border-radius: 16px; font-size: 0.85rem; color: #a8a49c; }
   .skill-item strong { display: block; color: #fff; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+
+  /* EDUCATION SUB-SECTION */
+  .edu-block { margin-top: 3.5rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2.5rem; }
+  .edu-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .edu-list { display: flex; flex-direction: column; }
+  .edu-row { display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: baseline; }
+  .edu-row:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+  .edu-year { font-size: 0.85rem; color: #a8a49c; }
+  .edu-degree { font-size: 0.95rem; font-weight: 500; color: #f5efe4; margin-bottom: 0.2rem; }
+  .edu-school { font-size: 0.85rem; color: #7a7670; }
 
   /* ── 7. EXPERIENCE SECTION ── */
   .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -151,6 +164,7 @@
   .contact-headline { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
   .contact-headline em { font-style: italic; color: var(--accent); }
   .contact-sub { font-size: 1.1rem; color: var(--muted); margin-bottom: 2.5rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   
   footer { background: var(--black); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; color: #5a5752; font-size: 0.8rem; }
   .footer-linkedin { opacity: 0.6; transition: 0.3s; }
@@ -270,6 +284,34 @@
           <div class="skill-item"><strong>Craft</strong>Workshops, co-creation, stakeholder alignment, documentation</div>
           <div class="skill-item"><strong>Domains</strong>Fintech, telecom, B2B/B2C SaaS, regulated platforms</div>
         </div>
+        
+        <div class="edu-block">
+          <div class="edu-label">Education</div>
+          <div class="edu-list">
+            <div class="edu-row">
+              <div class="edu-year">2016</div>
+              <div class="edu-detail">
+                <div class="edu-degree">MSc. Information Science</div>
+                <div class="edu-school">AAU Copenhagen</div>
+              </div>
+            </div>
+            <div class="edu-row">
+              <div class="edu-year">2014</div>
+              <div class="edu-detail">
+                <div class="edu-degree">Bachelor's Degree in Digital Concept Development</div>
+                <div class="edu-school">KEA Copenhagen</div>
+              </div>
+            </div>
+            <div class="edu-row">
+              <div class="edu-year">2011</div>
+              <div class="edu-detail">
+                <div class="edu-degree">AP Degree in Multimedia Design</div>
+                <div class="edu-school">KEA Copenhagen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -284,7 +326,7 @@
         <div>
           <div class="exp-company">Saxo Bank</div>
           <div class="exp-role">UX / Product Designer</div>
-          <p class="exp-desc">Owned design for core portfolio and account-critical experiences across Saxo's B2C and B2B trading platforms — spanning Portfolio, Transactions, Performance, Analysis, Corporate Actions, Account Settings and the Referral Programme.</p>
+          <p class="exp-desc">Owned design for core portfolio and account-critical experiences across Saxo's B2C and B2B trading platforms — spanning Portfolio, Transactions, Performance, Analysis, Corporate Actions, Account Settings and the Referral Programme. Scaled the chatbot support experience across platforms, increasing usage by ~70%, and redesigned the referral programme to significantly grow participation. Worked end-to-end from discovery and research through prototyping and delivery, in close collaboration with product, engineering and compliance.</p>
         </div>
       </div>
       <div class="exp-item reveal">
@@ -300,7 +342,15 @@
         <div>
           <div class="exp-company">YouSee / Nuuday</div>
           <div class="exp-role">UX Designer</div>
-          <p class="exp-desc">Owned end-to-end design of online onboarding experiences including broadband customer flows, and evolved Mit YouSee mobile self-service journeys.</p>
+          <p class="exp-desc">Owned end-to-end design of online onboarding experiences including broadband customer flows, and evolved Mit YouSee mobile self-service journeys to help customers manage their subscriptions. Contributed to self-help and support experiences across Help, Speedtest and other service flows — with a consistent focus on customer activation, self-service adoption and support deflection at consumer scale.</p>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-period">Nov 2013 — Jul 2014</div>
+        <div>
+          <div class="exp-company">Frostkostfirmaet</div>
+          <div class="exp-role">Graphic Designer</div>
+          <p class="exp-desc">Responsible for all graphical work including banners, flyers, brochures, fleet livery, t-shirt design and more.</p>
         </div>
       </div>
     </div>
@@ -311,13 +361,23 @@
   <div class="section-inner">
     <h2 class="contact-headline">Say <em>hello.</em></h2>
     <p class="contact-sub">Open to product design roles in Copenhagen and remote.</p>
-    <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="btn btn-ghost">Connect on LinkedIn</a>
+    
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#3f575a535350114c5a52564d115b5a4c5658517f58525e5653115c5052" class="btn btn-primary">Reach out</a>
+      <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    </div>
+
   </div>
 </section>
 
 <footer>
   <span>© 2026 Semir Ugljanin</span>
-  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin">
+    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#5a5752"/>
+      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
+    </svg>
+  </a>
 </footer>
 
 <script>
