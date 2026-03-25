@@ -145,9 +145,13 @@
 
   /* Mobile — always show content */
   @media (hover: none) {
-    .work-card-overlay { opacity: 0.55; }
+    .work-card-overlay { opacity: 0; }
     .work-card-bg { opacity: 1; }
-    .work-card-company, .work-card-title, .work-card-tags { opacity: 1; transform: translateY(0); }
+    .work-card-company, .work-card-title { opacity: 1; transform: translateY(0); }
+    .work-card-tags { display: none; }
+    .work-card-content { justify-content: flex-end; padding: 1.25rem 1.5rem; }
+    .work-card-company { color: rgba(255,255,255,0.7); }
+    .work-card-title { color: #f5efe4; text-shadow: 0 1px 8px rgba(0,0,0,0.4); }
   }
   .work-card-num { font-family: var(--serif); font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
   .work-card-title { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1rem; }
@@ -548,7 +552,7 @@
     <h2 class="contact-headline reveal">Say <em>hello.</em></h2>
     <p class="contact-sub reveal">Open to product design roles in Copenhagen and remote.</p>
     <div class="contact-links reveal">
-      <a href="mailto:hello.semir.design@gmail.com" class="btn btn-primary">Reach out</a>
+      <a href="/cdn-cgi/l/email-protection#c3aba6afafacedb0a6aeaab1eda7a6b0aaa4ad83a4aea2aaafeda0acae" class="btn btn-primary">Reach out</a>
       
       <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="btn btn-ghost">LinkedIn</a>
     </div>
@@ -565,7 +569,7 @@
   </a>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.addEventListener('DOMContentLoaded', function() {
 
     document.body.classList.add('js-ready');
@@ -594,10 +598,4 @@
         link.addEventListener('click', function() {
           burger.classList.remove('open');
           mobileMenu.classList.remove('open');
-          if (mobileBackdrop) mobileBackdrop.classList.remove('open');
-        });
-      });
-    }
-
-    var els = document.querySelectorAll('.reveal');
-    var observer = new IntersectionObserver(function(entrie
+          if (mobileBackdrop) mobileBackdrop.classLi
