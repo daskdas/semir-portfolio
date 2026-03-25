@@ -206,12 +206,22 @@
   }
   @keyframes draw { to { stroke-dashoffset: 0; } }
 
-  /* THE DESIGN CANVAS (Desktop only) */
+/* THE DESIGN CANVAS - Fixed to stay near the text */
   .design-canvas {
-    position: absolute; right: -5%; top: 50%; transform: translateY(-50%);
-    width: 450px; height: 400px; pointer-events: none; display: none;
+    position: absolute; 
+    left: 600px; /* This keeps it a set distance from your text */
+    top: 50%; 
+    transform: translateY(-50%);
+    width: 450px; 
+    height: 400px; 
+    pointer-events: none; 
+    display: none;
   }
-  @media (min-width: 1024px) { .design-canvas { display: block; } }
+  
+  /* If the screen is too small, hide it so it doesn't overlap the text */
+  @media (min-width: 1150px) { 
+    .design-canvas { display: block; } 
+  }
 
   /* FLOATING INTERFACE ELEMENTS */
   .floating-ui {
