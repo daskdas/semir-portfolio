@@ -26,37 +26,28 @@
   }
 
   html { scroll-behavior: smooth; }
-  body { 
-    background: var(--white); 
-    color: var(--black); 
-    font-family: var(--sans); 
-    line-height: 1.7; 
-    -webkit-font-smoothing: antialiased; 
-    overflow-x: hidden;
-  }
+  body { background: var(--white); color: var(--black); font-family: var(--sans); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
   /* ── 2. NAVIGATION ── */
   nav { 
     position: fixed; top: 0; left: 0; right: 0; z-index: 9000; 
     display: flex; justify-content: space-between; align-items: center; 
-    padding: 1.25rem var(--gutter); 
-    background: rgba(245, 239, 228, 0.75); 
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); 
-    border-bottom: 1px solid rgba(0,0,0,0.05); 
+    padding: 1.25rem var(--gutter); background: rgba(245, 239, 228, 0.75); 
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.05); 
   }
   .nav-logo { font-family: var(--serif); font-size: 1.2rem; font-style: italic; color: var(--black); text-decoration: none; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: 0.3s; }
+  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
   .nav-links a:hover { color: var(--accent); }
 
-  /* ── 3. HERO (FIXED LAYOUT) ── */
+  /* ── 3. HERO (THE HYBRID FIX) ── */
   .hero { min-height: 100vh; display: flex; align-items: center; padding: 6rem var(--gutter) 2rem var(--gutter); overflow: hidden; }
   .hero-inner { 
     max-width: var(--max); margin: 0 auto; width: 100%;
     display: flex; align-items: center; justify-content: space-between; gap: 4rem;
   }
   .hero-content { flex: 1.2; max-width: 650px; z-index: 10; }
-  .hero-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .hero-label { font-size: 0.75rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; }
   .hero-headline { font-family: var(--serif); font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.05; margin-bottom: 2rem; position: relative; display: inline-block; }
   .hero-intro { font-size: clamp(1.1rem, 2.2vw, 1.4rem); color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; }
 
@@ -65,7 +56,7 @@
   .scribble-path { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 1.2s ease-out 0.8s forwards; }
   @keyframes draw { to { stroke-dashoffset: 0; } }
 
-  /* DESIGN CANVAS (BOXES) */
+  /* DESIGN CANVAS (FLOATING BOXES) */
   .design-canvas { flex: 0.8; position: relative; height: 400px; display: none; pointer-events: none; }
   @media (min-width: 1100px) { .design-canvas { display: block; } }
 
@@ -79,7 +70,7 @@
   .ui-3 { bottom: 20px; right: 40px; width: 160px; animation-delay: 3s; }
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-  /* ── 4. WORK SECTION ── */
+  /* ── 4. WORK SECTION (GLASS CARDS) ── */
   section { padding: 8rem var(--gutter); }
   .section-inner { max-width: var(--max); margin: 0 auto; }
   .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
@@ -87,58 +78,65 @@
 
   .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
   .work-card {
-    position: relative; overflow: hidden; aspect-ratio: 4 / 3; text-decoration: none; display: block; color: inherit;
+    position: relative; overflow: hidden; aspect-ratio: 4/3; text-decoration: none; display: block; color: inherit;
     background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border); border-radius: 24px; box-shadow: var(--glass-shadow); transition: 0.5s;
   }
-  .work-card:hover { transform: translateY(-8px); background: rgba(255, 255, 255, 0.7); }
+  .work-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.7); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
   .work-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.4; filter: grayscale(100%); transition: 0.6s; }
   .work-card:hover .work-card-bg { opacity: 0.15; filter: grayscale(0%); }
   .work-card-content { position: absolute; inset: 0; padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; z-index: 2; }
-  .work-card-title { font-family: var(--serif); font-size: 1.8rem; margin-bottom: 0.5rem; }
-  .tag { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; padding: 0.4rem 0.8rem; background: rgba(0,0,0,0.04); border-radius: 100px; margin-right: 5px; color: var(--muted); }
+  .work-card-title { font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 2rem); margin-bottom: 0.5rem; }
+  .tag { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; padding: 0.4rem 0.8rem; background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); color: var(--muted); border-radius: 100px; margin-right: 5px; }
 
   /* ── 5. ABOUT (DARK) ── */
   .about-wrapper { background: var(--black); color: var(--white); border-radius: 40px; margin: 0 clamp(1rem, 3vw, 3rem); padding: 6rem clamp(2rem, 5vw, 5rem); }
   .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
   .about-headline { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 2rem; }
-  .about-photo-wrap { border-radius: 24px; overflow: hidden; margin-bottom: 2rem; }
-  .about-photo { width: 100%; filter: grayscale(100%); transition: 0.5s; }
-  .about-body p { color: #a8a49c; margin-bottom: 1.5rem; }
+  .about-photo-wrap { border-radius: 24px; overflow: hidden; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.1); }
+  .about-photo { width: 100%; display: block; filter: grayscale(100%); transition: 0.5s; }
+  .about-photo:hover { filter: grayscale(0%); }
+  .about-body p { color: #a8a49c; font-size: 1.05rem; margin-bottom: 1.5rem; }
   
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
-  .skill-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.2rem; border-radius: 16px; font-size: 0.85rem; color: #a8a49c; }
-  .skill-item strong { display: block; color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2.5rem 0; }
+  .skill-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem; border-radius: 16px; font-size: 0.85rem; color: #a8a49c; }
+  .skill-item strong { display: block; color: #fff; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
 
-  .edu-row { display: grid; grid-template-columns: 60px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .edu-year { color: var(--accent); font-weight: 600; font-size: 0.85rem; }
-  .edu-degree { color: #fff; font-weight: 500; }
+  /* EDUCATION SUBSECTION */
+  .edu-row { display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .edu-year { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+  .edu-degree { font-size: 0.95rem; font-weight: 500; color: #f5efe4; }
+  .edu-school { font-size: 0.85rem; color: #7a7670; }
 
-  /* ── 6. EXPERIENCE ── */
+  /* ── 6. EXPERIENCE (GLASS CARDS) ── */
   .exp-item { 
     display: grid; grid-template-columns: 160px 1fr; gap: 2rem; 
-    background: var(--glass-bg); border: 1px solid var(--glass-border); 
-    border-radius: 24px; padding: 2.5rem; margin-bottom: 1.5rem; backdrop-filter: blur(12px);
+    background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border); border-radius: 24px; padding: 2.5rem; margin-bottom: 1.5rem; transition: 0.3s;
   }
+  .exp-item:hover { transform: translateY(-4px); background: rgba(255,255,255,0.6); }
   .exp-company { font-family: var(--serif); font-size: 1.5rem; }
-  .exp-role { color: var(--accent); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .exp-role { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 0.8rem; }
+  .exp-desc { font-size: 0.95rem; color: var(--muted); }
 
-  /* ── 7. FOOTER ── */
-  .btn { display: inline-block; padding: 0.8rem 2rem; font-size: 0.85rem; font-weight: 500; border-radius: 100px; text-decoration: none; transition: 0.3s; cursor: pointer; }
+  /* ── 7. FOOTER & BUTTONS ── */
+  .btn { display: inline-block; padding: 0.8rem 2rem; font-size: 0.85rem; font-weight: 500; border-radius: 100px; text-decoration: none; transition: 0.3s; border: 1px solid transparent; }
   .btn-primary { background: var(--black); color: var(--white); }
-  .btn-ghost { border: 1px solid var(--black); color: var(--black); }
-  .contact { text-align: center; padding: 10rem 0; }
-  footer { background: var(--black); padding: 2rem var(--gutter); color: #5a5752; display: flex; justify-content: space-between; font-size: 0.8rem; }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost { background: var(--glass-bg); border: 1px solid var(--black); color: var(--black); }
+  
+  .contact { text-align: center; padding: 10rem var(--gutter); }
+  footer { background: var(--black); padding: 2rem var(--gutter); color: #5a5752; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
 
-  /* ── 8. UTILS ── */
+  /* ── 8. ANIMATIONS ── */
   .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 900px) {
-    .hero-inner, .about-grid, .work-grid, .exp-item { grid-template-columns: 1fr; }
-    .hero { text-align: center; }
+    .hero-inner, .about-grid, .work-grid, .exp-item { grid-template-columns: 1fr; text-align: center; }
     .hero-inner { justify-content: center; }
-    .nav-links { display: none; }
+    .nav-links, .design-canvas { display: none; }
+    .about-wrapper { margin: 0; border-radius: 0; }
   }
 </style>
 </head>
@@ -175,14 +173,14 @@
         <div style="font-size: 10px; color: #999; text-transform: uppercase; margin-bottom: 4px;">Portfolio Value</div>
         <div style="font-size: 20px; font-weight: 600;">$42,080.50</div>
         <div style="width: 100%; height: 30px; display: flex; align-items: flex-end; gap: 4px; margin-top: 10px;">
-           <div style="flex:1; height:40%; background: #eee;"></div>
-           <div style="flex:1; height:100%; background: var(--accent);"></div>
-           <div style="flex:1; height:60%; background: #eee;"></div>
+           <div style="flex:1; height:40%; background: #eee; border-radius:2px;"></div>
+           <div style="flex:1; height:100%; background: var(--accent); border-radius:2px;"></div>
+           <div style="flex:1; height:60%; background: #eee; border-radius:2px;"></div>
         </div>
       </div>
       <div class="floating-ui ui-2">
         <div style="font-size: 10px; font-weight: 600; margin-bottom: 8px;">Active Editors</div>
-        <div style="display: flex; margin-left: 10px;">
+        <div style="display: flex;">
           <div style="width:25px; height:25px; border-radius:50%; background:#E91E63; border:2px solid #fff;"></div>
           <div style="width:25px; height:25px; border-radius:50%; background:#2196F3; border:2px solid #fff; margin-left:-10px;"></div>
         </div>
@@ -204,17 +202,17 @@
       <a href="saxo-refer-a-friend.html" class="work-card reveal">
         <div class="work-card-bg" style="background-image:url('images/refer-hero.png');"></div>
         <div class="work-card-content">
-          <div class="work-card-company">Saxo Bank</div>
+          <div class="work-card-company" style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Saxo Bank</div>
           <h2 class="work-card-title">Refer a Friend</h2>
           <div class="work-card-tags">
-            <span class="tag">Growth</span><span class="tag">Fintech</span>
+            <span class="tag">Growth design</span><span class="tag">Fintech</span>
           </div>
         </div>
       </a>
       <a href="saxo-help-chatbot.html" class="work-card reveal">
         <div class="work-card-bg" style="background-image:url('images/slide-36.jpg');"></div>
         <div class="work-card-content">
-          <div class="work-card-company">Saxo Bank</div>
+          <div class="work-card-company" style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;">Saxo Bank</div>
           <h2 class="work-card-title">Help & Chatbot</h2>
           <div class="work-card-tags">
             <span class="tag">Conversational UI</span><span class="tag">SaaS</span>
@@ -238,17 +236,28 @@
       <div class="reveal">
         <div class="about-body">
           <p>I'm a Product Designer based in Copenhagen with six years of experience designing complex, data-heavy digital products where clarity, trust and precision are critical.</p>
-          <p>My strength lies in translating complex workflows and operational processes into intuitive, coherent experiences.</p>
+          <p>My strength lies in translating complex workflows and operational processes into intuitive, coherent experiences. I map the system logic first, then follow that thinking through to interface detail.</p>
         </div>
         <div class="skills-grid">
-          <div class="skill-item"><strong>Research</strong>Interviews, Testing, Mapping</div>
+          <div class="skill-item"><strong>Research</strong>Interviews, Testing, Journey Mapping</div>
           <div class="skill-item"><strong>Design</strong>Figma, Systems, Prototyping</div>
         </div>
-        <div style="margin-top:3rem;">
+        <div style="margin-top:3.5rem; border-top:1px solid rgba(255,255,255,0.08); padding-top:2rem;">
           <h4 style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--accent); margin-bottom:1.5rem;">Education</h4>
-          <div class="edu-row"><div class="edu-year">2016</div><div class="edu-degree">MSc. Information Science — AAU</div></div>
-          <div class="edu-row"><div class="edu-year">2014</div><div class="edu-degree">Digital Concept Dev — KEA</div></div>
-          <div class="edu-row"><div class="edu-year">2011</div><div class="edu-degree">Multimedia Design — KEA</div></div>
+          <div class="edu-row">
+            <div class="edu-year">2016</div>
+            <div>
+              <div class="edu-degree">MSc. Information Science</div>
+              <div class="edu-school">AAU Copenhagen</div>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div class="edu-year">2014</div>
+            <div>
+              <div class="edu-degree">BA Digital Concept Development</div>
+              <div class="edu-school">KEA Copenhagen</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -259,54 +268,54 @@
   <div class="section-inner">
     <div class="section-label reveal">Experience</div>
     <div class="exp-item reveal">
-      <div class="edu-year">2023 — 2026</div>
+      <div style="color:var(--muted); font-size:0.85rem; font-weight:500;">2023 — 2026</div>
       <div>
         <div class="exp-company">Saxo Bank</div>
         <div class="exp-role">UX / Product Designer</div>
-        <p style="color:var(--muted); font-size:0.95rem;">Owned design for core portfolio and account-critical experiences across Saxo's B2C and B2B trading platforms.</p>
+        <p class="exp-desc">Owned design for core portfolio and account-critical experiences across Saxo's B2C and B2B platforms.</p>
       </div>
     </div>
     <div class="exp-item reveal">
-      <div class="edu-year">2019 — 2023</div>
+      <div style="color:var(--muted); font-size:0.85rem; font-weight:500;">2019 — 2023</div>
       <div>
         <div class="exp-company">YouSee / Nuuday</div>
         <div class="exp-role">UX Designer</div>
-        <p style="color:var(--muted); font-size:0.95rem;">Owned end-to-end design of online onboarding and self-service broadband customer flows.</p>
+        <p class="exp-desc">Owned end-to-end design of online onboarding experiences and evolved self-service journeys.</p>
       </div>
     </div>
     <div class="exp-item reveal">
-      <div class="edu-year">2013 — 2014</div>
+      <div style="color:var(--muted); font-size:0.85rem; font-weight:500;">2013 — 2014</div>
       <div>
         <div class="exp-company">Frostkostfirmaet</div>
         <div class="exp-role">Graphic Designer</div>
-        <p style="color:var(--muted); font-size:0.95rem;">Responsible for all graphical work including banners, flyers, and branding.</p>
+        <p class="exp-desc">Responsible for all graphical work including banners, flyers, and branding assets.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="contact reveal" id="contact">
-  <h2 class="about-headline">Say <span style="color:var(--accent); font-style:italic;">hello.</span></h2>
-  <div style="margin-top:2rem;">
-    <a href="mailto:hello@semir.design" class="btn btn-primary">Reach out</a>
+  <div class="section-inner">
+    <h2 class="about-headline">Say <span style="color:var(--accent); font-style:italic;">hello.</span></h2>
+    <div style="margin-top:2.5rem;">
+      <a href="mailto:hello@semir.design" class="btn btn-primary" style="margin-right:1rem;">Reach out</a>
+      <a href="#" class="btn btn-ghost">LinkedIn</a>
+    </div>
   </div>
 </section>
 
 <footer>
   <span>© 2026 Semir Ugljanin</span>
-  <a href="#" style="color:inherit; text-decoration:none;">LinkedIn</a>
+  <span>Copenhagen, DK</span>
 </footer>
 
 <script>
-  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
