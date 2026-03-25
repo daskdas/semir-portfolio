@@ -288,19 +288,21 @@
   .exp-linkedin { font-size: 0.85rem; color: var(--muted); margin-top: 2rem; }
 
   /* ── BURGER MENU ── */
-  .burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 8px;
-    background: none;
-    border: none;
-    z-index: 999999;
-    position: relative;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    -webkit-appearance: none;
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 12px;
+  margin-right: -8px;
+  background: none;
+  border: none;
+  z-index: 9999;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-appearance: none;
   }
   .burger span {
     display: block;
@@ -317,14 +319,15 @@
   
 
   /* ── MOBILE MENU ── */
-  .mobile-menu {
-    position: fixed;
-    top: 4.5rem;
-    right: 1rem;
-    width: 200px;
-    background: var(--black);
-    border-radius: 12px;
-    z-index: 99998;
+.mobile-menu {
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  width: 220px;
+  background: var(--black);
+  border-radius: 14px;
+  z-index: 9500;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     padding: 0.4rem 0;
     opacity: 0;
     transform: scale(0.92) translateY(-6px);
@@ -545,7 +548,7 @@
     <h2 class="contact-headline reveal">Say <em>hello.</em></h2>
     <p class="contact-sub reveal">Open to product design roles in Copenhagen and remote.</p>
     <div class="contact-links reveal">
-      <a href="/cdn-cgi/l/email-protection#3f575a535350114c5a52564d115b5a4c5658517f58525e5653115c5052" class="btn btn-primary">Reach out</a>
+      <a href="mailto:hello.semir.design@gmail.com" class="btn btn-primary">Reach out</a>
       
       <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="btn btn-ghost">LinkedIn</a>
     </div>
@@ -562,7 +565,7 @@
   </a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   document.addEventListener('DOMContentLoaded', function() {
 
     document.body.classList.add('js-ready');
