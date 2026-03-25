@@ -230,13 +230,10 @@
     padding: 1.2rem; animation: float 6s ease-in-out infinite;
   }
 
-  /* Item 1: The Fintech "Price Card" */
-  .ui-1 { top: 20px; right: 40px; width: 180px; animation-delay: 0s; z-index: 3; }
-  /* Item 2: The SaaS "User Avatars" */
-  .ui-2 { top: 160px; right: 200px; width: 140px; animation-delay: 1.5s; z-index: 2; background: var(--white); }
-  /* Item 3: The "Success Toggle" */
-  .ui-3 { bottom: 40px; right: 60px; width: 160px; animation-delay: 3s; z-index: 1; }
-
+  .ui-1 { top: 20px; left: 50px; width: 180px; animation-delay: 0s; z-index: 3; }
+  .ui-2 { top: 160px; left: -20px; width: 140px; animation-delay: 1.5s; z-index: 2; background: var(--white); }
+  .ui-3 { bottom: 40px; left: 80px; width: 160px; animation-delay: 3s; z-index: 1; }
+  
   @keyframes float {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-20px) rotate(1deg); }
