@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
 <style>
-  /* ── 1. THE FOUNDATION ── */
+  /* ── 1. BASE SETTINGS ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   :root {
@@ -26,62 +26,47 @@
   }
 
   html { scroll-behavior: smooth; }
-  body { background: var(--white); color: var(--black); font-family: var(--sans); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { 
+    background: var(--white); 
+    color: var(--black); 
+    font-family: var(--sans); 
+    line-height: 1.7; 
+    -webkit-font-smoothing: antialiased; 
+    overflow-x: hidden;
+  }
 
   /* ── 2. NAVIGATION ── */
   nav { 
     position: fixed; top: 0; left: 0; right: 0; z-index: 9000; 
     display: flex; justify-content: space-between; align-items: center; 
-    padding: 1.25rem var(--gutter); background: rgba(245, 239, 228, 0.75); 
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.05); 
+    padding: 1.25rem var(--gutter); 
+    background: rgba(245, 239, 228, 0.75); 
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); 
+    border-bottom: 1px solid rgba(0,0,0,0.05); 
   }
   .nav-logo { font-family: var(--serif); font-size: 1.2rem; font-style: italic; color: var(--black); text-decoration: none; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: 0.3s; }
+  .nav-links a:hover { color: var(--accent); }
 
-  /* ── 3. THE HERO (THE FIX IS HERE) ── */
-  .hero { 
-    min-height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    padding: 6rem var(--gutter) 2rem var(--gutter);
-    overflow: hidden;
-  }
-
+  /* ── 3. HERO (FIXED LAYOUT) ── */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 6rem var(--gutter) 2rem var(--gutter); overflow: hidden; }
   .hero-inner { 
-    max-width: var(--max); 
-    margin: 0 auto; 
-    width: 100%;
-    display: flex; 
-    align-items: center;
-    justify-content: space-between; 
-    gap: 4rem; /* This creates the gap between text and boxes */
+    max-width: var(--max); margin: 0 auto; width: 100%;
+    display: flex; align-items: center; justify-content: space-between; gap: 4rem;
   }
-
-  .hero-content {
-    flex: 1.2; 
-    max-width: 650px;
-    z-index: 10;
-  }
-
-  .hero-label { font-size: 0.75rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+  .hero-content { flex: 1.2; max-width: 650px; z-index: 10; }
+  .hero-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
   .hero-headline { font-family: var(--serif); font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.05; margin-bottom: 2rem; position: relative; display: inline-block; }
   .hero-intro { font-size: clamp(1.1rem, 2.2vw, 1.4rem); color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; }
 
-  /* THE SCRIBBLE */
+  /* SCRIBBLE */
   .scribble-line { position: absolute; bottom: -12px; left: 0; width: 100%; height: auto; z-index: -1; }
   .scribble-path { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 1.2s ease-out 0.8s forwards; }
   @keyframes draw { to { stroke-dashoffset: 0; } }
 
-  /* THE DESIGN CANVAS (THE BOXES) */
-  .design-canvas {
-    flex: 0.8; 
-    position: relative;
-    height: 400px;
-    display: none; 
-    pointer-events: none;
-  }
-
+  /* DESIGN CANVAS (BOXES) */
+  .design-canvas { flex: 0.8; position: relative; height: 400px; display: none; pointer-events: none; }
   @media (min-width: 1100px) { .design-canvas { display: block; } }
 
   .floating-ui {
@@ -89,45 +74,70 @@
     box-shadow: 0 20px 50px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04);
     padding: 1.2rem; animation: float 6s ease-in-out infinite;
   }
-
   .ui-1 { top: 0; right: 0; width: 180px; animation-delay: 0s; }
   .ui-2 { top: 140px; left: 20px; width: 140px; animation-delay: 1.5s; background: var(--white); }
   .ui-3 { bottom: 20px; right: 40px; width: 160px; animation-delay: 3s; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
-
-  /* ── 4. BUTTONS & WORK ── */
-  .btn { display: inline-block; padding: 0.8rem 2rem; font-size: 0.85rem; font-weight: 500; border-radius: 100px; text-decoration: none; transition: 0.3s; border: 1px solid transparent; }
-  .btn-primary { background: var(--black); color: var(--white); }
-  .btn-ghost { background: var(--glass-bg); border: 1px solid var(--black); color: var(--black); }
+  /* ── 4. WORK SECTION ── */
+  section { padding: 8rem var(--gutter); }
+  .section-inner { max-width: var(--max); margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; height: 1px; width: 60px; background: var(--accent); opacity: 0.5; }
 
   .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .work-card { 
+  .work-card {
+    position: relative; overflow: hidden; aspect-ratio: 4 / 3; text-decoration: none; display: block; color: inherit;
     background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border); border-radius: 24px; position: relative; overflow: hidden; aspect-ratio: 4/3; text-decoration: none; color: inherit; display: block; 
+    border: 1px solid var(--glass-border); border-radius: 24px; box-shadow: var(--glass-shadow); transition: 0.5s;
   }
+  .work-card:hover { transform: translateY(-8px); background: rgba(255, 255, 255, 0.7); }
+  .work-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.4; filter: grayscale(100%); transition: 0.6s; }
+  .work-card:hover .work-card-bg { opacity: 0.15; filter: grayscale(0%); }
+  .work-card-content { position: absolute; inset: 0; padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; z-index: 2; }
+  .work-card-title { font-family: var(--serif); font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .tag { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; padding: 0.4rem 0.8rem; background: rgba(0,0,0,0.04); border-radius: 100px; margin-right: 5px; color: var(--muted); }
 
-  /* ── 5. ABOUT & DARK SECTION ── */
+  /* ── 5. ABOUT (DARK) ── */
   .about-wrapper { background: var(--black); color: var(--white); border-radius: 40px; margin: 0 clamp(1rem, 3vw, 3rem); padding: 6rem clamp(2rem, 5vw, 5rem); }
   .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
-  .about-photo-wrap { border-radius: 24px; overflow: hidden; }
+  .about-headline { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 2rem; }
+  .about-photo-wrap { border-radius: 24px; overflow: hidden; margin-bottom: 2rem; }
   .about-photo { width: 100%; filter: grayscale(100%); transition: 0.5s; }
-  .about-photo:hover { filter: grayscale(0%); }
+  .about-body p { color: #a8a49c; margin-bottom: 1.5rem; }
+  
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+  .skill-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.2rem; border-radius: 16px; font-size: 0.85rem; color: #a8a49c; }
+  .skill-item strong { display: block; color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 0.4rem; }
 
-  /* ── 6. SKILLS & EXPERIENCE ── */
-  .skill-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem; border-radius: 16px; margin-bottom: 10px; }
-  .exp-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 2.5rem; margin-bottom: 1.5rem; }
+  .edu-row { display: grid; grid-template-columns: 60px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .edu-year { color: var(--accent); font-weight: 600; font-size: 0.85rem; }
+  .edu-degree { color: #fff; font-weight: 500; }
 
-  /* ── 7. REVEALS & MOBILE ── */
+  /* ── 6. EXPERIENCE ── */
+  .exp-item { 
+    display: grid; grid-template-columns: 160px 1fr; gap: 2rem; 
+    background: var(--glass-bg); border: 1px solid var(--glass-border); 
+    border-radius: 24px; padding: 2.5rem; margin-bottom: 1.5rem; backdrop-filter: blur(12px);
+  }
+  .exp-company { font-family: var(--serif); font-size: 1.5rem; }
+  .exp-role { color: var(--accent); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+  /* ── 7. FOOTER ── */
+  .btn { display: inline-block; padding: 0.8rem 2rem; font-size: 0.85rem; font-weight: 500; border-radius: 100px; text-decoration: none; transition: 0.3s; cursor: pointer; }
+  .btn-primary { background: var(--black); color: var(--white); }
+  .btn-ghost { border: 1px solid var(--black); color: var(--black); }
+  .contact { text-align: center; padding: 10rem 0; }
+  footer { background: var(--black); padding: 2rem var(--gutter); color: #5a5752; display: flex; justify-content: space-between; font-size: 0.8rem; }
+
+  /* ── 8. UTILS ── */
   .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 850px) {
-    .hero-inner, .work-grid, .about-grid, .exp-item { flex-direction: column; grid-template-columns: 1fr; text-align: center; }
-    .hero-inner { gap: 2rem; }
+  @media (max-width: 900px) {
+    .hero-inner, .about-grid, .work-grid, .exp-item { grid-template-columns: 1fr; }
+    .hero { text-align: center; }
+    .hero-inner { justify-content: center; }
     .nav-links { display: none; }
   }
 </style>
@@ -142,21 +152,10 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#work" class="mobile-link">Work</a>
-  <a href="#about" class="mobile-link">About</a>
-  <a href="#experience" class="mobile-link">Experience</a>
-  <a href="#contact" class="mobile-link">Contact</a>
-</div>
 
 <header class="hero">
   <div class="hero-inner">
-    
     <div class="hero-content">
       <div class="hero-label">Product Designer — Copenhagen</div>
       <h1 class="hero-headline">
@@ -171,43 +170,36 @@
         <a href="#work" class="btn btn-ghost">View Work</a>
       </div>
     </div>
-
     <div class="design-canvas">
       <div class="floating-ui ui-1">
         <div style="font-size: 10px; color: #999; text-transform: uppercase; margin-bottom: 4px;">Portfolio Value</div>
-        <div style="font-size: 20px; font-weight: 600; color: var(--black); margin-bottom: 10px;">$42,080.50</div>
-        <div style="width: 100%; height: 40px; display: flex; align-items: flex-end; gap: 4px;">
-           <div style="flex:1; height:40%; background: #eee; border-radius: 2px;"></div>
-           <div style="flex:1; height:70%; background: #eee; border-radius: 2px;"></div>
-           <div style="flex:1; height:100%; background: var(--accent); border-radius: 2px;"></div>
-           <div style="flex:1; height:60%; background: #eee; border-radius: 2px;"></div>
+        <div style="font-size: 20px; font-weight: 600;">$42,080.50</div>
+        <div style="width: 100%; height: 30px; display: flex; align-items: flex-end; gap: 4px; margin-top: 10px;">
+           <div style="flex:1; height:40%; background: #eee;"></div>
+           <div style="flex:1; height:100%; background: var(--accent);"></div>
+           <div style="flex:1; height:60%; background: #eee;"></div>
         </div>
       </div>
       <div class="floating-ui ui-2">
         <div style="font-size: 10px; font-weight: 600; margin-bottom: 8px;">Active Editors</div>
-        <div style="display: flex;">
-          <div class="ui-dot" style="background: #E91E63;"></div>
-          <div class="ui-dot" style="background: #2196F3;"></div>
-          <div class="ui-dot" style="background: #FFC107;"></div>
+        <div style="display: flex; margin-left: 10px;">
+          <div style="width:25px; height:25px; border-radius:50%; background:#E91E63; border:2px solid #fff;"></div>
+          <div style="width:25px; height:25px; border-radius:50%; background:#2196F3; border:2px solid #fff; margin-left:-10px;"></div>
         </div>
       </div>
       <div class="floating-ui ui-3">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-           <div style="width: 60px; height: 6px; background: #eee; border-radius: 10px;"></div>
-           <div style="width: 30px; height: 16px; background: #4CAF50; border-radius: 20px; position: relative;">
-             <div style="position: absolute; right: 2px; top: 2px; width: 12px; height: 12px; background: white; border-radius: 50%;"></div>
-           </div>
+        <div style="width:100%; height:6px; background:#eee; border-radius:10px; margin-bottom:10px;"></div>
+        <div style="width:30px; height:16px; background:#4CAF50; border-radius:20px; position:relative; margin-left:auto;">
+           <div style="position:absolute; right:2px; top:2px; width:12px; height:12px; background:#fff; border-radius:50%;"></div>
         </div>
-        <div style="width: 100%; height: 6px; background: #eee; border-radius: 10px;"></div>
       </div>
     </div>
-
   </div>
 </header>
 
 <section id="work">
   <div class="section-inner">
-    <div class="section-label reveal">Selected work</div>
+    <div class="section-label reveal">Selected Work</div>
     <div class="work-grid">
       <a href="saxo-refer-a-friend.html" class="work-card reveal">
         <div class="work-card-bg" style="background-image:url('images/refer-hero.png');"></div>
@@ -215,9 +207,7 @@
           <div class="work-card-company">Saxo Bank</div>
           <h2 class="work-card-title">Refer a Friend</h2>
           <div class="work-card-tags">
-            <span class="tag">Growth design</span>
-            <span class="tag">User research</span>
-            <span class="tag">Fintech</span>
+            <span class="tag">Growth</span><span class="tag">Fintech</span>
           </div>
         </div>
       </a>
@@ -227,9 +217,7 @@
           <div class="work-card-company">Saxo Bank</div>
           <h2 class="work-card-title">Help & Chatbot</h2>
           <div class="work-card-tags">
-            <span class="tag">Conversational UI</span>
-            <span class="tag">User research</span>
-            <span class="tag">B2B SaaS</span>
+            <span class="tag">Conversational UI</span><span class="tag">SaaS</span>
           </div>
         </div>
       </a>
@@ -242,51 +230,26 @@
     <div class="section-label reveal">About</div>
     <div class="about-grid">
       <div class="reveal">
-        <h2 class="about-headline">Big picture thinking.<br><em>Pixel-level care.</em></h2>
+        <h2 class="about-headline">Big picture thinking.<br><span style="color:var(--accent); font-style:italic;">Pixel-level care.</span></h2>
         <div class="about-photo-wrap">
-          <img src="semir.jpg" alt="Semir Ugljanin" class="about-photo" />
+          <img src="semir.jpg" alt="Semir" class="about-photo" />
         </div>
       </div>
       <div class="reveal">
         <div class="about-body">
-          <p>I'm a Product Designer based in Copenhagen with six years of experience designing complex, data-heavy digital products where clarity, trust and precision are critical. I've owned UX and UI end to end across multiple product areas — from opportunity framing and discovery through validation, delivery and iteration.</p>
-          <p>My strength lies in translating complex workflows and operational processes into intuitive, coherent experiences. I map the system logic first, then follow that thinking through to interface detail. Strong product thinking, a service design sensibility, and deep expertise in Figma and scalable design systems.</p>
-          <p>Outside of work I'm into Brazilian jiu jitsu, running, and hobbyist game development. Currently learning Japanese 🇯🇵</p>
+          <p>I'm a Product Designer based in Copenhagen with six years of experience designing complex, data-heavy digital products where clarity, trust and precision are critical.</p>
+          <p>My strength lies in translating complex workflows and operational processes into intuitive, coherent experiences.</p>
         </div>
         <div class="skills-grid">
-          <div class="skill-item"><strong>Research</strong>Interviews, usability testing, journey mapping, surveys, A/B testing</div>
-          <div class="skill-item"><strong>Design</strong>Figma, Adobe CC, design systems, prototyping, wireframing</div>
-          <div class="skill-item"><strong>Craft</strong>Workshops, co-creation, stakeholder alignment, documentation</div>
-          <div class="skill-item"><strong>Domains</strong>Fintech, telecom, B2B/B2C SaaS, regulated platforms</div>
+          <div class="skill-item"><strong>Research</strong>Interviews, Testing, Mapping</div>
+          <div class="skill-item"><strong>Design</strong>Figma, Systems, Prototyping</div>
         </div>
-        
-        <div class="edu-block">
-          <div class="edu-label">Education</div>
-          <div class="edu-list">
-            <div class="edu-row">
-              <div class="edu-year">2016</div>
-              <div class="edu-detail">
-                <div class="edu-degree">MSc. Information Science</div>
-                <div class="edu-school">AAU Copenhagen</div>
-              </div>
-            </div>
-            <div class="edu-row">
-              <div class="edu-year">2014</div>
-              <div class="edu-detail">
-                <div class="edu-degree">Bachelor's Degree in Digital Concept Development</div>
-                <div class="edu-school">KEA Copenhagen</div>
-              </div>
-            </div>
-            <div class="edu-row">
-              <div class="edu-year">2011</div>
-              <div class="edu-detail">
-                <div class="edu-degree">AP Degree in Multimedia Design</div>
-                <div class="edu-school">KEA Copenhagen</div>
-              </div>
-            </div>
-          </div>
+        <div style="margin-top:3rem;">
+          <h4 style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--accent); margin-bottom:1.5rem;">Education</h4>
+          <div class="edu-row"><div class="edu-year">2016</div><div class="edu-degree">MSc. Information Science — AAU</div></div>
+          <div class="edu-row"><div class="edu-year">2014</div><div class="edu-degree">Digital Concept Dev — KEA</div></div>
+          <div class="edu-row"><div class="edu-year">2011</div><div class="edu-degree">Multimedia Design — KEA</div></div>
         </div>
-
       </div>
     </div>
   </div>
@@ -295,100 +258,56 @@
 <section id="experience">
   <div class="section-inner">
     <div class="section-label reveal">Experience</div>
-    <div class="exp-list">
-      <div class="exp-item reveal">
-        <div class="exp-period">Apr 2023 — Mar 2026</div>
-        <div>
-          <div class="exp-company">Saxo Bank</div>
-          <div class="exp-role">UX / Product Designer</div>
-          <p class="exp-desc">Owned design for core portfolio and account-critical experiences across Saxo's B2C and B2B trading platforms — spanning Portfolio, Transactions, Performance, Analysis, Corporate Actions, Account Settings and the Referral Programme. Scaled the chatbot support experience across platforms, increasing usage by ~70%, and redesigned the referral programme to significantly grow participation. Worked end-to-end from discovery and research through prototyping and delivery, in close collaboration with product, engineering and compliance.</p>
-        </div>
+    <div class="exp-item reveal">
+      <div class="edu-year">2023 — 2026</div>
+      <div>
+        <div class="exp-company">Saxo Bank</div>
+        <div class="exp-role">UX / Product Designer</div>
+        <p style="color:var(--muted); font-size:0.95rem;">Owned design for core portfolio and account-critical experiences across Saxo's B2C and B2B trading platforms.</p>
       </div>
-      <div class="exp-item reveal">
-        <div class="exp-period">Nov 2025 — Now</div>
-        <div>
-          <div class="exp-company">Brokershark.io</div>
-          <div class="exp-role">Product Designer (Side project)</div>
-          <p class="exp-desc">Designing and building an MVP broker platform from scratch. Full ownership across UX, data, auth, and transactional flows.</p>
-        </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="edu-year">2019 — 2023</div>
+      <div>
+        <div class="exp-company">YouSee / Nuuday</div>
+        <div class="exp-role">UX Designer</div>
+        <p style="color:var(--muted); font-size:0.95rem;">Owned end-to-end design of online onboarding and self-service broadband customer flows.</p>
       </div>
-      <div class="exp-item reveal">
-        <div class="exp-period">Dec 2019 — Mar 2023</div>
-        <div>
-          <div class="exp-company">YouSee / Nuuday</div>
-          <div class="exp-role">UX Designer</div>
-          <p class="exp-desc">Owned end-to-end design of online onboarding experiences including broadband customer flows, and evolved Mit YouSee mobile self-service journeys to help customers manage their subscriptions. Contributed to self-help and support experiences across Help, Speedtest and other service flows — with a consistent focus on customer activation, self-service adoption and support deflection at consumer scale.</p>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-period">Nov 2013 — Jul 2014</div>
-        <div>
-          <div class="exp-company">Frostkostfirmaet</div>
-          <div class="exp-role">Graphic Designer</div>
-          <p class="exp-desc">Responsible for all graphical work including banners, flyers, brochures, fleet livery, t-shirt design and more.</p>
-        </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="edu-year">2013 — 2014</div>
+      <div>
+        <div class="exp-company">Frostkostfirmaet</div>
+        <div class="exp-role">Graphic Designer</div>
+        <p style="color:var(--muted); font-size:0.95rem;">Responsible for all graphical work including banners, flyers, and branding.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="contact reveal" id="contact">
-  <div class="section-inner">
-    <h2 class="contact-headline">Say <em>hello.</em></h2>
-    <p class="contact-sub">Open to product design roles in Copenhagen and remote.</p>
-    
-    <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#3f575a535350114c5a52564d115b5a4c5658517f58525e5653115c5052" class="btn btn-primary">Reach out</a>
-      <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="btn btn-ghost">LinkedIn</a>
-    </div>
-
+  <h2 class="about-headline">Say <span style="color:var(--accent); font-style:italic;">hello.</span></h2>
+  <div style="margin-top:2rem;">
+    <a href="mailto:hello@semir.design" class="btn btn-primary">Reach out</a>
   </div>
 </section>
 
 <footer>
   <span>© 2026 Semir Ugljanin</span>
-  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin">
-    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#5a5752"/>
-      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
-    </svg>
-  </a>
+  <a href="#" style="color:inherit; text-decoration:none;">LinkedIn</a>
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Burger Menu Logic
-  const burger = document.getElementById('burger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-
-  if (burger && mobileMenu) {
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        burger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-      });
-    });
-  }
-
-  // Scroll Reveal Animations
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-  reveals.forEach(reveal => observer.observe(reveal));
-});
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
