@@ -82,9 +82,9 @@
     inset: 0;
     background-size: cover;
     background-position: center top;
-    opacity: 0.7;
+    opacity: 1;
     transition: opacity 0.5s ease;
-    filter: grayscale(60%);
+    filter: none;
   }
   .work-card-overlay {
     position: absolute;
@@ -93,7 +93,7 @@
     opacity: 0;
     transition: opacity 0.45s ease;
   }
-  .work-card:hover .work-card-overlay { opacity: 0.88; }
+  .work-card:hover .work-card-overlay { opacity: 0.55; }
   .work-card:hover .work-card-bg { opacity: 0.15; }
   .work-card-content {
     position: absolute;
@@ -145,8 +145,8 @@
 
   /* Mobile — always show content */
   @media (hover: none) {
-    .work-card-overlay { opacity: 0.88; }
-    .work-card-bg { opacity: 0.15; }
+    .work-card-overlay { opacity: 0.55; }
+    .work-card-bg { opacity: 1; }
     .work-card-company, .work-card-title, .work-card-tags { opacity: 1; transform: translateY(0); }
   }
   .work-card-num { font-family: var(--serif); font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
@@ -429,7 +429,7 @@
         </div>
       </a>
       <a href="saxo-help-chatbot.html" class="work-card reveal">
-        <div class="work-card-bg" style="background-image:url('images/slide-36.png');"></div>
+        <div class="work-card-bg" style="background-image:url('images/slide-36.jpg');"></div>
         <div class="work-card-overlay"></div>
         <div class="work-card-content">
           <div class="work-card-company">Saxo Bank</div>
@@ -562,56 +562,39 @@
   </a>
 </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.addEventListener('DOMContentLoaded', function() {
 
-  document.body.classList.add('js-ready');
+    document.body.classList.add('js-ready');
 
-  // ── BURGER MENU ──
-  var burger = document.getElementById('burger');
-  var mobileMenu = document.getElementById('mobileMenu');
-  var mobileBackdrop = document.getElementById('mobileBackdrop');
+    var burger = document.getElementById('burger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileBackdrop = document.getElementById('mobileBackdrop');
 
-  if (burger && mobileMenu) {
-    burger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      burger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      if (mobileBackdrop) mobileBackdrop.classList.toggle('open');
-    });
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        burger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        if (mobileBackdrop) mobileBackdrop.classList.toggle('open');
+      });
 
-    if (mobileBackdrop) {
-      mobileBackdrop.addEventListener('click', function() {
-        burger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        mobileBackdrop.classList.remove('open');
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          mobileBackdrop.classList.remove('open');
+        });
+      }
+
+      document.querySelectorAll('.mobile-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+        });
       });
     }
 
-    document.querySelectorAll('.mobile-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        burger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        if (mobileBackdrop) mobileBackdrop.classList.remove('open');
-      });
-    });
-  }
-
-  // ── REVEAL ANIMATIONS ──
-  var els = document.querySelectorAll('.reveal');
-
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  els.forEach(function(el) {
-    observer.observe(el);
-  });
-
-});
-</script>
+    var els = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entrie
