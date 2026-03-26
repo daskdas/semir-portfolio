@@ -568,7 +568,12 @@
   .process-block .step-num { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
   .process-block .step-title { font-family: var(--serif); font-size: 1.2rem; letter-spacing: -0.01em; color: var(--black); margin-bottom: 0.75rem; }
   .process-block .step-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 0; }
-  .process-block .img-breakout { margin-top: 1.5rem; padding: 0; }
+  .process-block .img-breakout {
+    margin-top: 1.5rem;
+    padding: 0;
+    width: calc(100% + 200px + 4rem);
+    margin-left: calc(-200px - 4rem);
+  }
 
   /* ── ACCORDION ── */
   .accordion { margin-top: 2rem; border-top: 0.5px solid var(--warm-mid); }
