@@ -165,6 +165,9 @@
     animation: fadeUp 0.8s 0.5s forwards;
   }
   .img-full-bleed {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 2rem;
     opacity: 0;
     animation: fadeUp 0.8s 0.5s forwards;
   }
@@ -201,34 +204,41 @@
   .placeholder-img.medium { aspect-ratio: 16 / 9; }
 
   /* ── IMAGE TREATMENTS ── */
-  .img-full-bleed {
-    width: 100%;
-    display: block;
-    margin: 0;
-  }
   .img-full-bleed img {
     width: 100%;
     display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 2px;
   }
   .img-breakout {
-    margin: 3rem 0;
-    background: #141311;
-    padding: 3rem;
-    border-radius: 4px;
+    max-width: var(--max-wide);
+    margin: 2rem auto;
+    padding: 0 var(--gutter);
   }
   .img-breakout img {
     width: 100%;
     display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top;
     border-radius: 2px;
   }
   .img-caption {
     font-size: 0.75rem;
-    color: var(--muted);
+    color: #7a7670;
     margin-top: 0.75rem;
     letter-spacing: 0.04em;
     font-style: italic;
   }
-  .img-breakout .img-caption { color: #4a4845; }
+  .img-breakout .img-caption { color: #7a7670; }
+  .img-desc {
+    font-size: 0.875rem;
+    color: #5a5752;
+    margin-top: 0.4rem;
+    line-height: 1.65;
+  }
   .img-pair {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -239,12 +249,7 @@
   @media (max-width: 720px) { .img-pair { grid-template-columns: 1fr; } }
 
   /* ── DIVIDER ── */
-  .divider {
-    height: 0.5px;
-    background: var(--warm-mid);
-    max-width: var(--max-wide);
-    margin: 0 auto;
-  }
+
 
   /* ── CONTENT SECTIONS ── */
   .content-section {
@@ -254,10 +259,7 @@
   }
 
   .content-grid {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 4rem;
-    align-items: start;
+    display: block;
   }
 
   .content-label {
@@ -266,9 +268,8 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
-    padding-top: 0.3rem;
-    position: sticky;
-    top: 5rem;
+    margin-bottom: 1rem;
+    display: block;
   }
 
   .content-body h2 {
@@ -448,11 +449,15 @@
 
   /* ── LEARNINGS ── */
   .learnings {
-    background: var(--black);
-    padding: 5rem var(--gutter);
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 5rem;
   }
-
-  .learnings-inner { max-width: var(--max-wide); margin: 0 auto; }
+  .learnings-inner {
+    background: var(--black);
+    border-radius: 12px;
+    padding: 3.5rem;
+  }
 
   .learnings-headline {
     font-family: var(--serif);
@@ -534,10 +539,6 @@
   }
 
   .footer-copy { font-size: 0.75rem; color: #5a5752; }
-  .footer-linkedin { display: flex; align-items: center; opacity: 0.6; transition: opacity 0.2s; }
-  .footer-linkedin:hover { opacity: 1; }
-  .footer-linkedin:hover rect { fill: #f5efe4; }
-  .footer-linkedin:hover path { fill: #1c1a18; }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -552,6 +553,17 @@
   }
 
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .process-block {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 0.5px solid var(--warm-mid);
+  }
+  .process-block:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .process-block .step-num { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6b6760; margin-bottom: 0.4rem; }
+  .process-block .step-title { font-family: var(--serif); font-size: 1.2rem; letter-spacing: -0.01em; color: var(--black); margin-bottom: 0.75rem; }
+  .process-block .step-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+  .process-block .img-full-bleed { margin-top: 1.5rem; }
 
   /* ── ACCORDION ── */
   .accordion { margin-top: 2rem; border-top: 0.5px solid var(--warm-mid); }
@@ -644,43 +656,16 @@
 
   /* ── SIDE NAV ── */
   .page-layout {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    align-items: start;
-    max-width: 1280px;
+    display: block;
+    max-width: var(--max-wide);
     margin: 0 auto;
   }
-
-  .side-nav {
-    position: sticky;
-    top: 5.5rem;
-    padding: 0 1.5rem 0 var(--gutter);
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .side-nav a {
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 0.4rem 0 0.4rem 0.75rem;
-    border-left: 1.5px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-    line-height: 1.4;
-  }
-
-  .side-nav a:hover { color: var(--black); }
-  .side-nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
 
   .page-content { min-width: 0; }
 
   /* ── MOBILE ── */
   @media (max-width: 1024px) {
     .page-layout { grid-template-columns: 1fr; }
-    .side-nav { display: none; }
   }
 
   @media (max-width: 720px) {
@@ -688,7 +673,7 @@
     .content-label { position: static; }
     .process-step { grid-template-columns: 1fr; }
     .process-step.reverse { direction: ltr; }
-    .outcomes-grid { grid-template-columns: 1fr 1fr; } .constraint-grid { grid-template-columns: 1fr; }
+    .outcomes-grid, .constraint-grid { grid-template-columns: 1fr; }
     .next-project { flex-direction: column; align-items: flex-start; }
   }
 
@@ -813,35 +798,37 @@
 
 <!-- HERO IMAGE -->
 <div class="img-full-bleed">
-  <img src="images/slide-36.jpg" alt="Unified help modal across Saxo platforms" />
+  <img src="images/refer-hero.png" alt="Refer a Friend — Saxo Bank" />
+  <p class="img-caption">Refer a Friend — redesigned referral experience across Saxo platforms</p>
 </div>
 
 <!-- RESULTS SNAPSHOT -->
 <div class="content-section" id="results" style="padding-bottom: 3rem;">
   <div class="reveal">
     <div style="font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">Results at a glance<span style="height: 0.5px; width: 60px; background: var(--accent); display: block;"></span></div>
-    <div class="outcomes-grid" style="grid-template-columns: repeat(4,1fr);">
-      <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year of launch</div></div>
-      <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Increase in sign-ups from referred users</div></div>
-      <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Increase in funded accounts from referrals</div></div>
-      <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Reduction in referral-related support questions</div></div>
+    <div class="outcomes-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="outcome-card">
+        <div class="outcome-stat"><em>3×</em></div>
+        <div class="outcome-label">Referred users within one year of launch</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat"><em>+25%</em></div>
+        <div class="outcome-label">Increase in sign-ups from referred users</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat"><em>+20%</em></div>
+        <div class="outcome-label">Increase in funded accounts from referrals</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat"><em>−50%</em></div>
+        <div class="outcome-label">Reduction in referral-related support questions</div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="divider"></div>
 
 <div class="page-layout">
-
-  <aside class="side-nav">
-    <a href="#results">Results</a>
-    <a href="#brief">Brief</a>
-    <a href="#problem">Problem</a>
-    <a href="#research">Research</a>
-    <a href="#process">Process</a>
-    <a href="#solution">Solution</a>
-    <a href="#reflection">Reflection</a>
-  </aside>
 
   <div class="page-content">
 <div class="content-section" id="brief">
@@ -850,7 +837,7 @@
     <div class="content-body">
       <h2>A referral programme that existed — but nobody used.</h2>
       <p>Saxo Bank had a referral programme in place, but it was generating almost no engagement. The technical infrastructure was there. The incentive structure was there. But users simply weren't finding it, understanding it, or completing the journey.</p>
-      <p>Layered on top: strict legal and regulatory requirements across markets. Denmark's Pyramid Scheme Act limited how referral rewards could be structured. GDPR compliance shaped what data could be used. Any solution had to work across Saxo's different market contexts without creating compliance risk.</p>
+      <p>Layered on top: strict legal and regulatory requirements. Denmark's Pyramid Scheme Act limited how referral rewards could be structured. GDPR compliance shaped what data could be used. Any solution had to work across Saxo's different market contexts without creating compliance risk.</p>
 
       <div class="constraint-grid">
         <div class="constraint-card">
@@ -870,7 +857,6 @@
   </div>
 </div>
 
-<div class="divider"></div>
 
 <!-- PROBLEM -->
 <div class="content-section" id="problem">
@@ -880,8 +866,8 @@
       <h2>The feature existed. Users just weren't engaging with it.</h2>
       <p>The referral programme had been live for some time, but the funnel data told a clear story: users were generating referral links, but referred users weren't completing sign-up or funding their accounts. Drop-off happened at two critical points — referred users abandoning the landing page, and referrers losing track of whether their referral had done anything.</p>
       <ul>
-        <li>Entry points buried in the profile menu and portfolio banner — largely ignored</li>
-        <li>Reward mechanics (commission credits) were confusing — users didn't know what they'd earn, where it appeared, or how to use it</li>
+        <li>Entry points buried in the profile menu — largely ignored</li>
+        <li>Reward mechanics (commission credits) were confusing — users didn't know what they'd earn or how to use it</li>
         <li>Landing pages for referred users felt inconsistent and untrustworthy compared to the main platform</li>
         <li>No feedback loop — referrers had no way to track whether their contact had signed up or funded</li>
         <li>Terms & conditions CTA dominated the visual hierarchy, overshadowing the actual action</li>
@@ -895,7 +881,6 @@
   </div>
 </div>
 
-<div class="divider"></div>
 
 <!-- RESEARCH -->
 <div class="content-section" id="research">
@@ -943,6 +928,18 @@
           </div>
         </details>
 
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">03</span>
+            <span class="accordion-title">Competitive analysis — how leading fintech platforms handle referral programmes</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>I reviewed how Revolut, Trading 212, and eToro structured their referral programmes — focusing on entry points, reward communication, and the referred user landing experience. All three made the reward immediately clear above the fold and kept legal copy minimal and secondary to the action.</p>
+            <p>The comparison made the gaps in Saxo's existing experience concrete and easy to communicate to stakeholders — moving the conversation from opinion to evidence.</p>
+          </div>
+        </details>
+
       </div>
 
       <div class="insight" style="margin-top: 2rem;">
@@ -954,85 +951,51 @@
   </div>
 </div>
 
-<div class="divider"></div>
 
 <!-- PROCESS -->
 <div class="content-section" id="process">
   <div class="content-grid reveal">
     <div class="content-label">Process</div>
     <div class="content-body">
-      <h2>Three weeks. One sprint. Discover, define, deliver.</h2>
-      <div class="process-steps">
+      <h2>Discovery through delivery — with compliance at every step.</h2>
 
-        <div class="process-step">
-          <div class="step-text">
-            <div class="step-num">Week 1 — Discover</div>
-            <div class="step-title">Validating the scope before designing anything</div>
-            <p class="step-desc">Stakeholder interviews, UX audit across Investor and TraderGO, competitive analysis, and desk research on self-help behaviour in financial products. The goal was to surface the real problem — not just execute the brief as given.</p>
-          </div>
-</div>
-        </div>
+      <div class="process-block">
+        <div class="step-num">Discovery</div>
+        <div class="step-title">Understanding the funnel before redesigning it</div>
+        <p class="step-desc">Funnel analysis with data analysts, 7 usability tests across both sides of the referral loop, and alignment sessions with legal and compliance. The brief was to increase engagement — first I needed to understand exactly where and why users were dropping off.</p>
       </div>
-    </div>
-  </div>
-  <div class="img-breakout reveal">
-    <img src="images/slide-18.jpg" alt="UX audit — Saxo Investor desktop help page" />
-    <p class="img-caption">UX audit — Saxo Investor desktop help page vs TraderGO modal</p>
-  </div>
-  <div class="content-section" style="padding-top: 0; display:none;">
-    <div class="content-grid">
-      <div></div>
-      <div>
-        </div>
 
-        <div class="process-step reverse">
-          <div class="step-text">
-            <div class="step-num">Week 2 — Define & develop</div>
-            <div class="step-title">Requirements first, wireframes second</div>
-            <p class="step-desc">I ran a mini workshop with the team to translate research findings into design requirements: preserve task context, reduce access friction, stay within the design system, maintain support optionality, and enable future scalability. Low-fidelity wireframes followed, with in-house testing for early alignment.</p>
-          </div>
-</div>
-        </div>
+      <div class="process-block">
+        <div class="step-num">Define & develop</div>
+        <div class="step-title">Requirements locked before wireframes started</div>
+        <p class="step-desc">I translated research findings into design requirements with the PM: improve entry point visibility, demystify commission credits, build a persistent funding reminder, redesign the landing page for trust, and reduce friction throughout. Legal alignment ran in parallel — ensuring every proposed feature was viable before investing design time.</p>
       </div>
-    </div>
-  </div>
-  <div class="img-breakout reveal">
-    <img src="images/slide-31.jpg" alt="Wireframe explorations" />
-    <p class="img-caption">Early wireframe explorations — testing different interaction models</p>
-  </div>
-  <div class="content-section" style="padding-top: 0; display:none;">
-    <div class="content-grid">
-      <div></div>
-      <div>
-        </div>
 
-        <div class="process-step">
-          <div class="step-text">
-            <div class="step-num">Week 3 — Deliver</div>
-            <div class="step-title">Guerrilla testing in the wild, then handoff</div>
-            <p class="step-desc">Built an interactive prototype and tested with 8 participants in a guerrilla format. Validated the tab separation, chat-first presentation, and state persistence behaviour. Then went straight to high-fidelity across all three platforms and handed off with full specs, annotations, and design system documentation.</p>
-          </div>
-</div>
-        </div>
+      <div class="process-block">
+        <div class="step-num">Deliver</div>
+        <div class="step-title">End-to-end ownership through handoff</div>
+        <p class="step-desc">With the UI designer off the project mid-way, I took full ownership of both UX and UI through to handoff. This meant the solution stayed coherent throughout — every decision, from the commission credits hub to the persistent reminder states, came from the same understanding of the problem.</p>
       </div>
-    </div>
-  </div>
-  <div class="img-breakout reveal">
-    <img src="images/slide-38.jpg" alt="Interactive prototype flow" />
-    <p class="img-caption">Interactive prototype — flow used in guerrilla testing</p>
-  </div>
-  <div class="content-section" style="padding-top: 0; display:none;">
-    <div class="content-grid">
-      <div></div>
-      <div>
-        </div>
 
-      </div>
     </div>
   </div>
 </div>
 
-<div class="divider"></div>
+<div class="img-full-bleed reveal">
+  <img src="images/refer-research.png" alt="Research artefacts" />
+  <p class="img-caption">Research artefacts — funnel drop-off mapping and usability test findings</p>
+</div>
+
+<div class="img-full-bleed reveal">
+  <img src="images/refer-wireframes.png" alt="Wireframe explorations" />
+  <p class="img-caption">Wireframe explorations — referral entry points and commission credits hub</p>
+</div>
+
+<div class="img-full-bleed reveal">
+  <img src="images/refer-prototype.png" alt="Interactive prototype" />
+  <p class="img-caption">Interactive prototype — tested across referrer and referred user flows</p>
+</div>
+
 
 <!-- SOLUTION -->
 <div class="content-section" id="solution">
@@ -1055,13 +1018,10 @@
 
 <!-- FULL WIDTH IMAGE -->
 <div class="img-full-bleed reveal">
-  <img src="images/slide-41.jpg" alt="High fidelity designs — all states across platforms" />
-</div>
-<div style="padding: 0 var(--gutter) 2rem; max-width: var(--max-wide); margin: 0 auto;">
-  <p class="img-caption">Final hi-fi designs — all states across Investor, TraderGO and mobile</p>
+  <img src="images/refer-solution.png" alt="Refer a Friend — final solution" />
+  <p class="img-caption">Final solution — dedicated referral page, commission credits hub and persistent reminder</p>
 </div>
 
-<div class="divider"></div>
 
 <!-- OUTCOMES BOTTOM -->
 <div class="content-section" id="outcomes">
@@ -1070,7 +1030,7 @@
     <div class="content-body">
       <h2>Referred users tripled. Support dropped by half.</h2>
       <p>Within one year of launch, the redesigned referral programme delivered measurable impact across the full funnel. The 50% drop in referral-related support questions was a particularly strong signal — users were no longer confused about how the programme worked.</p>
-      <div class="outcomes-grid" style="grid-template-columns: repeat(4,1fr);">
+      <div class="outcomes-grid" style="grid-template-columns:repeat(4,1fr);">
         <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year of launch</div></div>
         <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Increase in sign-ups from referred users</div></div>
         <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Increase in funded accounts from referrals</div></div>
@@ -1094,20 +1054,19 @@
   </div>
 </div>
 
-<!-- BACK TO TOP -->
+<!-- NEXT PROJECT -->
 <div class="next-project reveal">
-  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="next-title">↑ Back to top</a>
+  <div>
+    <div class="next-label">Next project</div>
+    <a href="saxo-reporting.html" class="next-title">Portfolio & Reporting — Saxo Bank →</a>
+  </div>
+  <a href="saxo-reporting.html" class="next-arrow">→</a>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2025 Semir Ugljanin</span>
-  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin" aria-label="LinkedIn">
-    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#5a5752"/>
-      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
-    </svg>
-  </a>
+  <a href="index.html" class="footer-name">Semir</a>
+  <span class="footer-copy">Copenhagen, Denmark — 2025</span>
 </footer>
 
 <script>
@@ -1120,22 +1079,6 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  const sections = document.querySelectorAll('[id]');
-  const navLinks = document.querySelectorAll('.side-nav a');
-  const scrollSpy = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + entry.target.id) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-  sections.forEach(s => scrollSpy.observe(s));
 
   document.addEventListener('DOMContentLoaded', function() {
     var burger = document.getElementById('burger');
