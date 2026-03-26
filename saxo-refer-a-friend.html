@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Refer a Friend — Saxo Bank · Semir Ugljanin</title>
+<title>Refer a Friend — Saxo Bank · Semir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
 <style>
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -201,14 +200,6 @@
   .placeholder-img.tall { aspect-ratio: 4 / 3; }
   .placeholder-img.medium { aspect-ratio: 16 / 9; }
 
-  /* ── PROCESS BLOCKS ── */
-  .process-block { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 0.5px solid var(--warm-mid); }
-  .process-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .process-step-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-  .process-step-title { font-family: var(--serif); font-size: 1.3rem; letter-spacing: -0.01em; color: var(--black); margin-bottom: 0.75rem; }
-  .process-block p { font-size: 0.95rem; color: #4a4844; line-height: 1.8; margin-bottom: 1rem; }
-  .process-img { width: 100%; display: block; border-radius: 4px; margin-top: 1.25rem; margin-bottom: 0.5rem; }
-
   /* ── IMAGE TREATMENTS ── */
   .img-full-bleed {
     width: 100%;
@@ -245,8 +236,7 @@
     margin: 2rem 0;
   }
   .img-pair img { width: 100%; display: block; border-radius: 2px; }
-  @media (max-width: 720px) {
-     .img-pair { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) { .img-pair { grid-template-columns: 1fr; } }
 
   /* ── DIVIDER ── */
   .divider {
@@ -544,6 +534,10 @@
   }
 
   .footer-copy { font-size: 0.75rem; color: #5a5752; }
+  .footer-linkedin { display: flex; align-items: center; opacity: 0.6; transition: opacity 0.2s; }
+  .footer-linkedin:hover { opacity: 1; }
+  .footer-linkedin:hover rect { fill: #f5efe4; }
+  .footer-linkedin:hover path { fill: #1c1a18; }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -653,14 +647,14 @@
     display: grid;
     grid-template-columns: 180px 1fr;
     align-items: start;
-    max-width: var(--max-wide);
+    max-width: 1280px;
     margin: 0 auto;
   }
 
   .side-nav {
     position: sticky;
     top: 5.5rem;
-    padding: 0 1rem 0 0;
+    padding: 0 1.5rem 0 var(--gutter);
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -690,28 +684,29 @@
   }
 
   @media (max-width: 720px) {
-    
     .content-grid { grid-template-columns: 1fr; gap: 1rem; }
     .content-label { position: static; }
     .process-step { grid-template-columns: 1fr; }
     .process-step.reverse { direction: ltr; }
-    .outcomes-grid, .constraint-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; } .constraint-grid { grid-template-columns: 1fr; }
     .next-project { flex-direction: column; align-items: flex-start; }
   }
 
-  .burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 8px;
-    background: none;
-    border: none;
-    z-index: 9999;
-    position: relative;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    -webkit-appearance: none;
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 12px; /* increased tap area */
+  margin-right: -8px; /* keeps visual alignment */
+  background: none;
+  border: none;
+  z-index: 9999;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-appearance: none;
   }
   .burger span {
     display: block;
@@ -724,21 +719,22 @@
   .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .burger.open span:nth-child(2) { opacity: 0; }
   .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-  .mobile-menu {
-    position: fixed;
-    top: 4.5rem;
-    right: 1rem;
-    width: 200px;
-    background: var(--black);
-    border-radius: 12px;
-    z-index: 9500;
-    padding: 0.4rem 0;
-    opacity: 0;
-    transform: scale(0.92) translateY(-6px);
-    transform-origin: top right;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
+.mobile-menu {
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  width: 220px;
+  background: var(--black);
+  border-radius: 14px;
+  z-index: 9500;
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: scale(0.95) translateY(-8px);
+  transform-origin: top right;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* added depth */
+}
   .mobile-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
   .mobile-menu a { display: block; font-family: var(--serif); font-size: 1.15rem; color: #f5efe4; text-decoration: none; padding: 0.8rem 1.25rem; border-bottom: 0.5px solid #2c2a26; letter-spacing: -0.01em; transition: color 0.15s; }
   .mobile-menu a:last-child { border-bottom: none; }
@@ -746,15 +742,27 @@
   .mobile-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9290; display: none; background: transparent; }
   .mobile-backdrop.open { display: block; }
   @media (max-width: 720px) {
-      
-    .nav-links { display: none; }
-    .burger { display: flex; }
+  .burger {
+    display: flex;
   }
 
+  /* Hide desktop nav on mobile */
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Optional safety: never show mobile menu on desktop */
+@media (min-width: 721px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
 </style>
 </head>
-<body id="top">
+<body>
 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
   <ul class="nav-links">
@@ -764,7 +772,9 @@
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
 </nav>
 
@@ -779,26 +789,37 @@
 <!-- HERO -->
 <div class="case-hero">
   <div class="case-meta">
-    <div class="meta-item"><span class="meta-label">Company</span><span class="meta-value">Saxo Bank</span></div>
-    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Product Designer</span></div>
-    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">1–3 months</span></div>
-    <div class="meta-item"><span class="meta-label">Platforms</span><span class="meta-value">Web · Platform · Mobile</span></div>
+    <div class="meta-item">
+      <span class="meta-label">Company</span>
+      <span class="meta-value">Saxo Bank</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Role</span>
+      <span class="meta-value">Product Designer</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Timeline</span>
+      <span class="meta-value">1–3 months</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Platforms</span>
+      <span class="meta-value">Web · Platform · Mobile</span>
+    </div>
   </div>
+
   <h1 class="case-title">Refer a Friend</h1>
   <p class="case-intro">Revitalising a dormant referral programme at a global investment bank — turning a feature users ignored into one that tripled referred users within a year.</p>
 </div>
 
 <!-- HERO IMAGE -->
 <div class="img-full-bleed">
-  <img src="images/refer-hero.png" alt="Refer a Friend — Saxo Bank" />
+  <img src="images/slide-36.jpg" alt="Unified help modal across Saxo platforms" />
 </div>
-
-<div class="divider"></div>
 
 <!-- RESULTS SNAPSHOT -->
 <div class="content-section" id="results" style="padding-bottom: 3rem;">
   <div class="reveal">
-    <div style="font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;">Results at a glance<span style="height:0.5px;width:60px;background:var(--accent);display:block;"></span></div>
+    <div style="font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">Results at a glance<span style="height: 0.5px; width: 60px; background: var(--accent); display: block;"></span></div>
     <div class="outcomes-grid" style="grid-template-columns: repeat(4,1fr);">
       <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year of launch</div></div>
       <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Increase in sign-ups from referred users</div></div>
@@ -808,165 +829,277 @@
   </div>
 </div>
 
+<div class="divider"></div>
+
 <div class="page-layout">
+
   <aside class="side-nav">
     <a href="#results">Results</a>
     <a href="#brief">Brief</a>
+    <a href="#problem">Problem</a>
     <a href="#research">Research</a>
-    <a href="#insights">Insights</a>
+    <a href="#process">Process</a>
     <a href="#solution">Solution</a>
-    <a href="#outcomes">Outcomes</a>
     <a href="#reflection">Reflection</a>
   </aside>
 
   <div class="page-content">
+<div class="content-section" id="brief">
+  <div class="content-grid reveal">
+    <div class="content-label">The brief</div>
+    <div class="content-body">
+      <h2>A referral programme that existed — but nobody used.</h2>
+      <p>Saxo Bank had a referral programme in place, but it was generating almost no engagement. The technical infrastructure was there. The incentive structure was there. But users simply weren't finding it, understanding it, or completing the journey.</p>
+      <p>Layered on top: strict legal and regulatory requirements across markets. Denmark's Pyramid Scheme Act limited how referral rewards could be structured. GDPR compliance shaped what data could be used. Any solution had to work across Saxo's different market contexts without creating compliance risk.</p>
 
-    <div class="divider"></div>
+      <div class="constraint-grid">
+        <div class="constraint-card">
+          <div class="constraint-title">1–3 months</div>
+          <div class="constraint-desc">Timeline varied with legal review cycles and cross-market compliance sign-off.</div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-title">Full ownership</div>
+          <div class="constraint-desc">Started as a UX/UI collaboration — ended with sole ownership after team changes mid-project.</div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-title">Design system locked</div>
+          <div class="constraint-desc">No new components. Solution had to live within existing patterns across web and platform.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- BRIEF -->
-    <div class="content-section" id="brief">
-      <div class="content-grid reveal">
-        <div class="content-label">The brief</div>
-        <div class="content-body">
-          <h2>A referral programme that existed — but nobody used.</h2>
-          <p>Saxo Bank had a referral programme in place, but it was generating almost no engagement. The technical infrastructure was there. The incentive structure was there. But users simply weren't finding it, understanding it, or completing the journey.</p>
-          <p>The goal was to revitalise the programme — make it discoverable, make the reward mechanics understandable, and design a flow that actually motivated users to refer their network and follow through to a funded account.</p>
-          <p>Layered on top: strict legal and regulatory requirements across markets. Denmark's Pyramid Scheme Act limited how referral rewards could be structured. GDPR compliance shaped what data could be used. Any solution had to work across Saxo's different market contexts without creating compliance risk.</p>
-          <div class="constraint-grid">
-            <div class="constraint-card"><div class="constraint-title">1–3 months</div><div class="constraint-desc">Timeline varied with legal review cycles and cross-market compliance sign-off.</div></div>
-            <div class="constraint-card"><div class="constraint-title">Full ownership</div><div class="constraint-desc">Started as a UX/UI collaboration — ended with sole ownership after team changes mid-project.</div></div>
-            <div class="constraint-card"><div class="constraint-title">Design system locked</div><div class="constraint-desc">No new components. Solution had to live within existing patterns across web and platform.</div></div>
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<div class="content-section" id="problem">
+  <div class="content-grid reveal">
+    <div class="content-label">The problem</div>
+    <div class="content-body">
+      <h2>The feature existed. Users just weren't engaging with it.</h2>
+      <p>The referral programme had been live for some time, but the funnel data told a clear story: users were generating referral links, but referred users weren't completing sign-up or funding their accounts. Drop-off happened at two critical points — referred users abandoning the landing page, and referrers losing track of whether their referral had done anything.</p>
+      <ul>
+        <li>Entry points buried in the profile menu and portfolio banner — largely ignored</li>
+        <li>Reward mechanics (commission credits) were confusing — users didn't know what they'd earn, where it appeared, or how to use it</li>
+        <li>Landing pages for referred users felt inconsistent and untrustworthy compared to the main platform</li>
+        <li>No feedback loop — referrers had no way to track whether their contact had signed up or funded</li>
+        <li>Terms & conditions CTA dominated the visual hierarchy, overshadowing the actual action</li>
+      </ul>
+
+      <div class="insight">
+        <div class="insight-label">The core insight</div>
+        <p>Users weren't confused about what a referral programme was. They were confused about what would happen next — and that uncertainty was enough to stop them from acting.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESEARCH -->
+<div class="content-section" id="research">
+  <div class="content-grid reveal">
+    <div class="content-label">Research</div>
+    <div class="content-body">
+      <h2>Two tracks running in parallel — funnel data and usability testing.</h2>
+      <p>Discovery ran across two streams simultaneously: quantitative funnel analysis to understand where users were dropping off, and qualitative usability testing to understand why.</p>
+
+      <div class="accordion">
+
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">01</span>
+            <span class="accordion-title">Funnel analysis — mapping the drop-off end to end</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>Working with data analysts and PMs, I mapped the referral funnel from entry point to funded account. The clearest signal: users were generating referral links, but conversion to sign-up and funding was extremely low. The biggest drop-off points were the referred user's first visit to the landing page, and the gap between sign-up and funding.</p>
+            <div class="insight">
+              <div class="insight-label">What the data showed</div>
+              <p>The problem wasn't awareness of the reward — it was trust and clarity. Referred users were arriving on pages that felt disconnected from the main platform, and referrers had no visibility into what happened after they shared their link.</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </details>
 
-    <div class="divider"></div>
-
-    <!-- RESEARCH -->
-    <div class="content-section" id="research">
-      <div class="content-grid reveal">
-        <div class="content-label">Research</div>
-        <div class="content-body">
-          <h2>Seven usability tests and a funnel that told the real story.</h2>
-          <p>Discovery ran across two parallel tracks — quantitative funnel analysis and qualitative usability testing — to understand both where users were dropping off and why.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-section" style="padding-top:0;">
-      <div class="content-grid reveal">
-        <div class="content-label">01 — Funnel analysis</div>
-        <div class="content-body">
-          <h2>The drop-off happened after link generation</h2>
-          <p>Working with data analysts and PMs, I mapped the referral funnel end to end. The clearest signal: users were generating referral links, but referred users weren't completing sign-up or funding their accounts. Drop-off happened at two points — referred users abandoning the landing page, and referrers losing track of progress.</p>
-          <div class="insight">
-            <div class="insight-label">What the data showed</div>
-            <p>The problem wasn't awareness of the reward — it was trust and clarity. Referred users were arriving on landing pages that felt inconsistent with the main platform, and referrers had no way to track whether their referral had done anything.</p>
+        <details class="accordion-item">
+          <summary class="accordion-header">
+            <span class="accordion-num">02</span>
+            <span class="accordion-title">Usability testing — 7 sessions across both sides of the referral loop</span>
+            <span class="accordion-icon"></span>
+          </summary>
+          <div class="accordion-body">
+            <p>I ran 7 speak-aloud usability tests covering both the referrer experience and the referred user experience. Testing old and new concepts in parallel helped isolate what was genuinely broken versus what could be improved with clearer copy and hierarchy.</p>
+            <ul>
+              <li>Commission credits were not understood — users didn't know what they were, where they'd appear, or how to spend them</li>
+              <li>The terms & conditions link was visually dominant, creating anxiety rather than reassurance</li>
+              <li>No confirmation or progress state after sharing — referrers felt like they'd sent a link into a void</li>
+              <li>Landing page looked like a generic marketing page, not a trusted financial platform</li>
+            </ul>
+            <div class="insight">
+              <div class="insight-label">Key insight from testing</div>
+              <p>Every point of confusion mapped back to the same root cause: users couldn't picture what would happen next. The design needed to make the entire journey — for both sides — feel predictable and trustworthy.</p>
+            </div>
           </div>
-        </div>
+        </details>
+
       </div>
+
+      <div class="insight" style="margin-top: 2rem;">
+        <div class="insight-label">Research summary</div>
+        <p>Three things needed to change: visibility of the feature, clarity of the reward mechanics, and a feedback loop that kept both sides engaged until the referral was complete. Everything else was downstream of these.</p>
+      </div>
+
     </div>
+  </div>
+</div>
 
-    <div class="divider"></div>
+<div class="divider"></div>
 
-    <div class="content-section">
-      <div class="content-grid reveal">
-        <div class="content-label">02 — Usability testing</div>
-        <div class="content-body">
-          <h2>7 speak-aloud sessions — both referrers and referred users</h2>
-          <p>I ran 7 speak-aloud usability tests covering both sides of the referral loop. Testing old and new concepts in parallel helped isolate what was genuinely broken versus what could be improved.</p>
-          <ul>
-            <li>Confusion about how "commission credits" are earned, where they appear, and how to spend them</li>
-            <li>Entry points in the profile menu and portfolio banner were largely ignored</li>
-            <li>Landing pages for referred users felt inconsistent and untrustworthy</li>
-            <li>A large terms &amp; conditions CTA dominated the visual hierarchy</li>
-            <li>No feedback or progress tracking — referrers had no idea if their contact had signed up</li>
-          </ul>
-          <div class="insight">
-            <div class="insight-label">The key insight from testing</div>
-            <p>Users weren't confused about what a referral programme was. They were confused about what would happen next — and that uncertainty was enough to stop them from acting.</p>
+<!-- PROCESS -->
+<div class="content-section" id="process">
+  <div class="content-grid reveal">
+    <div class="content-label">Process</div>
+    <div class="content-body">
+      <h2>Three weeks. One sprint. Discover, define, deliver.</h2>
+      <div class="process-steps">
+
+        <div class="process-step">
+          <div class="step-text">
+            <div class="step-num">Week 1 — Discover</div>
+            <div class="step-title">Validating the scope before designing anything</div>
+            <p class="step-desc">Stakeholder interviews, UX audit across Investor and TraderGO, competitive analysis, and desk research on self-help behaviour in financial products. The goal was to surface the real problem — not just execute the brief as given.</p>
           </div>
+</div>
         </div>
       </div>
     </div>
-
-    <div class="divider"></div>
-
-    <!-- INSIGHTS -->
-    <div class="content-section" id="insights">
-      <div class="content-grid reveal">
-        <div class="content-label">Key insights</div>
-        <div class="content-body">
-          <h2>Three things that shaped everything.</h2>
-          <ul>
-            <li><strong style="font-weight:500;color:var(--black);">Visibility drives engagement.</strong> Users weren't finding the referral feature. Entry points needed to be prominent, contextual, and hard to miss.</li>
-            <li><strong style="font-weight:500;color:var(--black);">Clarity and feedback matter as much as the reward.</strong> Users didn't understand the commission credit mechanic. Until that was resolved, the incentive wasn't motivating — it was confusing.</li>
-            <li><strong style="font-weight:500;color:var(--black);">Behavioural reinforcement keeps the loop alive.</strong> A referral isn't complete when someone clicks a link. The design needed to keep both sides engaged throughout the gap to a funded account.</li>
-          </ul>
+  </div>
+  <div class="img-breakout reveal">
+    <img src="images/slide-18.jpg" alt="UX audit — Saxo Investor desktop help page" />
+    <p class="img-caption">UX audit — Saxo Investor desktop help page vs TraderGO modal</p>
+  </div>
+  <div class="content-section" style="padding-top: 0; display:none;">
+    <div class="content-grid">
+      <div></div>
+      <div>
         </div>
-      </div>
-    </div>
 
-    <div class="divider"></div>
-
-    <!-- SOLUTION -->
-    <div class="content-section" id="solution">
-      <div class="content-grid reveal">
-        <div class="content-label">The solution</div>
-        <div class="content-body">
-          <h2>A complete redesign of the referral journey — from entry point to funded account.</h2>
-          <ul>
-            <li><strong style="font-weight:500;color:var(--black);">Dedicated referral page</strong> — replaced the cramped dialog with a full page that had space for clear instructions, reward explanation, and sharing options</li>
-            <li><strong style="font-weight:500;color:var(--black);">Commission credits hub</strong> — explains what credits are, how they're earned, where they appear, and how to use them</li>
-            <li><strong style="font-weight:500;color:var(--black);">Persistent funding reminder</strong> — shown until the referred user funds their account or the 90-day window closes</li>
-            <li><strong style="font-weight:500;color:var(--black);">Improved landing page</strong> — redesigned for trust and consistency with the main platform</li>
-            <li><strong style="font-weight:500;color:var(--black);">Friction reduction throughout</strong> — QR code sharing, simplified copy, redesigned trigger emails, empty states that guide next actions</li>
-            <li><strong style="font-weight:500;color:var(--black);">Leaderboard &amp; status dashboard (designed, paused)</strong> — fully designed and validated internally, paused pending compliance sign-off</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- OUTCOMES -->
-    <div class="content-section" id="outcomes">
-      <div class="content-grid reveal">
-        <div class="content-label">Results</div>
-        <div class="content-body">
-          <h2>Referred users tripled. Support dropped by half.</h2>
-          <p>Within one year of launch, the redesigned referral programme delivered measurable impact across the full funnel. The 50% drop in referral-related support questions was a particularly strong signal — users were no longer confused about how the programme worked.</p>
-          <div class="outcomes-grid" style="margin-top:1.5rem;grid-template-columns:repeat(4,1fr);">
-            <div class="outcome-card"><div class="outcome-stat"><em>3×</em>
-            <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Referral support questions reduced</div></div></div><div class="outcome-label">Referred users within one year</div></div>
-            <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Sign-ups from referred users</div></div>
-            <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Funded accounts from referrals</div></div>
-            <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Referral support questions reduced</div></div>
+        <div class="process-step reverse">
+          <div class="step-text">
+            <div class="step-num">Week 2 — Define & develop</div>
+            <div class="step-title">Requirements first, wireframes second</div>
+            <p class="step-desc">I ran a mini workshop with the team to translate research findings into design requirements: preserve task context, reduce access friction, stay within the design system, maintain support optionality, and enable future scalability. Low-fidelity wireframes followed, with in-house testing for early alignment.</p>
           </div>
-          <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--muted);font-style:italic;">External factors including Saxo's broader pricing strategy influenced overall engagement. The metrics above reflect the operational impact of the referral flow specifically.</p>
+</div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="img-breakout reveal">
+    <img src="images/slide-31.jpg" alt="Wireframe explorations" />
+    <p class="img-caption">Early wireframe explorations — testing different interaction models</p>
+  </div>
+  <div class="content-section" style="padding-top: 0; display:none;">
+    <div class="content-grid">
+      <div></div>
+      <div>
+        </div>
 
+        <div class="process-step">
+          <div class="step-text">
+            <div class="step-num">Week 3 — Deliver</div>
+            <div class="step-title">Guerrilla testing in the wild, then handoff</div>
+            <p class="step-desc">Built an interactive prototype and tested with 8 participants in a guerrilla format. Validated the tab separation, chat-first presentation, and state persistence behaviour. Then went straight to high-fidelity across all three platforms and handed off with full specs, annotations, and design system documentation.</p>
+          </div>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="img-breakout reveal">
+    <img src="images/slide-38.jpg" alt="Interactive prototype flow" />
+    <p class="img-caption">Interactive prototype — flow used in guerrilla testing</p>
+  </div>
+  <div class="content-section" style="padding-top: 0; display:none;">
+    <div class="content-grid">
+      <div></div>
+      <div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<div class="content-section" id="solution">
+  <div class="content-grid reveal">
+    <div class="content-label">The solution</div>
+    <div class="content-body">
+      <h2>A complete redesign of the referral journey — from entry point to funded account.</h2>
+      <p>The solution addressed every friction point identified in research, working within the design system and legal constraints. Several features were fully designed and validated — one was paused before shipping due to compliance concerns in certain markets.</p>
+      <ul>
+        <li><strong style="font-weight: 500; color: var(--black);">Dedicated referral page</strong> — replaced the cramped dialog with a full page, giving space for clear instructions, reward explanation, and sharing options</li>
+        <li><strong style="font-weight: 500; color: var(--black);">Commission credits hub</strong> — a dedicated section explaining what credits are, how they're earned, where they appear, and how to use them</li>
+        <li><strong style="font-weight: 500; color: var(--black);">Persistent funding reminder</strong> — shown to the referrer until the referred user funds their account or the 90-day window closes</li>
+        <li><strong style="font-weight: 500; color: var(--black);">Redesigned landing page</strong> — rebuilt for trust and consistency with the main platform, clearer hierarchy, better instructions</li>
+        <li><strong style="font-weight: 500; color: var(--black);">Friction reduction throughout</strong> — QR code sharing, simplified copy, redesigned trigger emails, empty states that guide next actions</li>
+        <li><strong style="font-weight: 500; color: var(--black);">Leaderboard & status dashboard (designed, paused)</strong> — fully designed and validated internally, paused pending compliance sign-off in regulated markets</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FULL WIDTH IMAGE -->
+<div class="img-full-bleed reveal">
+  <img src="images/slide-41.jpg" alt="High fidelity designs — all states across platforms" />
+</div>
+<div style="padding: 0 var(--gutter) 2rem; max-width: var(--max-wide); margin: 0 auto;">
+  <p class="img-caption">Final hi-fi designs — all states across Investor, TraderGO and mobile</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- OUTCOMES BOTTOM -->
+<div class="content-section" id="outcomes">
+  <div class="content-grid reveal">
+    <div class="content-label">Results</div>
+    <div class="content-body">
+      <h2>Referred users tripled. Support dropped by half.</h2>
+      <p>Within one year of launch, the redesigned referral programme delivered measurable impact across the full funnel. The 50% drop in referral-related support questions was a particularly strong signal — users were no longer confused about how the programme worked.</p>
+      <div class="outcomes-grid" style="grid-template-columns: repeat(4,1fr);">
+        <div class="outcome-card"><div class="outcome-stat"><em>3×</em></div><div class="outcome-label">Referred users within one year of launch</div></div>
+        <div class="outcome-card"><div class="outcome-stat"><em>+25%</em></div><div class="outcome-label">Increase in sign-ups from referred users</div></div>
+        <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Increase in funded accounts from referrals</div></div>
+        <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Reduction in referral-related support questions</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- LEARNINGS -->
 <div class="learnings" id="reflection">
   <div class="learnings-inner">
-    <div class="content-label" style="color:#c9521a;margin-bottom:2rem;">Reflection</div>
+    <div class="content-label" style="color: #c9521a; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 2rem;">Reflection</div>
     <h2 class="learnings-headline">What I'd push for next time.</h2>
     <p>The leaderboard and referral status dashboard were the features I was most confident in — both tested well internally and addressed a real gap in the experience. Having them paused by compliance was frustrating but understandable. Next time I'd build compliance alignment into the discovery phase rather than treating it as a final gate.</p>
+    <p>Taking full ownership of both UX and UI mid-project was demanding, but it meant every decision stayed coherent. The tradeoff was speed — something to factor in earlier when scoping future projects.</p>
     <p>I'd also introduce A/B testing earlier — particularly around reward framing and copy. The commission credits explanation worked, but there's meaningful optimisation still on the table around how the incentive is positioned for different user segments.</p>
-    <p>Taking full ownership of both UX and UI mid-project was demanding, but it meant every decision was coherent. The tradeoff was speed — more hands would have allowed faster iteration.</p>
   </div>
 </div>
 
-<div class="back-top">
-  <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
+  </div>
 </div>
 
+<!-- BACK TO TOP -->
+<div class="next-project reveal">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="next-title">↑ Back to top</a>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <span class="footer-copy">© 2025 Semir Ugljanin</span>
   <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin" aria-label="LinkedIn">
@@ -978,8 +1111,6 @@
 </footer>
 
 <script>
-
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -1033,7 +1164,6 @@
       });
     }
   });
-
 </script>
 </body>
 </html>
