@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Help & Chatbot — Saxo Bank · Semir Ugljanin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0e0e0d;
+    --white: #f5efe4;
+    --warm-mid: #e5d9c8;
+    --accent: #c9521a;
+    --accent-light: #f0e8e0;
+    --muted: #7a7670;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max: 680px;
+    --gutter: clamp(1.5rem, 5vw, 4rem);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9000; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-style: italic; letter-spacing: -0.02em; color: var(--black); text-decoration: none; display: flex; align-items: baseline; gap: 0.1em; }
+  .nav-logo .dash { font-style: normal; margin: 0 0.05em; color: var(--muted); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+  .burger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 12px; margin-right: -8px; background: none; border: none; z-index: 9999; position: relative; -webkit-tap-highlight-color: transparent; touch-action: manipulation; -webkit-appearance: none; }
+  .burger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { position: fixed; top: 4.5rem; right: 1rem; width: 220px; background: var(--black); border-radius: 14px; z-index: 9500; padding: 0.5rem 0; opacity: 0; transform: scale(0.95) translateY(-8px); transform-origin: top right; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+  .mobile-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+  .mobile-menu a { display: block; font-family: var(--serif); font-size: 1.15rem; color: #f5efe4; text-decoration: none; padding: 0.8rem 1.25rem; border-bottom: 0.5px solid #2c2a26; letter-spacing: -0.01em; }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9290; display: none; }
+  .mobile-backdrop.open { display: block; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 8rem var(--gutter) 5rem; }
+
+  .meta { display: flex; gap: 1.5rem 2.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; opacity: 0; animation: fadeUp 0.6s 0.1s forwards; }
+  .meta-item { display: flex; flex-direction: column; gap: 0.15rem; }
+  .meta-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .meta-value { font-size: 0.82rem; color: var(--muted); }
+
+  .tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.6s 0.15s forwards; }
+  .tag { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 0.5px solid var(--warm-mid); color: var(--muted); border-radius: 2px; }
+
+  h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 1.1rem; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+  .lede { font-size: 1.05rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.7s 0.3s forwards; }
+
+  .img-wrap { margin-bottom: 0.6rem; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+  .img-wrap img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 3px; }
+  .img-cap { font-size: 0.72rem; color: var(--muted); font-style: italic; margin-bottom: 3rem; }
+
+  .results { display: flex; gap: 0; margin-bottom: 3.5rem; }
+  .result-item { flex: 1; padding: 0 1.5rem 0 0; border-right: 0.5px solid var(--warm-mid); margin-right: 1.5rem; }
+  .result-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .result-num { font-family: var(--serif); font-size: 2rem; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+  .result-label { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+
+  p { font-size: 1rem; color: #4a4844; line-height: 1.85; margin-bottom: 1.25rem; }
+  p:last-of-type { margin-bottom: 0; }
+
+  h2 { font-family: var(--serif); font-size: clamp(1.3rem, 2.5vw, 1.8rem); letter-spacing: -0.02em; line-height: 1.2; color: var(--black); margin: 3rem 0 1rem; }
+
+  .callout { border-left: 2px solid var(--accent); padding: 0.9rem 1.25rem; background: var(--accent-light); border-radius: 0 3px 3px 0; margin: 1.75rem 0; }
+  .callout p { font-family: var(--serif); font-size: 1rem; color: var(--black); line-height: 1.5; margin: 0; font-style: italic; }
+
+  .inline-img { margin: 2rem 0 0.5rem; }
+  .inline-img img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 3px; }
+
+  .reflection { background: var(--black); border-radius: 10px; padding: 2.5rem; margin-top: 4rem; }
+  .refl-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
+  .reflection h2 { font-family: var(--serif); font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: #f5efe4; margin: 0 0 1.25rem; }
+  .reflection p { font-size: 0.92rem; color: #a8a49c; line-height: 1.8; }
+
+  .back-top { padding: 2rem var(--gutter); background: var(--black); display: flex; justify-content: center; border-top: 0.5px solid #2c2a26; }
+  .back-top a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: #5a5752; text-decoration: none; transition: color 0.2s; }
+  .back-top a:hover { color: #f5efe4; }
+
+  footer { background: var(--black); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-copy { font-size: 0.75rem; color: #3a3835; }
+  .footer-linkedin { display: flex; align-items: center; opacity: 0.6; transition: opacity 0.2s; }
+  .footer-linkedin:hover { opacity: 1; }
+  .footer-linkedin:hover rect { fill: #f5efe4; }
+  .footer-linkedin:hover path { fill: #1c1a18; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .burger { display: flex; }
+    .results { flex-direction: column; gap: 1.5rem; }
+    .result-item { border-right: none; border-bottom: 0.5px solid var(--warm-mid); padding: 0 0 1.25rem; margin: 0; }
+    .result-item:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+</style>
+</head>
+<body id="top">
+
+<nav>
+  <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#work" class="mobile-link">Work</a>
+  <a href="index.html#about" class="mobile-link">About</a>
+  <a href="index.html#experience" class="mobile-link">Experience</a>
+  <a href="index.html#contact" class="mobile-link">Contact</a>
+</div>
+
+<div class="wrap">
+
+  <div class="meta">
+    <div class="meta-item"><span class="meta-label">Company</span><span class="meta-value">Saxo Bank</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Product Designer</span></div>
+    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">3 weeks</span></div>
+    <div class="meta-item"><span class="meta-label">Platforms</span><span class="meta-value">Investor · TraderGO · Mobile</span></div>
+  </div>
+
+  <div class="tags">
+    <span class="tag">Conversational UI</span>
+    <span class="tag">User research</span>
+    <span class="tag">B2B SaaS</span>
+    <span class="tag">Fintech</span>
+  </div>
+
+  <h1>Two Ways to Get Help. One Way Forward.</h1>
+  <p class="lede">Saxo Bank upgraded its AI chatbot and wanted it to be the only support channel. I pushed back — and the results proved it was the right call.</p>
+
+  <div class="img-wrap">
+    <img src="images/slide-36.jpg" alt="Final solution — unified help modal" />
+  </div>
+  <p class="img-cap">Final solution — unified help modal across Saxo platforms</p>
+
+  <div class="results reveal">
+    <div class="result-item">
+      <div class="result-num">+70%</div>
+      <div class="result-label">Engaged chatbot conversations in one month</div>
+    </div>
+    <div class="result-item">
+      <div class="result-num">↓</div>
+      <div class="result-label">Calls and emails to human agents</div>
+    </div>
+    <div class="result-item">
+      <div class="result-num">↑</div>
+      <div class="result-label">Help centre article engagement</div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p>The directive was to make the new AI chatbot the default support channel and remove everything else. Before opening Figma, I needed to know if that was actually what users wanted.</p>
+    <p>In 12 user interviews, a pattern emerged immediately: support behaviour split three ways. Some users went straight to chat. Others wanted articles. Others — especially on high-stakes actions like money movement — wanted a human. No single channel dominated, and several users said they'd lose trust in the platform if chatbot was their only option.</p>
+
+    <div class="callout">
+      <p>"The chatbot-only idea was tested. The data didn't support it."</p>
+    </div>
+
+    <p>The competitive picture reinforced this. Intercom and Binance — both heavily invested in AI support — still offered multi-channel help. Neither had gone chatbot-only.</p>
+  </div>
+
+  <div class="inline-img reveal">
+    <img src="images/slide-18.jpg" alt="UX audit" />
+  </div>
+  <p class="img-cap">UX audit — Saxo Investor desktop vs TraderGO modal</p>
+
+  <h2 class="reveal">The problem was access, not the chatbot.</h2>
+  <div class="reveal">
+    <p>Investor had a full help page — spacious, but navigating to it meant leaving your workflow entirely. TraderGO had a persistent modal — always visible, but stateless. Minimise it and your conversation was gone. Mobile inherited both problems on a smaller screen.</p>
+    <p>The fix was a single modal pattern that worked across all three platforms: chat-first, but with the help centre one tap away. Resizable, minimisable, with state persistence — your conversation stays with you.</p>
+  </div>
+
+  <div class="inline-img reveal">
+    <img src="images/slide-31.jpg" alt="Wireframe explorations" />
+  </div>
+  <p class="img-cap reveal">Wireframe explorations — defining the modal pattern</p>
+
+  <div class="reveal">
+    <p>I ran a mini workshop to lock the design requirements before touching hi-fi: preserve task context, reduce access friction, stay within the design system, keep support options intact, and build something that could scale as the chatbot improved. Then wireframes, in-house testing, and an interactive prototype tested with 8 participants in a guerrilla format.</p>
+    <p>Three weeks from kickoff to handoff. One template, three platforms, full specs and design system documentation.</p>
+  </div>
+
+  <div class="inline-img reveal">
+    <img src="images/slide-41.jpg" alt="Final hi-fi designs" />
+  </div>
+  <p class="img-cap reveal">Final hi-fi — all states across Investor, TraderGO and mobile</p>
+
+  <div class="reflection reveal">
+    <div class="refl-label">Reflection</div>
+    <h2>The most important decision happened before I opened Figma.</h2>
+    <p>Resisting the chatbot-only brief was the right call — and the results validated it. The redesign didn't cannibalise other support channels, it grew total self-service volume. More users getting answers without needing to escalate.</p>
+    <p>What I'd do differently: build in a post-launch research checkpoint at 60 days. We knew users were willing to try the chatbot. We didn't know whether they'd keep choosing it for complex issues over time. That gap is still open.</p>
+  </div>
+
+</div>
+
+<div class="back-top">
+  <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2025 Semir Ugljanin</span>
+  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin" aria-label="LinkedIn">
+    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#5a5752"/>
+      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
+    </svg>
+  </a>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var burger = document.getElementById('burger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileBackdrop = document.getElementById('mobileBackdrop');
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        burger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        if (mobileBackdrop) mobileBackdrop.classList.toggle('open');
+      });
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          mobileBackdrop.classList.remove('open');
+        });
+      }
+      document.querySelectorAll('.mobile-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+        });
+      });
+    }
+    var els = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0 });
+    els.forEach(function(el) { observer.observe(el); });
+  });
+</script>
+</body>
+</html>
