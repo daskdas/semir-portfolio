@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Refer a Friend — Saxo Bank · Semir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0e0e0d;
+    --white: #f5efe4;
+    --warm-mid: #e5d9c8;
+    --warm-dark: #2c2a26;
+    --accent: #c9521a;
+    --accent-light: #f0e8e0;
+    --muted: #7a7670;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max-wide: 1080px;
+    --gutter: clamp(1.5rem, 5vw, 5rem);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-style: italic; letter-spacing: -0.02em; color: var(--black); text-decoration: none; display: flex; align-items: baseline; gap: 0.1em; }
+  .nav-logo .dash { font-style: normal; margin: 0 0.05em; color: var(--muted); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+  .burger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 12px; margin-right: -8px; background: none; border: none; z-index: 9999; position: relative; -webkit-tap-highlight-color: transparent; touch-action: manipulation; -webkit-appearance: none; }
+  .burger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { position: fixed; top: 4.5rem; right: 1rem; width: 220px; background: var(--black); border-radius: 14px; z-index: 9500; padding: 0.5rem 0; opacity: 0; transform: scale(0.95) translateY(-8px); transform-origin: top right; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+  .mobile-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+  .mobile-menu a { display: block; font-family: var(--serif); font-size: 1.15rem; color: #f5efe4; text-decoration: none; padding: 0.8rem 1.25rem; border-bottom: 0.5px solid #2c2a26; letter-spacing: -0.01em; transition: color 0.15s; }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:active { color: var(--accent); }
+  .mobile-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9290; display: none; background: transparent; }
+  .mobile-backdrop.open { display: block; }
+
+  /* HERO */
+  .case-hero { padding: 9rem var(--gutter) 4rem; max-width: var(--max-wide); margin: 0 auto; }
+  .case-meta { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+  .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .meta-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .meta-value { font-size: 0.85rem; color: var(--muted); }
+  .case-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -0.025em; color: var(--black); margin-bottom: 1.5rem; max-width: 700px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .case-intro { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300; color: var(--muted); max-width: 600px; line-height: 1.65; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
+
+  /* SUMMARY STRIP */
+  .summary-strip { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 4rem; opacity: 0; animation: fadeUp 0.8s 0.45s forwards; }
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); }
+  .summary-card { background: var(--white); padding: 2rem 1.75rem; }
+  .summary-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .summary-text { font-size: 0.95rem; color: #4a4844; line-height: 1.65; }
+
+  /* IMAGES */
+  .img-full-bleed { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 2rem; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+  .img-full-bleed img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
+  .img-caption { font-size: 0.75rem; color: #7a7670; margin-top: 0.75rem; letter-spacing: 0.04em; font-style: italic; }
+
+  .placeholder-img { width: 100%; aspect-ratio: 16/9; background: var(--warm-mid); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--muted); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .placeholder-img.tall { aspect-ratio: 4/3; }
+
+  /* CONTENT */
+  .content-section { padding: 4rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; }
+  .content-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
+  .content-body h2 { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1.25rem; }
+  .content-body p { font-size: 1rem; color: #4a4844; line-height: 1.8; margin-bottom: 1.25rem; }
+  .content-body p:last-child { margin-bottom: 0; }
+  .content-body ul { list-style: none; margin: 1.25rem 0; }
+  .content-body ul li { font-size: 1rem; color: #4a4844; line-height: 1.7; padding: 0.6rem 0; border-bottom: 0.5px solid var(--warm-mid); display: flex; align-items: baseline; gap: 0.75rem; }
+  .content-body ul li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; }
+  .content-body ul li:first-child { border-top: 0.5px solid var(--warm-mid); }
+
+  /* QUOTE */
+  .pull-quote { border-left: 2px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; background: var(--accent-light); border-radius: 0 4px 4px 0; }
+  .pull-quote p { font-family: var(--serif); font-size: 1.05rem; color: var(--black); line-height: 1.5; margin: 0; font-style: italic; }
+
+  /* INSIGHT */
+  .insight { border-left: 2px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; background: var(--accent-light); border-radius: 0 4px 4px 0; }
+  .insight-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+  .insight p { font-size: 0.95rem; color: #4a4844; line-height: 1.7; margin: 0; }
+
+  /* CONSTRAINTS */
+  .constraint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
+  .constraint-card { background: var(--white); padding: 1.75rem; border-radius: 0; }
+  .constraint-title { font-family: var(--serif); font-size: 1.1rem; color: var(--black); margin-bottom: 0.5rem; }
+  .constraint-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* RESULTS */
+  .outcomes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
+  .outcome-card { background: var(--white); padding: 2rem 1.75rem; }
+  .outcome-stat { font-family: var(--serif); font-size: 3rem; color: var(--black); line-height: 1; margin-bottom: 0.5rem; }
+  .outcome-stat em { color: var(--accent); font-style: normal; }
+  .outcome-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+  /* IMAGE PAIR */
+  .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem; }
+  .img-pair-item img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
+  .img-pair-item .placeholder-img { aspect-ratio: 16/9; }
+  .img-pair-caption { font-size: 0.75rem; color: #7a7670; font-style: italic; }
+
+  /* REFLECTION */
+  .learnings { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 5rem; }
+  .learnings-inner { background: var(--black); border-radius: 16px; padding: 3.5rem; }
+  .learnings-headline { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--white); max-width: 560px; margin-bottom: 2rem; }
+  .learnings p { font-size: 1rem; color: #a8a49c; line-height: 1.8; max-width: 600px; margin-bottom: 1.25rem; }
+  .learnings p:last-child { margin-bottom: 0; }
+
+  /* BACK TO TOP */
+  .next-project { padding: 4rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; display: flex; justify-content: center; }
+  .next-title { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: -0.02em; color: var(--black); text-decoration: none; transition: color 0.2s; }
+  .next-title:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer { background: var(--black); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-copy { font-size: 0.75rem; color: #5a5752; }
+  .footer-linkedin { display: flex; align-items: center; opacity: 0.6; transition: opacity 0.2s; }
+  .footer-linkedin:hover { opacity: 1; }
+  .footer-linkedin:hover rect { fill: #f5efe4; }
+  .footer-linkedin:hover path { fill: #1c1a18; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .burger { display: flex; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .constraint-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .img-pair { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 721px) { .mobile-menu { display: none !important; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
+  <ul class="nav-links">
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#work" class="mobile-link">Work</a>
+  <a href="index.html#about" class="mobile-link">About</a>
+  <a href="index.html#experience" class="mobile-link">Experience</a>
+  <a href="index.html#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div class="case-meta">
+    <div class="meta-item"><span class="meta-label">Company</span><span class="meta-value">Saxo Bank</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Product Designer</span></div>
+    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">1–3 months</span></div>
+    <div class="meta-item"><span class="meta-label">Markets</span><span class="meta-value">14 global markets</span></div>
+  </div>
+  <h1 class="case-title">Refer a Friend</h1>
+  <p class="case-intro">Saxo Bank had a referral programme. Technically it worked. Nobody used it. I redesigned it from the ground up — and built a globally scalable template that shipped across 14 markets.</p>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="img-full-bleed">
+  <img src="images/refer-hero.png" alt="Refer a Friend — final solution" />
+  <p class="img-caption">Final solution — Refer a Friend across Saxo platforms</p>
+</div>
+
+<!-- SUMMARY STRIP -->
+<div class="summary-strip reveal">
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-label">Challenge</div>
+      <div class="summary-text">A referral programme with zero engagement. Users couldn't find it, didn't understand the reward, and had no way to know if their referral had done anything.</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Strategy</div>
+      <div class="summary-text">Redesign the entire experience end to end — and build a globally scalable template that could hold across 14 markets without fragmenting into 14 versions.</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Results</div>
+      <div class="summary-text">3.2× year-over-year referral growth. 20% increase directly from Referral 2.0. 50% reduction in support questions about the programme.</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE BRIEF -->
+<div class="content-section" id="brief">
+  <div class="reveal">
+    <div class="content-label">The brief</div>
+    <div class="content-body">
+      <h2>The infrastructure was there. The engagement wasn't.</h2>
+      <p>Saxo Bank's referral programme had been running quietly in the background — tracking set up, reward mechanics in place, comms going out. But client interest was close to zero. Referral 2.0 was the mandate to change that: give the programme a proper identity, fix the experience end to end, and make it scale globally.</p>
+      <p>The constraints were real from the start. The design system was locked — no new components. Legal requirements varied dramatically across markets. And the timeline was subject to compliance review cycles that could move in any direction at any time.</p>
+      <div class="constraint-grid">
+        <div class="constraint-card">
+          <div class="constraint-title">1–3 months</div>
+          <div class="constraint-desc">Timeline shaped by legal review cycles and compliance sign-off across markets.</div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-title">14 markets</div>
+          <div class="constraint-desc">One global template. Not 14. Local offices would get a content slot — but the design mandate had to hold.</div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-title">Design system locked</div>
+          <div class="constraint-desc">No new components. The solution had to live within what already existed across both platforms.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div class="content-section" id="problem">
+  <div class="reveal">
+    <div class="content-label">The problem</div>
+    <div class="content-body">
+      <h2>Three failures. All pointing at the same root cause.</h2>
+      <p>Funnel analysis and usability testing across both the referrer and referred user experience told a consistent story. Users weren't dropping off because they didn't want to refer. They were dropping off because the experience gave them no confidence that anything would actually happen.</p>
+      <ul>
+        <li>Entry points buried in the profile menu — the referral icon was a speakerphone that communicated nothing</li>
+        <li>Commission credits were opaque — users didn't know what they were, where they appeared, or how to use them</li>
+        <li>No feedback loop — once a referral link was sent, it disappeared into a void</li>
+        <li>Landing pages for referred users felt disconnected from the main platform</li>
+        <li>Terms and conditions dominated the visual hierarchy, creating anxiety instead of confidence</li>
+      </ul>
+      <div class="pull-quote">
+        <p>"I sent the link to a friend but I have no idea if he ever did anything with it."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BEFORE STATE IMAGE -->
+<div class="img-full-bleed reveal">
+  <div class="placeholder-img">[PLACEHOLDER: Before state — old referral entry point / speakerphone icon]</div>
+  <p class="img-caption">Before — the existing referral entry point and icon</p>
+</div>
+
+<!-- STRATEGY: ENTRY POINTS -->
+<div class="content-section" id="strategy">
+  <div class="reveal">
+    <div class="content-label">The strategy</div>
+    <div class="content-body">
+      <h2>Entry points, done with restraint.</h2>
+      <p>We mapped the most visited pages across Saxo's platforms and identified where referral touchpoints would make sense. The temptation — and the pressure from leadership — was to be aggressive. Put it everywhere. We pushed back. Plastering referral CTAs across every surface would create noise and erode the trust we were trying to build.</p>
+      <p>What we shipped: the speakerphone replaced with a gift box icon on both mobile and desktop across both platforms, a button on the portfolio page, and a list item in the profile card. Focused, intentional, non-intrusive. Leadership was skeptical. The results proved the call was right.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ENTRY POINTS IMAGE PAIR -->
+<div class="content-section" style="padding-top: 0;">
+  <div class="reveal">
+    <div class="img-pair">
+      <div class="img-pair-item">
+        <div class="placeholder-img">[PLACEHOLDER: New entry point — desktop portfolio page with gift icon]</div>
+      </div>
+      <div class="img-pair-item">
+        <div class="placeholder-img">[PLACEHOLDER: New entry point — mobile with gift icon]</div>
+      </div>
+    </div>
+    <p class="img-pair-caption">New entry points — gift icon on desktop and mobile portfolio pages</p>
+  </div>
+</div>
+
+<!-- STRATEGY: REWARD LEGIBILITY -->
+<div class="content-section">
+  <div class="reveal">
+    <div class="content-body">
+      <h2>Making the reward legible.</h2>
+      <p>The commission credits hub was the centrepiece of the redesign — a dedicated section that explained what credits were, how they were earned, where they appeared in the platform, and how to use them. This alone resolved the core confusion that testing had surfaced repeatedly.</p>
+      <p>The persistent funding reminder closed the broken feedback loop. Referrers could now see the status of their referral until the 90-day window closed or their contact funded an account. The void was gone.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COMMISSION CREDITS IMAGE -->
+<div class="img-full-bleed reveal">
+  <div class="placeholder-img">[PLACEHOLDER: Commission credits hub — explaining the reward]</div>
+  <p class="img-caption">Commission credits hub — making the reward understandable</p>
+</div>
+
+<!-- PERSISTENT REMINDER IMAGE -->
+<div class="img-full-bleed reveal">
+  <div class="placeholder-img">[PLACEHOLDER: Persistent funding reminder — referral status tracking]</div>
+  <p class="img-caption">Persistent funding reminder — referrers can now track their referral status</p>
+</div>
+
+<!-- STRATEGY: GLOBAL TEMPLATE -->
+<div class="content-section">
+  <div class="reveal">
+    <div class="content-body">
+      <h2>One template. Not fourteen.</h2>
+      <p>The bigger design challenge was building something that could work everywhere without becoming everything. Saxo has offices across Europe, Asia, the Middle East and beyond — each with different legal frameworks, different cultural contexts, and different ideas about what the referral programme should look like.</p>
+      <p>Denmark, Holland and Belgium operate under strict pyramid scheme laws. The referrer cannot receive anything for referring someone. We made the call to rename the programme "Invite a Friend" in those markets and restructure the reward to apply only to the referred user. Legal didn't have bandwidth to rule on every decision — we made it transparent and moved forward.</p>
+      <p>Singapore was the opposite — multiple reward types for different circumstances, a far more permissive environment. The template had to flex without breaking.</p>
+      <div class="insight">
+        <div class="insight-label">Holding the line</div>
+        <p>Local offices came back with requests to customise and diverge. The answer was no. I was called into a room with senior leadership to defend the design decisions directly. Some were skeptical. The results answered them.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOBAL TEMPLATE IMAGE -->
+<div class="img-full-bleed reveal">
+  <div class="placeholder-img">[PLACEHOLDER: Global template overview — showing modular content slot]</div>
+  <p class="img-caption">Global template — one design system, modular content slot for local offices</p>
+</div>
+
+<!-- MARKET VARIATIONS IMAGE PAIR -->
+<div class="content-section" style="padding-top: 0;">
+  <div class="reveal">
+    <div class="img-pair">
+      <div class="img-pair-item">
+        <div class="placeholder-img">[PLACEHOLDER: Denmark / Nordic market — "Invite a Friend" variant]</div>
+      </div>
+      <div class="img-pair-item">
+        <div class="placeholder-img">[PLACEHOLDER: Singapore market — multiple reward types variant]</div>
+      </div>
+    </div>
+    <p class="img-pair-caption">Market variations — Denmark "Invite a Friend" (left) vs Singapore multi-reward (right)</p>
+  </div>
+</div>
+
+<!-- STRATEGY: CULTURAL ADAPTATION -->
+<div class="content-section">
+  <div class="reveal">
+    <div class="content-body">
+      <h2>Cultural adaptation at scale.</h2>
+      <p>Holding one template didn't mean ignoring culture. Two Nordic-looking people on a referral banner is not a fit for Japan, Singapore or Dubai. I built individual asset stacks for each market — and the technical constraints on banner sizes made this genuinely difficult. By the end I'd written a new composition guideline for all future banner updates across the programme.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CULTURAL ASSETS IMAGE -->
+<div class="img-full-bleed reveal">
+  <div class="placeholder-img">[PLACEHOLDER: Cultural asset stacks — market-specific banner variations across regions]</div>
+  <p class="img-caption">Cultural asset stacks — individual banner variations across Europe, Asia and the Middle East</p>
+</div>
+
+<!-- WHAT DIDN'T SHIP -->
+<div class="content-section">
+  <div class="reveal">
+    <div class="content-label">What didn't ship</div>
+    <div class="content-body">
+      <h2>The features that got to the finish line — and the ones that didn't.</h2>
+      <p>The invitee list was the feature I believed in most. Not a leaderboard — a simple view of who you'd invited and where they were in the journey. Nudge design. Social proof. A closed loop. Compliance approved it, then retracted their approval weeks before launch. We absorbed it and shipped without it.</p>
+      <p>The modular content slot for local offices was fully built and is sitting in the design documentation and code — available if the business ever decides to activate it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTION FULL WIDTH -->
+<div class="img-full-bleed reveal">
+  <div class="placeholder-img">[PLACEHOLDER: Final solution overview — full referral flow across platforms]</div>
+  <p class="img-caption">Final solution — the complete referral experience across web and mobile</p>
+</div>
+
+<!-- RESULTS -->
+<div class="content-section" id="results">
+  <div class="reveal">
+    <div class="content-label">Results</div>
+    <div class="content-body">
+      <h2>3.2× growth. The programme finally earned its place.</h2>
+      <p>Within a year of launch, referral volume was 3.2 times larger year-over-year. Referral 2.0 directly drove a 20% increase. Support questions about the programme dropped by 50% — users were no longer confused about how it worked.</p>
+      <p>A concurrent marketing campaign around Saxo's new pricing may have contributed to broader word-of-mouth referrals. The metrics are tracked directly to the referral flow — but I'd rather be honest about the context than overstate the attribution.</p>
+      <div class="outcomes-grid">
+        <div class="outcome-card"><div class="outcome-stat"><em>3.2×</em></div><div class="outcome-label">Year-over-year referral growth</div></div>
+        <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Increase in referrals directly from Referral 2.0</div></div>
+        <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Reduction in referral-related support questions</div></div>
+        <div class="outcome-card"><div class="outcome-stat"><em>14</em></div><div class="outcome-label">Markets shipped on a single global template</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<div class="learnings" id="reflection">
+  <div class="learnings-inner reveal">
+    <div class="content-label" style="color: #c9521a; margin-bottom: 1.5rem;">Reflection</div>
+    <h2 class="learnings-headline">What I'd do differently — and what I'd fight harder for.</h2>
+    <p>I'd build compliance into discovery next time, not treat it as a final gate. Losing the invitee list weeks before launch — after it had been approved — was avoidable with earlier, deeper alignment. It was the feature I believed in most and it never shipped.</p>
+    <p>Taking full ownership of UX and UI through to dev handoff wasn't the plan. Both UI designers on the project were unavailable by the time I reached high-fidelity. The handoff worked — the programme shipped and the results followed. But the UI would have been stronger with dedicated craft time, and I'd fight for that resource earlier next time rather than absorb the gap at the end.</p>
+    <p>The tracking framework I set up early paid off. I mapped out every tracking point across the flow and worked with the data team to define what was technically measurable before a single screen went to dev. Next time I'd do it even earlier — and tie it to shared success metrics across design, product and data from day one.</p>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<div class="next-project reveal">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="next-title">↑ Back to top</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Semir Ugljanin</span>
+  <a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" class="footer-linkedin" aria-label="LinkedIn">
+    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#5a5752"/>
+      <path d="M7 9h2v8H7V9zm1-1.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 9h2v1.1c.4-.7 1.2-1.3 2.3-1.3 2.1 0 3.2 1.4 3.2 3.5V17h-2v-4.4c0-1-.4-1.8-1.5-1.8-1 0-1.8.8-1.8 2V17h-2V9z" fill="white"/>
+    </svg>
+  </a>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var burger = document.getElementById('burger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileBackdrop = document.getElementById('mobileBackdrop');
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        burger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        if (mobileBackdrop) mobileBackdrop.classList.toggle('open');
+      });
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          mobileBackdrop.classList.remove('open');
+        });
+      }
+      document.querySelectorAll('.mobile-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>
