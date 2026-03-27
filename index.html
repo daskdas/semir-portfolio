@@ -25,7 +25,8 @@
   html { scroll-behavior: smooth; }
   body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); padding: 0 var(--gutter); }
+  .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0.85rem 0; display: flex; justify-content: space-between; align-items: center; position: relative; width: 100%; }
   .nav-logo {
     font-family: var(--serif);
     font-size: 1.1rem;
@@ -40,9 +41,10 @@
   .nav-logo .dash { font-style: normal; margin: 0 0.05em; color: var(--muted); }
 
   .nav-name { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -0.01em; color: var(--black); text-decoration: none; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--black); }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 20px; transition: background 0.15s, color 0.15s; white-space: nowrap; text-transform: none; }
+  .nav-links a:hover { background: var(--warm-mid); color: var(--black); }
+  .nav-links a.active { background: var(--black); color: var(--white); }
 
   .hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; padding: 0 var(--gutter); padding-top: 5rem; }
   .hero-inner { display: flex; flex-direction: column; justify-content: center; max-width: var(--max); margin: 0 auto; width: 100%; padding-bottom: 4rem; }
@@ -414,6 +416,7 @@
 <body>
 
 <nav>
+<div class="nav-inner">
   <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
@@ -456,7 +459,7 @@
     <div class="section-label">Selected work</div>
     <div class="work-grid">
       <a href="saxo-refer-a-friend.html" class="work-card reveal">
-        <div class="work-card-bg" style="background-image:url('images/refer-hero2.png');"></div>
+        <div class="work-card-bg" style="background-image:url('images/refer-hero.png');"></div>
         <div class="work-card-overlay"></div>
         <div class="work-card-content">
           <div class="work-card-chip">
@@ -597,6 +600,29 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Active nav pill on scroll + click
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = ['work','about','experience','contact'].map(id => document.getElementById(id)).filter(Boolean);
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  const scrollSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) link.classList.add('active');
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => scrollSpy.observe(s));
+
   document.addEventListener('DOMContentLoaded', function() {
 
     document.body.classList.add('js-ready');
