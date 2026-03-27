@@ -25,7 +25,8 @@
   html { scroll-behavior: smooth; }
   body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; display: flex; justify-content: space-between; align-items: center; padding: 0.85rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0.85rem var(--gutter); display: flex; justify-content: space-between; align-items: center; position: relative; }
   .nav-logo {
     font-family: var(--serif);
     font-size: 1.1rem;
@@ -415,6 +416,7 @@
 <body>
 
 <nav>
+<div class="nav-inner">
   <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
@@ -598,9 +600,17 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Active nav pill on scroll
+  // Active nav pill on scroll + click
   const navLinks = document.querySelectorAll('.nav-links a');
   const sections = ['work','about','experience','contact'].map(id => document.getElementById(id)).filter(Boolean);
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
   const scrollSpy = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
