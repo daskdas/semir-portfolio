@@ -26,7 +26,7 @@
   body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
-  .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0.85rem var(--gutter); display: flex; justify-content: space-between; align-items: center; position: relative; }
+  .nav-inner { max-width: calc(var(--max) + var(--gutter) * 2); margin: 0 auto; padding: 0.85rem var(--gutter); display: flex; justify-content: space-between; align-items: center; position: relative; width: 100%; }
   .nav-logo {
     font-family: var(--serif);
     font-size: 1.1rem;
