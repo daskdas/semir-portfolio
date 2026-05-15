@@ -42,23 +42,8 @@
 
   .nav-name { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -0.01em; color: var(--black); text-decoration: none; }
   .nav-links { display: flex; gap: 0.25rem; list-style: none; }
- .nav-links a { 
-  font-size: 0.8rem; 
-  font-weight: 400; 
-  letter-spacing: 0.04em; 
-  color: var(--black); /* now matches S-U */
-  text-decoration: none; 
-  padding: 0.35rem 0.85rem; 
-  border-radius: 20px; 
-  transition: background 0.15s, color 0.15s; 
-  white-space: nowrap; 
-  text-transform: none; 
-}
-
-.nav-links a:hover { 
-  background: var(--accent-light); 
-  color: var(--accent); 
-}
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 20px; transition: background 0.15s, color 0.15s; white-space: nowrap; text-transform: none; }
+  .nav-links a:hover { background: var(--warm-mid); color: var(--black); }
   .nav-links a.active { background: var(--black); color: var(--white); }
 
   .hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; padding: 0 var(--gutter); padding-top: 5rem; }
@@ -208,6 +193,37 @@
 
   .work-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.75rem; border: 0.5px solid var(--warm-mid); color: var(--muted); border-radius: 2px; }
+  .work-card.coming-soon { opacity: 0.5; cursor: default; }
+  .work-card.coming-soon .work-card-overlay { opacity: 0 !important; }
+  .work-card.coming-soon .work-card-company,
+  .work-card.coming-soon .work-card-title { opacity: 0 !important; }
+  .work-card.coming-soon:hover .work-card-overlay { opacity: 0.4 !important; }
+  .coming-soon-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255,255,255,0.12);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 0.5px solid rgba(255,255,255,0.18);
+    border-radius: 10px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .work-card.coming-soon:hover .coming-soon-label { opacity: 1; }
+
+  /* Mobile — always show coming soon pill */
+  @media (hover: none) {
+    .work-card.coming-soon .coming-soon-label { opacity: 1; }
+  }
+
   .work-card-arrow { position: absolute; bottom: 2rem; right: 2rem; font-size: 1.2rem; color: var(--muted); transition: transform 0.2s, color 0.2s; }
   .work-card:hover .work-card-arrow { transform: translate(3px, -3px); color: var(--accent); }
 
@@ -483,7 +499,7 @@
           </div>
         </div>
       </a>
-      <a href="saxo-help-chatbot.html" class="work-card reveal">
+      <div class="work-card coming-soon reveal">
         <div class="work-card-bg" style="background-image:url('images/slide-36.png');"></div>
         <div class="work-card-overlay"></div>
         <div class="work-card-content">
