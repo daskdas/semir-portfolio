@@ -615,26 +615,6 @@
 </footer>
 
 <script>
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const sections = ['work','about','experience','contact'].map(id => document.getElementById(id)).filter(Boolean);
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navLinks.forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-  const scrollSpy = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + entry.target.id) link.classList.add('active');
-        });
-      }
-    });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-  sections.forEach(s => scrollSpy.observe(s));
-
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
