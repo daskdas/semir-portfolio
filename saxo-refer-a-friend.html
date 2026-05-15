@@ -26,11 +26,12 @@
   body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem var(--gutter); background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; background: rgba(245,239,228,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--warm-mid); padding: 0 var(--gutter); }
+  .nav-inner { max-width: var(--max-wide); margin: 0 auto; padding: 0.85rem 0; display: flex; justify-content: space-between; align-items: center; position: relative; width: 100%; }
   .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-style: italic; letter-spacing: -0.02em; color: var(--black); text-decoration: none; display: flex; align-items: baseline; gap: 0.1em; }
   .nav-logo .dash { font-style: normal; margin: 0 0.05em; color: var(--muted); }
   .nav-links { display: flex; gap: 0.25rem; list-style: none; }
-  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 20px; transition: background 0.15s, color 0.15s; white-space: nowrap; text-transform: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 20px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
   .nav-links a:hover { background: var(--warm-mid); color: var(--black); }
   .nav-links a.active { background: var(--black); color: var(--white); }
   .burger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 12px; margin-right: -8px; background: none; border: none; z-index: 9999; position: relative; -webkit-tap-highlight-color: transparent; touch-action: manipulation; -webkit-appearance: none; }
@@ -53,7 +54,7 @@
   .meta-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
   .meta-value { font-size: 0.85rem; color: var(--muted); }
   .case-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -0.025em; color: var(--black); margin-bottom: 1.5rem; max-width: 700px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .case-intro { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300; color: var(--muted); max-width: 600px; line-height: 1.65; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
+  .case-intro { font-size: clamp(1rem, 2vw, 1.15rem); font-weight: 300; color: var(--muted); max-width: 600px; line-height: 1.65; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
 
   /* SUMMARY STRIP */
   .summary-strip { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 4rem; opacity: 0; animation: fadeUp 0.8s 0.45s forwards; }
@@ -61,27 +62,44 @@
   .summary-card { background: var(--white); padding: 2rem 1.75rem; }
   .summary-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
   .summary-text { font-size: 0.95rem; color: #4a4844; line-height: 1.65; }
+  .summary-text strong { font-weight: 500; color: var(--black); }
+
+  .results-link { display: inline-block; margin-top: 0.75rem; font-size: 0.78rem; font-weight: 500; color: var(--accent); text-decoration: none; letter-spacing: 0.02em; transition: opacity 0.2s; }
+  .results-link:hover { opacity: 0.7; }
 
   /* IMAGES */
-  .img-full-bleed { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 2rem; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
-  .img-full-bleed img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
-  .img-caption { font-size: 0.75rem; color: #7a7670; margin-top: 0.75rem; letter-spacing: 0.04em; font-style: italic; }
+  .img-full { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 2rem; }
+  .img-full img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
+  .img-caption { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; font-style: italic; }
+  .img-pair-wrap { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 2rem; }
+  .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .img-pair img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
 
-  .placeholder-img { width: 100%; aspect-ratio: 16/9; background: var(--warm-mid); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--muted); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
-  .placeholder-img.tall { aspect-ratio: 4/3; }
+  /* PLACEHOLDER */
+  .placeholder { width: 100%; background: var(--warm-mid); border-radius: 4px; display: flex; align-items: center; justify-content: center; padding: 3rem 1rem; }
+  .placeholder.ratio-16-9 { aspect-ratio: 16/9; }
+  .placeholder.ratio-4-3 { aspect-ratio: 4/3; }
+  .placeholder-text { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: center; }
 
   /* CONTENT */
-  .content-section { padding: 4rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; }
-  .content-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
-  .content-body h2 { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1.25rem; }
-  .content-body p { font-size: 1rem; color: #4a4844; line-height: 1.8; margin-bottom: 1.25rem; }
-  .content-body p:last-child { margin-bottom: 0; }
-  .content-body ul { list-style: none; margin: 1.25rem 0; }
-  .content-body ul li { font-size: 1rem; color: #4a4844; line-height: 1.7; padding: 0.6rem 0; border-bottom: 0.5px solid var(--warm-mid); display: flex; align-items: baseline; gap: 0.75rem; }
-  .content-body ul li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-size: 0.85rem; }
-  .content-body ul li:first-child { border-top: 0.5px solid var(--warm-mid); }
+  .section { max-width: var(--max-wide); margin: 0 auto; padding: 4rem var(--gutter); }
+  .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
+  h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 1.25rem; }
+  h3 { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin-bottom: 1rem; margin-top: 2.5rem; }
+  p { font-size: 1rem; color: #4a4844; line-height: 1.8; margin-bottom: 1.25rem; }
+  p:last-child { margin-bottom: 0; }
 
-  /* QUOTE */
+  /* STATS VISUAL */
+  .stats-visual { margin: 2rem 0; }
+  .stats-circles { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-bottom: 1.5px; }
+  .stats-card { background: var(--white); padding: 1.5rem 1.25rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .stats-num { font-family: var(--serif); font-size: 2rem; color: var(--accent); line-height: 1; }
+  .stats-label { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .stats-reward { background: var(--white); border: 1.5px solid var(--warm-mid); padding: 1.25rem 1.5rem; display: flex; align-items: baseline; gap: 1rem; }
+  .stats-reward-num { font-family: var(--serif); font-size: 1.5rem; color: var(--accent); flex-shrink: 0; }
+  .stats-reward-text { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+  /* PULL QUOTE */
   .pull-quote { border-left: 2px solid var(--accent); padding: 1.25rem 1.5rem; margin: 2rem 0; background: var(--accent-light); border-radius: 0 4px 4px 0; }
   .pull-quote p { font-family: var(--serif); font-size: 1.05rem; color: var(--black); line-height: 1.5; margin: 0; font-style: italic; }
 
@@ -90,36 +108,24 @@
   .insight-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
   .insight p { font-size: 0.95rem; color: #4a4844; line-height: 1.7; margin: 0; }
 
-  /* CONSTRAINTS */
-  .constraint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
-  .constraint-card { background: var(--white); padding: 1.75rem; border-radius: 0; }
-  .constraint-title { font-family: var(--serif); font-size: 1.1rem; color: var(--black); margin-bottom: 0.5rem; }
-  .constraint-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
-
   /* RESULTS */
-  .outcomes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
+  .outcomes-grid-2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 1.5px; }
   .outcome-card { background: var(--white); padding: 2rem 1.75rem; }
-  .outcome-stat { font-family: var(--serif); font-size: 3rem; color: var(--black); line-height: 1; margin-bottom: 0.5rem; }
-  .outcome-stat em { color: var(--accent); font-style: normal; }
+  .outcome-stat { font-family: var(--serif); font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; font-style: normal; }
   .outcome-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
 
-  /* IMAGE PAIR */
-  .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem; }
-  .img-pair-item img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
-  .img-pair-item .placeholder-img { aspect-ratio: 16/9; }
-  .img-pair-caption { font-size: 0.75rem; color: #7a7670; font-style: italic; }
-
   /* REFLECTION */
-  .learnings { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 5rem; }
-  .learnings-inner { background: var(--black); border-radius: 16px; padding: 3.5rem; }
-  .learnings-headline { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.02em; color: var(--white); max-width: 560px; margin-bottom: 2rem; }
-  .learnings p { font-size: 1rem; color: #a8a49c; line-height: 1.8; max-width: 600px; margin-bottom: 1.25rem; }
-  .learnings p:last-child { margin-bottom: 0; }
+  .reflection-wrap { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 5rem; }
+  .reflection { background: var(--black); border-radius: 16px; padding: 3.5rem; }
+  .reflection .section-label { color: var(--accent); }
+  .reflection h2 { color: var(--white); }
+  .reflection p { color: #a8a49c; }
 
   /* BACK TO TOP */
-  .next-project { padding: 4rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; display: flex; justify-content: center; }
-  .next-title { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: -0.02em; color: var(--black); text-decoration: none; transition: color 0.2s; }
-  .next-title:hover { color: var(--accent); }
+  .back-top { padding: 4rem var(--gutter); max-width: var(--max-wide); margin: 0 auto; display: flex; justify-content: center; }
+  .back-top a { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.6rem); letter-spacing: -0.02em; color: var(--black); text-decoration: none; transition: color 0.2s; }
+  .back-top a:hover { color: var(--accent); }
 
   /* FOOTER */
   footer { background: var(--black); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
@@ -139,9 +145,9 @@
     .nav-links { display: none; }
     .burger { display: flex; }
     .summary-grid { grid-template-columns: 1fr; }
-    .constraint-grid { grid-template-columns: 1fr; }
-    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .outcomes-grid, .outcomes-grid-2 { grid-template-columns: 1fr 1fr; }
     .img-pair { grid-template-columns: 1fr; }
+    .reflection { padding: 2rem; }
   }
   @media (min-width: 721px) { .mobile-menu { display: none !important; } }
 </style>
@@ -149,18 +155,18 @@
 <body>
 
 <nav>
-<div class="nav-inner">
-  <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
-  <ul class="nav-links">
-    <li><a href="index.html#work">Work</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#experience">Experience</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-  <button class="burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</div>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><em>S</em><span class="dash">—</span><em>U</em></a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="mobile-backdrop" id="mobileBackdrop"></div>
@@ -180,11 +186,11 @@
     <div class="meta-item"><span class="meta-label">Markets</span><span class="meta-value">14 global markets</span></div>
   </div>
   <h1 class="case-title">Refer a Friend</h1>
-  <p class="case-intro">Saxo Bank had a referral programme with real potential — but engagement was well below what the business needed. I redesigned it from the ground up and built a globally scalable template that shipped across 14 markets.</p>
+  <p class="case-intro">Revitalising a dormant referral programme at a global investment bank — turning a feature users ignored into one that tripled referred users within a year, shipped across 14 markets.</p>
 </div>
 
-<!-- HERO IMAGE -->
-<div class="img-full-bleed">
+<!-- HERO IMAGE — filename: refer-hero.png -->
+<div class="img-full" style="opacity:0;animation:fadeUp 0.8s 0.5s forwards;">
   <img src="images/refer-hero.png" alt="Refer a Friend — final solution" />
   <p class="img-caption">Final solution — Refer a Friend across Saxo platforms</p>
 </div>
@@ -198,242 +204,162 @@
     </div>
     <div class="summary-card">
       <div class="summary-label">Strategy</div>
-      <div class="summary-text">Redesign the entire experience end to end — and build a globally scalable template that could hold across 14 markets without fragmenting into 14 versions.</div>
+      <div class="summary-text">Redesign the entire experience end to end — and build a globally scalable template that could hold across <strong>14 markets</strong> without fragmenting into 14 versions.</div>
     </div>
     <div class="summary-card">
       <div class="summary-label">Results</div>
-      <div class="summary-text">3.2× year-over-year referral growth. 20% increase directly from Referral 2.0. 50% reduction in support questions about the programme.</div>
+      <div class="summary-text"><strong>3.2×</strong> year-over-year referral growth. <strong>1 in 5</strong> referred visitors convert on the web landing page — the best performing acquisition feature on the platform.</div>
+      <a href="#results" class="results-link">Full results ↓</a>
     </div>
   </div>
 </div>
 
-<!-- THE BRIEF -->
-<div class="content-section" id="brief">
-  <div class="reveal">
-    <div class="content-label">The brief</div>
-    <div class="content-body">
-      <h2>The infrastructure was in place. The experience wasn't working hard enough.</h2>
-      <p>Saxo Bank's referral programme had been running quietly in the background — tracking set up, reward mechanics in place, comms going out. But engagement was underwhelming given the size of Saxo's client base. Referral 2.0 was the mandate to change that: give the programme a proper identity, fix the experience end to end, and make it scale globally.</p>
-      <p>The constraints were real from the start. The design system was locked — no new components. Legal requirements varied dramatically across markets. And the timeline was subject to compliance review cycles that could move in any direction at any time.</p>
-      <div class="constraint-grid">
-        <div class="constraint-card">
-          <div class="constraint-title">1–3 months</div>
-          <div class="constraint-desc">Timeline shaped by legal review cycles and compliance sign-off across markets.</div>
-        </div>
-        <div class="constraint-card">
-          <div class="constraint-title">14 markets</div>
-          <div class="constraint-desc">One global template. Not 14. Local offices would get a content slot — but the design mandate had to hold.</div>
-        </div>
-        <div class="constraint-card">
-          <div class="constraint-title">Design system locked</div>
-          <div class="constraint-desc">No new components. The solution had to live within what already existed across both platforms.</div>
-        </div>
+<!-- CHALLENGE -->
+<div class="section reveal">
+  <span class="section-label">Challenge</span>
+  <h2>The infrastructure was in place. The experience wasn't working hard enough.</h2>
+  <p>Saxo's referral programme wasn't performing as well as it could — and with it being a high priority for the business, I set out to find answers that could guide the design in the right direction. A cross-market awareness survey pointed to two clear problems: most clients had no idea the programme existed, and those who did couldn't make sense of how the reward system worked.</p>
+  <p>When asked where they'd expect to find the programme, clients were almost equally split between the platform and the public website — a signal that both surfaces needed attention, not just one.</p>
+
+  <div class="stats-visual">
+    <div class="stats-circles">
+      <div class="stats-card">
+        <svg width="64" height="64" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#e5d9c8" stroke-width="6"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#c9521a" stroke-width="6" stroke-dasharray="119 44" stroke-dashoffset="41" stroke-linecap="round"/>
+        </svg>
+        <div class="stats-num">73%</div>
+        <div class="stats-label">of clients in Asian markets had never encountered the programme</div>
+      </div>
+      <div class="stats-card">
+        <svg width="64" height="64" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#e5d9c8" stroke-width="6"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#c9521a" stroke-width="6" stroke-dasharray="85 78" stroke-dashoffset="41" stroke-linecap="round"/>
+        </svg>
+        <div class="stats-num">52%</div>
+        <div class="stats-label">of clients in European markets were unaware the programme existed</div>
+      </div>
+    </div>
+    <div class="stats-reward">
+      <div class="stats-reward-num">1 in 4</div>
+      <div class="stats-reward-text">clients couldn't explain the reward system — what commission credits were, what they were worth, or how to use them</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"I sent the link to a friend but I have no idea if he ever did anything with it."</p>
+  </div>
+</div>
+
+
+
+<!-- STRATEGY -->
+<div class="section reveal">
+  <span class="section-label">Strategy</span>
+  <h2>One template. Fourteen markets. No exceptions.</h2>
+  <p>Research findings pointed us in a clear direction early on: simplify the experience, make the reward system transparent, and design for all markets from the start rather than retrofitting later.</p>
+
+  <h3>Entry points, done with restraint.</h3>
+  <p>I mapped the most visited pages across Saxo's platforms and identified where referral touchpoints would make sense. Rather than placing CTAs across every surface, I kept it focused: the speakerphone icon replaced with a gift box on both mobile and desktop, a button on the portfolio page, and a list item in the profile card. Leadership wanted a more aggressive approach — the solution was to meet that need by placing touchpoints where users already expected to find them, without flooding the platform with CTAs.</p>
+</div>
+
+<!-- BEFORE/AFTER ENTRY POINTS — filenames: refer-before-entrypoints.png / refer-after-entrypoints.png -->
+<div class="img-pair-wrap reveal">
+  <div class="img-pair">
+    <div>
+      <div class="placeholder ratio-16-9">
+        <span class="placeholder-text">refer-before-entrypoints.png<br>Before — old speakerphone icon / buried entry point</span>
+      </div>
+    </div>
+    <div>
+      <div class="placeholder ratio-16-9">
+        <span class="placeholder-text">refer-after-entrypoints.png<br>After — new gift box icon on portfolio page</span>
       </div>
     </div>
   </div>
+  <p class="img-caption">Before and after — entry point redesign</p>
 </div>
 
-<!-- THE PROBLEM -->
-<div class="content-section" id="problem">
-  <div class="reveal">
-    <div class="content-label">The problem</div>
-    <div class="content-body">
-      <h2>Three friction points. All pointing at the same root cause.</h2>
-      <p>Funnel analysis and usability testing across both the referrer and referred user experience told a consistent story. Users weren't disengaged because they didn't want to refer — the friction in the experience was getting in the way before they had a chance to act.</p>
-      <ul>
-        <li>Entry points buried in the profile menu — the referral icon was a speakerphone that didn't signal the value of what was inside</li>
-        <li>Commission credits were opaque — users didn't know what they were, where they appeared, or how to use them</li>
-        <li>No feedback loop — once a referral link was sent, it disappeared into a void</li>
-        <li>Landing pages for referred users felt disconnected from the main platform</li>
-        <li>Legal copy was visually prominent in the flow, pulling attention away from the action we wanted users to take</li>
-      </ul>
-      <div class="pull-quote">
-        <p>"I sent the link to a friend but I have no idea if he ever did anything with it."</p>
-      </div>
-    </div>
+<div class="section reveal">
+  <h3>Making the reward understandable.</h3>
+  <p>Saxo's reward system works through <em>commission credits</em> — a balance that automatically offsets your trading fees over time. In testing, users struggled to understand what they were actually earning and how it would benefit them. The redesigned rewards section addressed this directly — a clear breakdown of what the referrer gets, what the referred friend gets, and what commission credits actually are. A persistent status indicator was also added, so referrers could track whether their contact had signed up and funded an account.</p>
+</div>
+
+<!-- REWARDS SCREEN — filename: refer-rewards.png -->
+<div class="img-full reveal">
+  <div class="placeholder ratio-16-9">
+    <span class="placeholder-text">refer-rewards.png<br>Rewards section — "you get / friend gets / what are commission credits"</span>
   </div>
+  <p class="img-caption">Rewards section — making the incentive clear and understandable</p>
 </div>
 
-<!-- BEFORE STATE IMAGE -->
-<div class="img-full-bleed reveal">
-  <div class="placeholder-img">[PLACEHOLDER: Before state — old referral entry point / speakerphone icon]</div>
-  <p class="img-caption">Before — the existing referral entry point and icon</p>
-</div>
+<!-- GLOBAL TEMPLATE + COMPLIANCE -->
+<div class="section reveal">
+  <h3>Navigating legal complexity across 14 markets.</h3>
+  <p>Denmark, Holland and Belgium operate under strict pyramid scheme laws — the referrer cannot receive anything for referring someone. I made the call to rename the programme "Invite a Friend" in those markets and restructure the reward to apply only to the referred user. Singapore was the opposite — multiple reward types for different circumstances. A challenge that emerged mid-design phase was accommodating this reward diversity structurally: Europe was limited to commission credits, while other markets were open to cash prizes. The design had to scale to both within the same layout.</p>
 
-<!-- STRATEGY: ENTRY POINTS -->
-<div class="content-section" id="strategy">
-  <div class="reveal">
-    <div class="content-label">The strategy</div>
-    <div class="content-body">
-      <h2>Entry points, done with restraint.</h2>
-      <p>We mapped the most visited pages across Saxo's platforms and identified where referral touchpoints would make sense. The temptation — and the pressure from leadership — was to be aggressive. Put it everywhere. We pushed back. Plastering referral CTAs across every surface would create noise and erode the trust we were trying to build.</p>
-      <p>What we shipped: the speakerphone replaced with a gift box icon on both mobile and desktop across both platforms, a button on the portfolio page, and a list item in the profile card. Focused, intentional, non-intrusive. Leadership was skeptical. The results proved the call was right.</p>
-    </div>
+  <div class="insight">
+    <div class="insight-label">Navigating stakeholder pressure</div>
+    <p>Maintaining the global template wasn't always straightforward. Local offices had strong opinions and there were conversations — including with senior leadership — where the design rationale needed to be defended. The approach held, and the results supported it.</p>
   </div>
+
+  <h3>Cultural adaptation at scale.</h3>
+  <p>Holding one template didn't mean ignoring culture. Two Nordic-looking people on a referral banner is not a fit for Japan, Singapore or Dubai. I built individual asset stacks for each market and wrote a new composition guideline for all future banner updates across the programme.</p>
 </div>
 
-<!-- ENTRY POINTS IMAGE PAIR -->
-<div class="content-section" style="padding-top: 0;">
-  <div class="reveal">
-    <div class="img-pair">
-      <div class="img-pair-item">
-        <div class="placeholder-img">[PLACEHOLDER: New entry point — desktop portfolio page with gift icon]</div>
-      </div>
-      <div class="img-pair-item">
-        <div class="placeholder-img">[PLACEHOLDER: New entry point — mobile with gift icon]</div>
-      </div>
-    </div>
-    <p class="img-pair-caption">New entry points — gift icon on desktop and mobile portfolio pages</p>
+<!-- CULTURAL BANNERS — filename: refer-banners.png -->
+<div class="img-full reveal">
+  <div class="placeholder ratio-16-9">
+    <span class="placeholder-text">refer-banners.png<br>Cultural asset stacks — regional banner variations across all markets</span>
   </div>
-</div>
-
-<!-- STRATEGY: REWARD LEGIBILITY -->
-<div class="content-section">
-  <div class="reveal">
-    <div class="content-body">
-      <h2>Making the reward legible.</h2>
-      <p>The commission credits hub was the centrepiece of the redesign — a dedicated section that explained what credits were, how they were earned, where they appeared in the platform, and how to use them. This alone resolved the core confusion that testing had surfaced repeatedly.</p>
-      <p>The persistent funding reminder closed the broken feedback loop. Referrers could now see the status of their referral until the 90-day window closed or their contact funded an account. The void was gone.</p>
-    </div>
-  </div>
-</div>
-
-<!-- COMMISSION CREDITS IMAGE -->
-<div class="img-full-bleed reveal">
-  <div class="placeholder-img">[PLACEHOLDER: Commission credits hub — explaining the reward]</div>
-  <p class="img-caption">Commission credits hub — making the reward understandable</p>
-</div>
-
-<!-- PERSISTENT REMINDER IMAGE -->
-<div class="img-full-bleed reveal">
-  <div class="placeholder-img">[PLACEHOLDER: Persistent funding reminder — referral status tracking]</div>
-  <p class="img-caption">Persistent funding reminder — referrers can now track their referral status</p>
-</div>
-
-<!-- STRATEGY: GLOBAL TEMPLATE -->
-<div class="content-section">
-  <div class="reveal">
-    <div class="content-body">
-      <h2>One template. Not fourteen.</h2>
-      <p>The bigger design challenge was building something that could work everywhere without becoming everything. Saxo has offices across Europe, Asia, the Middle East and beyond — each with different legal frameworks, different cultural contexts, and different ideas about what the referral programme should look like.</p>
-      <p>Denmark, Holland and Belgium operate under strict pyramid scheme laws. The referrer cannot receive anything for referring someone. We made the call to rename the programme "Invite a Friend" in those markets and restructure the reward to apply only to the referred user. Legal didn't have bandwidth to rule on every decision — we made it transparent and moved forward.</p>
-      <p>Singapore was the opposite — multiple reward types for different circumstances, a far more permissive environment. A challenge that emerged mid-design phase was accommodating this reward diversity structurally. Europe was limited to commission credits, while other markets were open to cash prizes as well. The design had to scale to both without requiring separate templates — something I resolved by building the reward component to support either format within the same layout.</p>
-      <div class="insight">
-        <div class="insight-label">Navigating stakeholder pressure</div>
-        <p>Maintaining the global template wasn't always straightforward. Local offices had strong opinions about how their market should be represented, and there were conversations — including with senior leadership — where the design rationale needed to be explained and defended. The approach held, and the results supported it.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- GLOBAL TEMPLATE IMAGE -->
-<div class="img-full-bleed reveal">
-  <div class="placeholder-img">[PLACEHOLDER: Global template overview — showing modular content slot]</div>
-  <p class="img-caption">Global template — one design system, modular content slot for local offices</p>
-</div>
-
-<!-- MARKET VARIATIONS IMAGE PAIR -->
-<div class="content-section" style="padding-top: 0;">
-  <div class="reveal">
-    <div class="img-pair">
-      <div class="img-pair-item">
-        <div class="placeholder-img">[PLACEHOLDER: Denmark / Nordic market — "Invite a Friend" variant]</div>
-      </div>
-      <div class="img-pair-item">
-        <div class="placeholder-img">[PLACEHOLDER: Singapore market — multiple reward types variant]</div>
-      </div>
-    </div>
-    <p class="img-pair-caption">Market variations — Denmark "Invite a Friend" (left) vs Singapore multi-reward (right)</p>
-  </div>
-</div>
-
-<!-- STRATEGY: CULTURAL ADAPTATION -->
-<div class="content-section">
-  <div class="reveal">
-    <div class="content-body">
-      <h2>Cultural adaptation at scale.</h2>
-      <p>Holding one template didn't mean ignoring culture. Two Nordic-looking people on a referral banner is not a fit for Japan, Singapore or Dubai. I built individual asset stacks for each market — and the technical constraints on banner sizes made this genuinely difficult. By the end I'd written a new composition guideline for all future banner updates across the programme.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CULTURAL ASSETS IMAGE -->
-<div class="img-full-bleed reveal">
-  <div class="placeholder-img">[PLACEHOLDER: Cultural asset stacks — market-specific banner variations across regions]</div>
   <p class="img-caption">Cultural asset stacks — individual banner variations across Europe, Asia and the Middle East</p>
 </div>
 
 <!-- WEB JOURNEY -->
-<div class="content-section">
-  <div class="reveal">
-    <div class="content-body">
-      <h2>Closing the loop — the web referral journey.</h2>
-      <p>The referral experience extended beyond the platform. When a referred user clicks a referral link, they land on a public-facing page on home.saxo before they've ever logged in. That first impression is critical — and it was one of the biggest drop-off points in the original funnel.</p>
-      <p>Working closely with the web design team, I provided UX direction and a design foundation they could build from. The page needed to feel trustworthy, clear about the reward, and consistent with the platform experience the referred user would eventually sign up for. We worked through several rounds of feedback until the hierarchy and messaging felt right.</p>
-      <p>That page is currently converting 1 in 5 referred visitors into new Saxo clients — outperforming every other acquisition feature on the platform across all markets.</p>
-    </div>
-  </div>
+<div class="section reveal">
+  <h3>Closing the loop — the web referral journey.</h3>
+  <p>The referral experience extended beyond the platform. When a referred user clicks a referral link, they land on a public-facing page before they've ever logged in. That first impression is critical — and it was one of the biggest drop-off points in the original funnel. Working closely with the web design team, I provided UX direction and a design foundation they built from. That page is currently converting 1 in 5 referred visitors into new Saxo clients — outperforming every other acquisition feature on the platform across all markets.</p>
 </div>
 
-<div class="img-full-bleed reveal">
-  <div class="placeholder-img">[PLACEHOLDER: Web referral landing page — home.saxo/accounts/referrals]</div>
+<!-- WEB LANDING PAGE — filename: refer-web.png -->
+<div class="img-full reveal">
+  <div class="placeholder ratio-16-9">
+    <span class="placeholder-text">refer-web.png<br>Web landing page — screenshot of home.saxo/en-gb/accounts/referrals</span>
+  </div>
   <p class="img-caption">Public-facing referral landing page — the first touchpoint for every referred user</p>
 </div>
 
-<!-- WHAT DIDN'T SHIP -->
-<div class="content-section">
-  <div class="reveal">
-    <div class="content-label">What didn't ship</div>
-    <div class="content-body">
-      <h2>The features that got to the finish line — and the ones that didn't.</h2>
-      <p>The invitee list was the feature I believed in most. Not a leaderboard — a simple view of who you'd invited and where they were in the journey. Nudge design. Social proof. A closed loop. Compliance approved it, then retracted their approval weeks before launch. We absorbed it and shipped without it.</p>
-      <p>The modular content slot for local offices was fully built and is sitting in the design documentation and code — available if the business ever decides to activate it.</p>
-    </div>
-  </div>
-</div>
-
-<!-- SOLUTION FULL WIDTH -->
-<div class="img-full-bleed reveal">
-  <div class="placeholder-img">[PLACEHOLDER: Final solution overview — full referral flow across platforms]</div>
-  <p class="img-caption">Final solution — the complete referral experience across web and mobile</p>
-</div>
-
 <!-- RESULTS -->
-<div class="content-section" id="results">
-  <div class="reveal">
-    <div class="content-label">Results</div>
-    <div class="content-body">
-      <h2>3.2× growth. The programme realised its potential.</h2>
-      <p>Within a year of launch, referral volume was 3.2 times larger year-over-year. Referral 2.0 directly drove a 20% increase. Support questions about the programme dropped by 50% — users were no longer confused about how it worked.</p>
-      <p>A concurrent marketing campaign around Saxo's new pricing may have contributed to broader word-of-mouth referrals. The metrics are tracked directly to the referral flow — but I'd rather be honest about the context than overstate the attribution.</p>
-      <div class="outcomes-grid">
-        <div class="outcome-card"><div class="outcome-stat"><em>3.2×</em></div><div class="outcome-label">Year-over-year referral growth</div></div>
-        <div class="outcome-card"><div class="outcome-stat"><em>+20%</em></div><div class="outcome-label">Increase in referrals directly from Referral 2.0</div></div>
-        <div class="outcome-card"><div class="outcome-stat"><em>−50%</em></div><div class="outcome-label">Reduction in referral-related support questions</div></div>
-        <div class="outcome-card"><div class="outcome-stat"><em>14</em></div><div class="outcome-label">Markets shipped on a single global template</div></div>
-      </div>
-      <div class="outcomes-grid" style="grid-template-columns:repeat(2,1fr); margin-top: 1.5px;">
-        <div class="outcome-card"><div class="outcome-stat"><em>1 in 5</em></div><div class="outcome-label">Referred visitors convert to new Saxo clients on the web landing page — outperforming every other acquisition feature on the platform</div></div>
-        <div class="outcome-card"><div class="outcome-stat"><em>#1</em></div><div class="outcome-label">Best performing acquisition feature across all Saxo markets</div></div>
-      </div>
-    </div>
+<div class="section reveal">
+  <span class="section-label">Results</span>
+  <h2>3.2× growth. The programme realised its potential.</h2>
+  <p>Within a year of launch, referral volume was 3.2 times larger year-over-year. A concurrent marketing campaign around Saxo's new pricing may have contributed to broader word-of-mouth — the referral metrics are tracked directly to the flow, but I'd rather be honest about the context than overstate the attribution.</p>
+
+  <div class="outcomes-grid">
+    <div class="outcome-card"><div class="outcome-stat">3.2×</div><div class="outcome-label">Year-over-year referral growth</div></div>
+    <div class="outcome-card"><div class="outcome-stat">+20%</div><div class="outcome-label">Increase in referrals directly from Referral 2.0</div></div>
+    <div class="outcome-card"><div class="outcome-stat">−50%</div><div class="outcome-label">Reduction in referral-related support questions</div></div>
+  </div>
+  <div class="outcomes-grid-2">
+    <div class="outcome-card"><div class="outcome-stat">14</div><div class="outcome-label">Markets shipped on one global template</div></div>
+    <div class="outcome-card"><div class="outcome-stat">1 in 5</div><div class="outcome-label">Referred visitors convert to new clients on the web landing page</div></div>
+    <div class="outcome-card"><div class="outcome-stat">#1</div><div class="outcome-label">Best performing acquisition feature across all Saxo markets</div></div>
   </div>
 </div>
 
 <!-- REFLECTION -->
-<div class="learnings" id="reflection">
-  <div class="learnings-inner reveal">
-    <div class="content-label" style="color: #c9521a; margin-bottom: 1.5rem;">Reflection</div>
-    <h2 class="learnings-headline">What I'd do differently — and what I'd fight harder for.</h2>
+<div class="reflection-wrap reveal">
+  <div class="reflection">
+    <span class="section-label">Reflection</span>
+    <h2>Looking back</h2>
     <p>I'd build compliance into discovery next time, not treat it as a final gate. Losing the invitee list weeks before launch — after it had been approved — was avoidable with earlier, deeper alignment. It was the feature I believed in most and it never shipped.</p>
-    <p>Taking full ownership of UX and UI through to dev handoff wasn't the plan. Both UI designers on the project were unavailable by the time I reached high-fidelity. The handoff worked — the programme shipped and the results followed. But the UI would have been stronger with dedicated craft time, and I'd fight for that resource earlier next time rather than absorb the gap at the end.</p>
-    <p>The tracking framework I set up early paid off. I mapped out every tracking point across the flow and worked with the data team to define what was technically measurable before a single screen went to dev. Next time I'd do it even earlier — and tie it to shared success metrics across design, product and data from day one.</p>
+    <p>Taking full ownership of UX and UI mid-project wasn't the plan. The handoff worked and the results followed — but I'd fight for dedicated UI craft time earlier rather than absorb the gap at the end. The tracking framework I set up early paid off. Next time I'd tie it to shared success metrics across design, product and data from day one.</p>
   </div>
 </div>
 
 <!-- BACK TO TOP -->
-<div class="next-project reveal">
-  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="next-title">↑ Back to top</a>
+<div class="back-top reveal">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
 </div>
 
 <!-- FOOTER -->
