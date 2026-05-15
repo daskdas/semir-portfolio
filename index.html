@@ -193,11 +193,10 @@
 
   .work-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.75rem; border: 0.5px solid var(--warm-mid); color: var(--muted); border-radius: 2px; }
-  .work-card.coming-soon { opacity: 0.5; cursor: default; }
-  .work-card.coming-soon .work-card-overlay { opacity: 0 !important; }
-  .work-card.coming-soon .work-card-company,
-  .work-card.coming-soon .work-card-title { opacity: 0 !important; }
+  .work-card.coming-soon { opacity: 0.6; cursor: default; }
   .work-card.coming-soon:hover .work-card-overlay { opacity: 0.4 !important; }
+  .work-card.coming-soon:hover .work-card-company,
+  .work-card.coming-soon:hover .work-card-title { opacity: 0; }
   .coming-soon-label {
     position: absolute;
     bottom: 1rem;
