@@ -74,6 +74,7 @@
   .img-caption { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; font-style: italic; }
   .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .img-pair img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
+  .img-wrap img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; border-radius: 4px; }
   .placeholder { width: 100%; aspect-ratio: 16/9; background: var(--warm-mid); border-radius: 4px; display: flex; align-items: center; justify-content: center; padding: 2rem; }
   .placeholder-text { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: center; }
 
@@ -281,8 +282,8 @@
 <div class="img-wrap reveal">
   <div class="inner">
     <div class="img-pair">
-      <div class="placeholder"><span class="placeholder-text">refer-before-entrypoints.png<br>Before — old speakerphone icon</span></div>
-      <div class="placeholder"><span class="placeholder-text">refer-after-entrypoints.png<br>After — new gift box icon</span></div>
+      <img src="images/refer-before-entrypoints.png" alt="Before — old speakerphone icon" />
+      <img src="images/refer-after-entrypoints.png" alt="After — new gift box icon" />
     </div>
     <p class="img-caption">Before and after — entry point redesign</p>
   </div>
@@ -299,7 +300,7 @@
 <!-- REWARDS SCREEN — refer-rewards.png -->
 <div class="img-wrap reveal">
   <div class="inner">
-    <div class="placeholder"><span class="placeholder-text">refer-rewards.png<br>Rewards section — you get / friend gets / commission credits</span></div>
+    <img src="images/refer-rewards.png" alt="Rewards section" />
     <p class="img-caption">Rewards section — making the incentive clear and understandable</p>
   </div>
 </div>
@@ -308,22 +309,17 @@
 <div class="section reveal">
   <div class="inner">
     <h3>Navigating legal complexity across 14 markets.</h3>
-    <p>Denmark, Holland and Belgium operate under strict pyramid scheme laws — the referrer cannot receive anything for referring someone. I made the call to rename the programme "Invite a Friend" in those markets and restructure the reward to apply only to the referred user. Singapore was the opposite — multiple reward types for different circumstances. A challenge that emerged mid-design phase was accommodating this reward diversity structurally: Europe was limited to commission credits, while other markets were open to cash prizes. The design had to scale to both within the same layout.</p>
-
-    <div class="insight">
-      <div class="insight-label">Navigating stakeholder pressure</div>
-      <p>Maintaining the global template wasn't always straightforward. Local offices had strong opinions and there were conversations — including with senior leadership — where the design rationale needed to be defended. The approach held, and the results supported it.</p>
-    </div>
+    <p>Designing for 14 markets meant navigating very different legal frameworks and reward structures. Some markets were highly regulated with strict limitations on how referral rewards could be structured, while others allowed far more flexibility. The design had to flex across both without fragmenting into separate versions — a constraint that shaped many of the structural decisions throughout the project.</p>
 
     <h3>Cultural adaptation at scale.</h3>
-    <p>Holding one template didn't mean ignoring culture. Two Nordic-looking people on a referral banner is not a fit for Japan, Singapore or Dubai. I built individual asset stacks for each market and wrote a new composition guideline for all future banner updates across the programme.</p>
+    <p>A single template still required cultural adaptation at the asset level. I built a set of market-specific visual assets and a composition guideline to ensure future updates could be produced consistently across all regions without starting from scratch each time.</p>
   </div>
 </div>
 
 <!-- CULTURAL BANNERS — refer-banners.png -->
 <div class="img-wrap reveal">
   <div class="inner">
-    <div class="placeholder"><span class="placeholder-text">refer-banners.png<br>Cultural asset stacks — regional banner variations</span></div>
+    <img src="images/refer-banners.png" alt="Cultural asset stacks" />
     <p class="img-caption">Cultural asset stacks — individual banner variations across Europe, Asia and the Middle East</p>
   </div>
 </div>
@@ -339,8 +335,30 @@
 <!-- WEB LANDING PAGE — refer-web.png -->
 <div class="img-wrap reveal">
   <div class="inner">
-    <div class="placeholder"><span class="placeholder-text">refer-web.png<br>Web landing page — home.saxo/en-gb/accounts/referrals</span></div>
+    <img src="images/refer-web.png" alt="Web landing page" />
     <p class="img-caption">Public-facing referral landing page — the first touchpoint for every referred user</p>
+  </div>
+</div>
+
+<!-- BEFORE/AFTER FULL DESIGN -->
+<div class="section reveal">
+  <div class="inner">
+    <h3>From dialog to dedicated experience.</h3>
+    <p>From a cramped dialog to a dedicated experience. The redesign prioritised clarity — making the reward immediately understandable and the next step always obvious.</p>
+  </div>
+</div>
+
+<div class="img-wrap reveal">
+  <div class="inner">
+    <img src="images/refer-old.png" alt="Before — old referral dialog" />
+    <p class="img-caption">Before — the original referral experience</p>
+  </div>
+</div>
+
+<div class="img-wrap reveal">
+  <div class="inner">
+    <img src="images/refer-new.png" alt="After — redesigned referral page" />
+    <p class="img-caption">After — the redesigned referral experience</p>
   </div>
 </div>
 
@@ -369,8 +387,9 @@
     <div class="reflection">
       <span class="section-label">Reflection</span>
       <h2>Looking back</h2>
-      <p>I'd build compliance into discovery next time, not treat it as a final gate. Losing the invitee list weeks before launch — after it had been approved — was avoidable with earlier, deeper alignment. It was the feature I believed in most and it never shipped.</p>
-      <p>Taking full ownership of UX and UI mid-project wasn't the plan. The handoff worked and the results followed — but I'd fight for dedicated UI craft time earlier rather than absorb the gap at the end. The tracking framework I set up early paid off. Next time I'd tie it to shared success metrics across design, product and data from day one.</p>
+      <p>Getting compliance aligned earlier would have protected some design decisions that had to be walked back late in the process — a lesson that applies to any project where legal constraints are central from the start.</p>
+      <p>The global template approach proved its worth. The pressure to build market-specific versions was real, but a single flexible system made the programme easier to scale and has held up across all 14 markets since launch.</p>
+      <p>What made this project interesting was the breadth of it — from entry point strategy to reward system design to cultural adaptation to cross-team web collaboration. It required thinking at a systems level while staying close to the detail. That combination is where I find the most interesting design problems.</p>
     </div>
   </div>
 </div>
