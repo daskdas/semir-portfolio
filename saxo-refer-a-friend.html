@@ -109,14 +109,14 @@
   .insight p { font-size: 0.95rem; color: #4a4844; line-height: 1.7; margin: 0; }
 
   /* RESULTS */
-  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 2rem; }
-  .outcomes-grid-2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); margin-top: 1.5px; }
+  .outcomes-wrap { margin-top: 2rem; }
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--warm-mid); border: 1.5px solid var(--warm-mid); }
   .outcome-card { background: var(--white); padding: 2rem 1.75rem; }
   .outcome-stat { font-family: var(--serif); font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; font-style: normal; }
   .outcome-label { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
 
   /* REFLECTION */
-  .reflection-wrap { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) 5rem; }
+  .reflection-wrap { max-width: var(--max-wide); margin: 0 auto; padding: 4rem var(--gutter) 5rem; }
   .reflection { background: var(--black); border-radius: 16px; padding: 3.5rem; }
   .reflection .section-label { color: var(--accent); }
   .reflection h2 { color: var(--white); }
@@ -145,7 +145,9 @@
     .nav-links { display: none; }
     .burger { display: flex; }
     .summary-grid { grid-template-columns: 1fr; }
-    .outcomes-grid, .outcomes-grid-2 { grid-template-columns: 1fr 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .outcome-card { padding: 1.25rem; }
+    .outcome-stat { font-size: 2rem; }
     .img-pair { grid-template-columns: 1fr; }
     .reflection { padding: 2rem; }
   }
@@ -335,12 +337,11 @@
   <h2>3.2× growth. The programme realised its potential.</h2>
   <p>Within a year of launch, referral volume was 3.2 times larger year-over-year. A concurrent marketing campaign around Saxo's new pricing may have contributed to broader word-of-mouth — the referral metrics are tracked directly to the flow, but I'd rather be honest about the context than overstate the attribution.</p>
 
+  <div class="outcomes-wrap">
   <div class="outcomes-grid">
     <div class="outcome-card"><div class="outcome-stat">3.2×</div><div class="outcome-label">Year-over-year referral growth</div></div>
     <div class="outcome-card"><div class="outcome-stat">+20%</div><div class="outcome-label">Increase in referrals directly from Referral 2.0</div></div>
     <div class="outcome-card"><div class="outcome-stat">−50%</div><div class="outcome-label">Reduction in referral-related support questions</div></div>
-  </div>
-  <div class="outcomes-grid-2">
     <div class="outcome-card"><div class="outcome-stat">14</div><div class="outcome-label">Markets shipped on one global template</div></div>
     <div class="outcome-card"><div class="outcome-stat">1 in 5</div><div class="outcome-label">Referred visitors convert to new clients on the web landing page</div></div>
     <div class="outcome-card"><div class="outcome-stat">#1</div><div class="outcome-label">Best performing acquisition feature across all Saxo markets</div></div>
