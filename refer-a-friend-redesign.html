@@ -67,7 +67,7 @@
     .mobile-menu a:last-child { border-bottom: 0; }
 
     /* Hero and summary: designed to communicate the whole case in one viewport of reading. */
-    .hero { padding: clamp(3rem, 7vw, 6.3rem) 0 2.5rem; }
+    .hero { padding-block: clamp(3rem, 7vw, 6.3rem) 2.5rem; }
     .hero .lead { font-size: clamp(1.08rem, 2vw, 1.35rem); line-height: 1.55; max-width: 760px; color: #504b45; margin: 0 0 2rem; }
     .project-meta { display: flex; flex-wrap: wrap; gap: .85rem 1.8rem; padding-top: 1.35rem; border-top: 1px solid var(--line); }
     .project-meta div { min-width: 115px; }
@@ -86,11 +86,14 @@
     .overview-item .key-number { display: block; margin: -.14rem 0 .22rem; color: var(--orange); font: 2.35rem/1.1 var(--serif); }
     .overview-item .fineprint { margin-top: .65rem; font-size: .72rem; color: var(--faint); }
 
-    /* Jump nav is optional to use; it makes the structure scannable. */
+    /* Chapter index: desktop is a quiet horizontal navigation; smaller screens get a vertical, non-scrolling index. */
     .chapter-nav { position: sticky; top: var(--nav-height); z-index: 70; background: rgba(245,239,228,.97); border-block: 1px solid var(--line); margin-top: 3.3rem; }
-    .chapter-inner { display: flex; gap: 2rem; align-items: center; overflow-x: auto; scrollbar-width: thin; white-space: nowrap; }
-    .chapter-inner a { padding: .9rem 0; display: inline-block; flex: none; color: #696158; font-size: .78rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; }
+    .chapter-index-label { display: none; }
+    .chapter-inner { display: flex; justify-content: space-between; gap: clamp(.4rem, .8vw, 1rem); align-items: center; white-space: nowrap; }
+    .chapter-inner a { padding: .9rem 0; display: inline-flex; align-items: center; gap: .35rem; flex: none; color: #696158; font-size: .78rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; }
     .chapter-inner a:hover, .chapter-inner a:focus-visible { color: var(--orange); border-color: var(--orange); }
+    .chapter-number { font-variant-numeric: tabular-nums; }
+    .chapter-arrow { display: none; }
 
     /* Chapters */
     .chapter { padding: clamp(3.6rem, 7.5vw, 6.5rem) 0; border-bottom: 1px solid var(--line); }
@@ -167,7 +170,7 @@
     .reflection h2 { color: var(--paper); }
     .reflection p { color: #c6bdb0; max-width: 770px; margin: 0 0 1rem; }
     .reflection p:last-child { margin-bottom: 0; }
-    .cta { padding: 3.2rem 0 4rem; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: center; }
+    .cta { padding-block: 3.2rem 4rem; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: center; }
     .cta h2 { font-size: 2rem; margin-bottom: .5rem; }
     .cta p { color: var(--muted); margin: 0; max-width: 550px; }
     .button-link { text-decoration: none; border-radius: 99px; background: var(--ink); color: var(--paper); display: inline-flex; padding: .85rem 1.35rem; font-weight: 600; font-size: .85rem; align-items: center; gap: .75rem; }
@@ -184,24 +187,49 @@
       .overview { grid-template-columns: 1fr; }
       .overview-item { padding: 1.25rem 1.4rem; }
     }
+    /* Switch before the horizontal index would need to overflow at tablet widths. */
+    @media (max-width: 960px) {
+      html { scroll-padding-top: calc(var(--nav-height) + 18px); }
+      .chapter-nav { position: static; margin-top: 2.7rem; padding: 1.3rem 0 1.5rem; background: var(--paper); }
+      .chapter-index-label { display: block; margin: 0 0 .55rem; color: var(--orange); font-size: .69rem; letter-spacing: .13em; font-weight: 700; text-transform: uppercase; }
+      .chapter-inner { display: block; white-space: normal; overflow: visible; }
+      .chapter-inner a { display: flex; align-items: center; width: 100%; min-height: 47px; gap: .85rem; padding: .82rem 0; margin: 0; font-size: .91rem; font-weight: 500; line-height: 1.3; color: var(--ink); border-bottom: 1px solid var(--line); }
+      .chapter-inner a:first-child { border-top: 1px solid var(--line); }
+      .chapter-inner a:hover, .chapter-inner a:focus-visible { color: var(--orange); border-bottom-color: var(--line); }
+      .chapter-number { flex: 0 0 28px; color: var(--orange); font-size: .75rem; font-weight: 600; }
+      .chapter-text { flex: 1 1 auto; min-width: 0; }
+      .chapter-arrow { display: block; flex: 0 0 17px; width: 17px; height: 17px; margin-left: auto; color: var(--faint); }
+    }
     @media (max-width: 680px) {
-      :root { --nav-height: 62px; }
-      html { scroll-padding-top: 118px; }
+      :root { --nav-height: 62px; --gutter: clamp(24px, 7vw, 32px); }
+      html { scroll-padding-top: 82px; }
+      .container { width: 100%; max-width: 100%; padding-inline: var(--gutter); }
       .nav-links { display: none; }
       .menu-toggle { display: flex; }
       .hero { padding-top: 3rem; }
       .project-meta { gap: 1rem; }
       .project-meta div { min-width: 42%; }
       .chapter-nav { margin-top: 2.5rem; }
-      .chapter-inner { gap: 1.35rem; }
-      .chapter-inner a { font-size: .73rem; }
-      .problem-grid, .evidence-grid, .delivery-columns, .compare, .media-grid { grid-template-columns: 1fr; }
-      .priority-row { grid-template-columns: 36px 1fr; gap: .7rem; }
+      .chapter { padding: 3.7rem 0; }
+      .chapter-heading { margin-bottom: 2rem; }
+      /* Every figure, card, callout and prose column stays inside the same page gutters. */
+      .hero-image, .single-visual, .full-visual, .compare figure,
+      .media-frame, .overview, .problem-grid, .evidence-grid,
+      .journey, .results-grid, .callout, .reflection,
+      .delivery-note, .chapter-heading, .prose { max-width: 100%; min-width: 0; }
+      .hero-image, .single-visual, .full-visual, .compare figure { width: 100%; margin-inline: 0; }
+      .media-frame { width: 100%; margin-inline: 0; }
+      .media-frame img { width: 100%; max-width: 100%; height: auto; object-fit: contain; }
+      .decision-top > *, .compare > *, .media-grid > *, .evidence-grid > *, .problem-grid > *, .delivery-columns > * { min-width: 0; }
+      .problem-grid, .evidence-grid, .delivery-columns, .compare, .media-grid { grid-template-columns: minmax(0,1fr); }
+      .priority-row { grid-template-columns: 36px minmax(0,1fr); gap: .7rem; }
       .priority-row p { grid-column: 2; }
       .decision { padding: 2.65rem 0; }
       .journey { grid-template-columns: 1fr 1fr; }
       .metric { padding: 1.4rem 1rem; }
       .metric strong { font-size: 2.25rem; }
+      .reflection { padding: clamp(1.5rem, 6vw, 2rem); }
+      blockquote { margin-inline: 0; }
       .cta { align-items: flex-start; }
     }
     @media (max-width: 370px) {
@@ -273,14 +301,17 @@
     </section>
 
     <nav class="chapter-nav" aria-label="Case study sections">
-      <div class="container chapter-inner">
-        <a href="#challenge">01 · Challenge</a>
-        <a href="#discovery">02 · Discovery</a>
-        <a href="#direction">03 · Direction</a>
-        <a href="#solution">04 · Design decisions</a>
-        <a href="#delivery">05 · Delivery</a>
-        <a href="#results">06 · Results</a>
-        <a href="#reflection">07 · Reflection</a>
+      <div class="container">
+        <p class="chapter-index-label">In this case study</p>
+        <div class="chapter-inner">
+          <a href="#challenge"><span class="chapter-number">01</span><span class="chapter-text">The challenge</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+          <a href="#discovery"><span class="chapter-number">02</span><span class="chapter-text">Discovery &amp; insights</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+          <a href="#direction"><span class="chapter-number">03</span><span class="chapter-text">Design direction</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+          <a href="#solution"><span class="chapter-number">04</span><span class="chapter-text">Key design decisions</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+          <a href="#delivery"><span class="chapter-number">05</span><span class="chapter-text">Delivery &amp; validation</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+          <a href="#results"><span class="chapter-number">06</span><span class="chapter-text">Results &amp; impact</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+          <a href="#reflection"><span class="chapter-number">07</span><span class="chapter-text">Reflection</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+        </div>
       </div>
     </nav>
 
