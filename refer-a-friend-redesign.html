@@ -162,10 +162,17 @@
     .metric span { font-size: .9rem; line-height: 1.45; color: #45403a; display: block; }
     .results-qualifier { margin-top: 1.3rem; max-width: 900px; color: var(--muted); font-size: .87rem; line-height: 1.65; }
     .results-qualifier strong { color: var(--ink); }
+    /* Three clear areas of delivered product impact, not decorative tags. */
     .delivered-list { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-    .delivered-list .eyebrow { margin-bottom: .55rem; }
-    .deliverables { display: flex; flex-wrap: wrap; gap: .65rem; }
-    .deliverables span { border: 1px solid var(--line); background: var(--paper-light); border-radius: 99px; font-size: .8rem; padding: .5rem .85rem; color: #514b44; }
+    .delivered-list .eyebrow { margin-bottom: 1.25rem; }
+    .impact-groups { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 2rem); }
+    .impact-group { min-width: 0; border-left: 2px solid var(--orange); padding: .15rem .5rem .15rem 1rem; }
+    .impact-group-label { display: block; margin-bottom: .55rem; color: var(--orange); font-size: .69rem; line-height: 1.35; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+    .impact-group p { margin: 0; color: #403d39; font-size: .93rem; line-height: 1.65; }
+    @media (max-width: 680px) {
+      .impact-groups { grid-template-columns: 1fr; gap: 1.55rem; }
+      .impact-group { padding-left: 1rem; }
+    }
     .reflection { background: #171715; color: var(--paper); padding: clamp(2.25rem, 5vw, 3.3rem); border-radius: 12px; }
     .reflection h2 { color: var(--paper); }
     .reflection p { color: #c6bdb0; max-width: 770px; margin: 0 0 1rem; }
@@ -523,13 +530,20 @@
         <p class="results-qualifier"><strong>Attribution note:</strong> These are team-reported results across the referral programme. Marketing, other business activity and the design changes all contributed. The metrics may refer to different time windows, so they should not be read as a single controlled before-and-after experiment.</p>
         <div class="delivered-list">
           <p class="eyebrow">What we delivered</p>
-          <div class="deliverables">
-            <span>A dedicated referral experience</span>
-            <span>Clearer reward explanations</span>
-            <span>More intentional platform entry points</span>
-            <span>Connected platform and web direction</span>
-            <span>A reusable multi-market design foundation</span>
-          </div>
+          <ul class="impact-groups" aria-label="Three areas of product impact">
+            <li class="impact-group">
+              <span class="impact-group-label">01 / Experience</span>
+              <p>A dedicated referral journey with clearer reward communication.</p>
+            </li>
+            <li class="impact-group">
+              <span class="impact-group-label">02 / Discoverability</span>
+              <p>More intentional platform entry points and an aligned web direction.</p>
+            </li>
+            <li class="impact-group">
+              <span class="impact-group-label">03 / Scalability</span>
+              <p>A reusable design foundation across 14 markets.</p>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
