@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f5efe4" />
-  <meta name="description" content="How a product design redesign made Saxo Bank's Refer a Friend programme easier to discover and understand across 14 markets." />
-  <title>Refer a Friend — Saxo Bank | Semir Ugljanin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#f5efe4" name="theme-color"/>
+<meta content="How a product design redesign made Saxo Bank's Refer a Friend programme easier to discover and understand across 14 markets." name="description"/>
+<title>Refer a Friend — Saxo Bank | Semir Ugljanin</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
     :root {
       --paper: #f5efe4;
       --paper-deep: #ede4d7;
@@ -288,366 +288,404 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
     }
-  </style>
+  
+
+    /* CONSISTENT SECTION ALIGNMENT — one shared grid across text, visuals, and cards.
+       Keep copy readable by using two short columns where a section contains
+       enough prose, rather than pushing one paragraph across a 1400px line. */
+    .overview, .problem-grid, .evidence-grid, .priorities, .journey,
+    .delivery-columns, .results-grid, .delivered-list, .reflection, .callout {
+      max-width: none;
+      width: 100%;
+    }
+    .chapter-heading { max-width: 1120px; }
+    .chapter-heading .deck { max-width: 960px; }
+    .chapter-heading h2 { max-width: 1080px; }
+    .callout { max-width: none; }
+
+    /* 01 / Challenge: title above, supporting context spread evenly beneath.
+       Stats, source and quote use the SAME right edge as the other sections. */
+    #challenge .challenge-intro { width: 100%; }
+    #challenge .chapter-heading { max-width: none; margin-bottom: 1.8rem; }
+    #challenge .chapter-heading h2 { max-width: 1200px; }
+    #challenge .challenge-copy { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: start; }
+    #challenge .challenge-copy > * { min-width: 0; }
+    #challenge .challenge-copy .deck { margin: 0; max-width: none; }
+    #challenge .challenge-copy .prose { max-width: none; }
+    #challenge .challenge-copy .prose p { margin-bottom: .85rem; }
+    #challenge .problem-grid { margin-top: 2.6rem; }
+    #challenge .source-note { max-width: none; }
+    #challenge blockquote { max-width: none; margin-top: 1.75rem; padding: 1.25rem 1.5rem; }
+    #challenge blockquote p { max-width: 900px; }
+
+    /* Design decisions: remove floating sidebar cards and make the explanation
+       + reasoning occupy the full content width as a deliberately aligned group. */
+    .decision-top { display: block; margin-bottom: 2.1rem; }
+    .decision-top > div:first-child { width: 100%; }
+    .decision-top h3 { max-width: 1130px; margin-bottom: 1.5rem; }
+    .decision-top .prose { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 5vw, 5rem); max-width: none; }
+    .decision-top .prose p { min-width: 0; margin: 0; }
+    .decision-aside {
+      display: grid; grid-template-columns: minmax(155px, .22fr) minmax(0, 1fr);
+      align-items: baseline; gap: 1rem 2rem;
+      width: 100%; max-width: none;
+      margin-top: 2rem; padding: 1.1rem 0 0;
+      border: 0; border-top: 1px solid var(--line);
+      border-radius: 0; background: transparent;
+    }
+    .decision-aside .label { margin: 0; }
+    .decision-aside p { margin: 0; font-size: .95rem; line-height: 1.65; max-width: 1050px; }
+
+    /* At tablet sizes and below, preserve comfortable single-column reading. */
+    @media (max-width: 900px) {
+      #challenge .challenge-copy { grid-template-columns: 1fr; gap: 1.1rem; }
+      #challenge .chapter-heading { margin-bottom: 1.4rem; }
+      .decision-top .prose { grid-template-columns: 1fr; gap: 1rem; }
+      .decision-aside { grid-template-columns: 1fr; gap: .4rem; margin-top: 1.35rem; }
+    }
+    @media (max-width: 680px) {
+      #challenge blockquote { padding: 1rem 1.1rem; }
+      #challenge .problem-grid { margin-top: 2rem; }
+      .decision-top h3 { margin-bottom: 1.1rem; }
+    }
+</style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to case study</a>
-  <header class="site-header">
-    <nav class="container nav-inner" aria-label="Main navigation">
-      <a class="site-logo" href="index.html" aria-label="Semir Ugljanin — home"><em>S</em><span>—</span><em>U</em></a>
-      <ul class="nav-links">
-        <li><a href="index.html#work" class="is-active">Work</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu">
-        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </nav>
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
-      <a href="index.html#work">Work</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-  </header>
+<a class="skip" href="#main">Skip to case study</a>
+<header class="site-header">
+<nav aria-label="Main navigation" class="container nav-inner">
+<a aria-label="Semir Ugljanin — home" class="site-logo" href="index.html"><em>S</em><span>—</span><em>U</em></a>
+<ul class="nav-links">
+<li><a class="is-active" href="index.html#work">Work</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#experience">Experience</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu" class="menu-toggle" id="menu-toggle" type="button">
+<svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+</nav>
+<nav aria-label="Mobile navigation" class="mobile-menu" hidden="" id="mobile-menu">
+<a href="index.html#work">Work</a>
+<a href="index.html#about">About</a>
+<a href="index.html#experience">Experience</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+</header>
+<main id="main">
+<!-- CASE STUDY / OPENING: understandable on a quick scan. -->
+<section aria-labelledby="case-title" class="hero container">
+<p class="eyebrow">Saxo Bank <span aria-hidden="true">/</span> Refer a Friend</p>
+<h1 id="case-title">Making referrals easier to discover, understand and act on.</h1>
+<p class="lead">Redesigning a fragmented referral experience into a clearer journey across Saxo Bank’s platforms and public website, while building a structure that could work across 14 global markets.</p>
+<dl class="project-meta">
+<div><dt>Role</dt><dd>Product Designer · UX/UI</dd></div>
+<div><dt>Scope</dt><dd>Discovery to delivery</dd></div>
+<div><dt>Timeline</dt><dd>1–3 months</dd></div>
+<div><dt>Markets</dt><dd>14 markets</dd></div>
+</dl>
+<figure class="hero-image visual-breakout">
+<div class="media-frame"><img alt="Redesigned Saxo Bank Refer a Friend experience shown across product screens" data-portfolio-image="" fetchpriority="high" src="images/refer-hero.png"/></div>
+<figcaption>Final design direction — a more coherent referral experience across Saxo's digital touchpoints.</figcaption>
+</figure>
+<div aria-label="Project at a glance" class="overview">
+<div class="overview-item">
+<p class="label">Business opportunity</p>
+<p><strong>Increase referral participation and client acquisition</strong> by making the programme easier to find and the incentives easier to understand.</p>
+</div>
+<div class="overview-item">
+<p class="label">My contribution</p>
+<p><strong>Translate product insights into design decisions,</strong> test key journeys and lead UX/UI work across platform, web and market constraints.</p>
+</div>
+<div class="overview-item">
+<p class="label">Reported outcome</p>
+<span class="key-number">~3×</span>
+<p>Year-over-year referral growth reported by the product owner.</p>
+<p class="fineprint">Programme-level result; other initiatives contributed.</p>
+</div>
+</div>
+</section>
+<nav aria-label="Case study sections" class="chapter-nav">
+<div class="container">
+<p class="chapter-index-label">In this case study</p>
+<div class="chapter-inner">
+<a href="#challenge"><span class="chapter-number">01</span><span class="chapter-text">The challenge</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#discovery"><span class="chapter-number">02</span><span class="chapter-text">Discovery &amp; insights</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#direction"><span class="chapter-number">03</span><span class="chapter-text">Design direction</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#solution"><span class="chapter-number">04</span><span class="chapter-text">Key design decisions</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#delivery"><span class="chapter-number">05</span><span class="chapter-text">Delivery &amp; validation</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#results"><span class="chapter-number">06</span><span class="chapter-text">Results &amp; impact</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#reflection"><span class="chapter-number">07</span><span class="chapter-text">Reflection</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+</div>
+</div>
+</nav>
+<!-- 01 / Challenge -->
+<section aria-labelledby="challenge-title" class="chapter" id="challenge">
+<div class="container">
+<div class="challenge-intro"><div class="chapter-heading">
+<p class="eyebrow">01 / The challenge</p>
+<h2 id="challenge-title">The programme existed. The experience was holding it back.</h2>
 
-  <main id="main">
-    <!-- CASE STUDY / OPENING: understandable on a quick scan. -->
-    <section class="hero container" aria-labelledby="case-title">
-      <p class="eyebrow">Saxo Bank <span aria-hidden="true">/</span> Refer a Friend</p>
-      <h1 id="case-title">Making referrals easier to discover, understand and act on.</h1>
-      <p class="lead">Redesigning a fragmented referral experience into a clearer journey across Saxo Bank’s platforms and public website, while building a structure that could work across 14 global markets.</p>
+</div><div class="challenge-copy"><p class="deck">Refer a Friend was a business priority at Saxo Bank — internally a “Must Win Battle”. But a programme can only contribute to acquisition if clients notice it, understand its value and feel confident sharing it.</p><div class="prose">
+<p>Clients struggled to find the programme and make sense of its commission-credit rewards. Referrers also lacked clarity about what happened after sending an invitation. At the same time, the journey crossed platforms, teams and markets with different requirements.</p>
+<p><strong>The product challenge:</strong> create a referral experience that could support acquisition without overloading the interface or introducing 14 separate design solutions.</p>
+</div></div></div>
 
-      <dl class="project-meta">
-        <div><dt>Role</dt><dd>Product Designer · UX/UI</dd></div>
-        <div><dt>Scope</dt><dd>Discovery to delivery</dd></div>
-        <div><dt>Timeline</dt><dd>1–3 months</dd></div>
-        <div><dt>Markets</dt><dd>14 markets</dd></div>
-      </dl>
-
-      <figure class="hero-image visual-breakout">
-        <div class="media-frame"><img data-portfolio-image src="images/refer-hero.png" alt="Redesigned Saxo Bank Refer a Friend experience shown across product screens" fetchpriority="high" /></div>
-        <figcaption>Final design direction — a more coherent referral experience across Saxo's digital touchpoints.</figcaption>
-      </figure>
-
-      <div class="overview" aria-label="Project at a glance">
-        <div class="overview-item">
-          <p class="label">Business opportunity</p>
-          <p><strong>Increase referral participation and client acquisition</strong> by making the programme easier to find and the incentives easier to understand.</p>
-        </div>
-        <div class="overview-item">
-          <p class="label">My contribution</p>
-          <p><strong>Translate product insights into design decisions,</strong> test key journeys and lead UX/UI work across platform, web and market constraints.</p>
-        </div>
-        <div class="overview-item">
-          <p class="label">Reported outcome</p>
-          <span class="key-number">~3×</span>
-          <p>Year-over-year referral growth reported by the product owner.</p>
-          <p class="fineprint">Programme-level result; other initiatives contributed.</p>
-        </div>
-      </div>
-    </section>
-
-    <nav class="chapter-nav" aria-label="Case study sections">
-      <div class="container">
-        <p class="chapter-index-label">In this case study</p>
-        <div class="chapter-inner">
-          <a href="#challenge"><span class="chapter-number">01</span><span class="chapter-text">The challenge</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
-          <a href="#discovery"><span class="chapter-number">02</span><span class="chapter-text">Discovery &amp; insights</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
-          <a href="#direction"><span class="chapter-number">03</span><span class="chapter-text">Design direction</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
-          <a href="#solution"><span class="chapter-number">04</span><span class="chapter-text">Key design decisions</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
-          <a href="#delivery"><span class="chapter-number">05</span><span class="chapter-text">Delivery &amp; validation</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
-          <a href="#results"><span class="chapter-number">06</span><span class="chapter-text">Results &amp; impact</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
-          <a href="#reflection"><span class="chapter-number">07</span><span class="chapter-text">Reflection</span><svg class="chapter-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- 01 / Challenge -->
-    <section class="chapter" id="challenge" aria-labelledby="challenge-title">
-      <div class="container">
-        <div class="chapter-heading">
-          <p class="eyebrow">01 / The challenge</p>
-          <h2 id="challenge-title">The programme existed. The experience was holding it back.</h2>
-          <p class="deck">Refer a Friend was a business priority at Saxo Bank — internally a “Must Win Battle”. But a programme can only contribute to acquisition if clients notice it, understand its value and feel confident sharing it.</p>
-        </div>
-        <div class="prose">
-          <p>Clients struggled to find the programme and make sense of its commission-credit rewards. Referrers also lacked clarity about what happened after sending an invitation. At the same time, the journey crossed platforms, teams and markets with different requirements.</p>
-          <p><strong>The product challenge:</strong> create a referral experience that could support acquisition without overloading the interface or introducing 14 separate design solutions.</p>
-        </div>
-
-        <div class="problem-grid" aria-label="Existing customer insights">
-          <article class="problem-card"><span class="number">73%</span><div class="name">Low awareness in Asia</div><p>Of clients in the Asian markets measured had not encountered the programme.</p></article>
-          <article class="problem-card"><span class="number">52%</span><div class="name">Low awareness in Europe</div><p>Of clients in the European markets measured did not know it existed.</p></article>
-          <article class="problem-card"><span class="number">1 in 4</span><div class="name">Unclear incentives</div><p>Clients could not clearly explain what commission credits were worth or how to use them.</p></article>
-        </div>
-        <p class="source-note">Source: existing product and customer insights shared by the product owner. These figures describe the groups measured, not the entire global client base.</p>
-        <blockquote>
-          <p>“I sent the link to a friend but I have no idea if he ever did anything with it.”</p>
-          <footer>Client feedback highlighted a missing sense of progress after sharing.</footer>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- 02 / Discovery -->
-    <section class="chapter alt" id="discovery" aria-labelledby="discovery-title">
-      <div class="container">
-        <div class="chapter-heading">
-          <p class="eyebrow">02 / Discovery &amp; insight</p>
-          <h2 id="discovery-title">Starting with evidence, not a list of features.</h2>
-          <p class="deck">The starting point was not a blank research plan. The product owner already had a substantial body of product analytics and customer insight. My job was to turn that evidence into a clear design direction and investigate where the experience broke down.</p>
-        </div>
-
-        <div class="evidence-grid">
-          <article class="evidence-card">
-            <span class="tag">Input 01 / Existing evidence</span>
-            <h3>Product owner data &amp; customer insight</h3>
-            <p>I worked from the existing product analytics and customer findings supplied by the product owner, including programme awareness, reward comprehension and evidence about where clients expected to find the feature.</p>
-          </article>
-          <article class="evidence-card">
-            <span class="tag">Input 02 / Experience evaluation</span>
-            <h3>Speak-aloud usability sessions</h3>
-            <p>Seven sessions involving referrers and referred users helped examine the existing and redesigned journeys, particularly whether incentives and next steps were clear to the people using them.</p>
-          </article>
-        </div>
-
-        <h3 class="priority-head">Three problems became the design priorities.</h3>
-        <div class="priorities" aria-label="Insights translated to design priorities">
-          <div class="priority-row"><span class="index">01</span><h3>People could not find it</h3><p>Make the programme discoverable at relevant, high-traffic touchpoints — without filling the product with promotions.</p></div>
-          <div class="priority-row"><span class="index">02</span><h3>People did not understand the reward</h3><p>Explain both sides of the incentive and what commission credits mean in practical terms, before asking people to share.</p></div>
-          <div class="priority-row"><span class="index">03</span><h3>The journey felt disconnected</h3><p>Connect the referrer's platform experience with the invited friend's public-facing journey and make the next step clear.</p></div>
-        </div>
-        <div class="callout">
-          <p class="eyebrow">The design question</p>
-          <h3>How might we make referrals easy to find and trust — without adding unnecessary complexity?</h3>
-          <p>That question kept the work focused on the underlying acquisition problem instead of treating “more visibility” as the solution by default.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 / Design direction -->
-    <section class="chapter" id="direction" aria-labelledby="direction-title">
-      <div class="container">
-        <div class="chapter-heading">
-          <p class="eyebrow">03 / Design direction</p>
-          <h2 id="direction-title">One coherent journey, built for fourteen markets.</h2>
-          <p class="deck">The design had to serve three interests at once: business growth, client clarity and the realities of compliance and delivery.</p>
-        </div>
-        <div class="journey" aria-label="End-to-end referral journey">
-          <div class="journey-step"><span class="num">01</span><h3>Discover</h3><p>Find Refer a Friend in a relevant part of the platform.</p></div>
-          <div class="journey-step"><span class="num">02</span><h3>Understand</h3><p>See the rewards, eligibility and what happens next.</p></div>
-          <div class="journey-step"><span class="num">03</span><h3>Share &amp; land</h3><p>Invite a friend and connect them to a credible web journey.</p></div>
-          <div class="journey-step"><span class="num">04</span><h3>Complete</h3><p>Help the referred client understand the steps to sign up and fund an account.</p></div>
-        </div>
-        <div class="prose" style="margin-top:2rem">
-          <p>Rather than multiplying independent screens and entry points, I focused on a small set of improvements that would make the experience easier to understand from first discovery through to the invited friend's next step.</p>
-          <p>That meant working within Saxo's design system, coordinating with product and development, and accounting for different local reward and legal requirements from the outset.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 / Key design decisions. All image edges align with section text, with an alternating before/after showcase. -->
-    <section class="chapter alt" id="solution" aria-labelledby="solution-title">
-      <div class="container">
-        <div class="chapter-heading">
-          <p class="eyebrow">04 / Design decisions</p>
-          <h2 id="solution-title">Four decisions that shaped the experience.</h2>
-          <p class="deck">Each addressed a specific friction point — and each involved a trade-off between what was desirable, useful and feasible.</p>
-        </div>
-
-        <article class="decision" aria-labelledby="decision-1">
-          <div class="decision-top">
-            <div>
-              <p class="decision-no">Decision 01 / Discoverability</p>
-              <h3 id="decision-1">Increase visibility without turning the platform into an advert.</h3>
-              <div class="prose"><p>I looked at the platform's most visited areas and proposed a focused set of entry points: a more recognizable referral icon, a presence on the portfolio page and access through the profile card.</p><p>Leadership initially wanted broader promotion. I challenged whether additional placements would add enough value to justify the extra interface clutter. We discussed the trade-off and agreed on the focused approach.</p></div>
-            </div>
-            <aside class="decision-aside"><span class="label">Why this mattered</span><p>This wasn't a choice between supporting the business and protecting the experience. The goal was to make visibility intentional rather than simply adding more of it.</p></aside>
-          </div>
-          <div class="compare visual-breakout">
-            <figure><p class="image-label">Before</p><div class="media-frame"><img data-portfolio-image src="images/refer-before-entrypoints.png" loading="lazy" alt="Original Refer a Friend entry point with the older speakerphone icon" /></div><figcaption>Previous entry-point treatment.</figcaption></figure>
-            <figure><p class="image-label">After</p><div class="media-frame"><img data-portfolio-image src="images/refer-after-entrypoints.png" loading="lazy" alt="Updated Refer a Friend entry point with a gift symbol" /></div><figcaption>Revised icon and more intentional placement.</figcaption></figure>
-          </div>
-        </article>
-
-        <article class="decision" aria-labelledby="decision-2">
-          <div class="decision-top">
-            <div>
-              <p class="decision-no">Decision 02 / Clarity</p>
-              <h3 id="decision-2">Explain the value before asking someone to refer a friend.</h3>
-              <div class="prose"><p>Commission credits are not immediately intuitive: they offset trading fees over time rather than behaving like a simple cash reward. Clients had questions about what they would actually receive, and what their friend would receive.</p><p>I moved the experience from a cramped dialog toward a dedicated page with more room for the incentive, clearer explanations and an obvious next step. The content separated the two sides of the reward and made commission credits easier to understand.</p></div>
-            </div>
-            <aside class="decision-aside"><span class="label">Design principle</span><p>Remove ambiguity at the decision point. Don't ask users to commit to an action while the value proposition is still unclear.</p></aside>
-          </div>
-          <div class="story-compare" aria-label="Referral experience before and after redesign">
-            <div class="story-row story-row--before">
-              <div class="story-copy">
-                <p class="eyebrow">01 / Before</p>
-                <h4>Too much to explain in a dialog.</h4>
-                <p>The original referral dialog gave clients limited room to understand the programme, what commission credits meant or why they should share an invitation.</p>
-              </div>
-              <figure class="story-media">
-                <p class="image-label">Before <span class="image-label-detail">/ Dialog</span></p><div class="media-frame"><img data-portfolio-image src="images/refer-old.png" loading="lazy" alt="Original referral experience presented in a small dialog" /></div>
-                <figcaption>Original referral experience.</figcaption>
-              </figure>
-            </div>
-            <div class="story-row story-row--after">
-              <figure class="story-media">
-                <p class="image-label">After <span class="image-label-detail">/ Dedicated page</span></p><div class="media-frame"><img data-portfolio-image src="images/refer-new.png" loading="lazy" alt="Redesigned dedicated Refer a Friend page" /></div>
-                <figcaption>Redesigned referral page with space for the incentive and next steps.</figcaption>
-              </figure>
-              <div class="story-copy">
-                <p class="eyebrow">02 / After</p>
-                <h4>Give the journey room to make sense.</h4>
-                <p>A dedicated page allowed the team to explain both sides of the incentive, clarify the proposition and make the next action easier to identify.</p>
-              </div>
-            </div>
-          </div>
-          <div class="reward-showcase">
-            <div class="showcase-head">
-              <p class="eyebrow">03 / Reward clarity</p>
-              <h4>Make commission credits understandable.</h4>
-              <p>A closer look at how the redesign explains the reward mechanics in the experience itself.</p>
-            </div>
-            <figure class="single-visual visual-breakout">
-              <div class="media-frame"><img data-portfolio-image src="images/refer-rewards.png" loading="lazy" alt="Redesigned reward explanation showing how commission credits work" /></div>
-              <figcaption>Reward explanation — turning a financial mechanism into something clients can understand.</figcaption>
-            </figure>
-          </div>
-        </article>
-
-        <article class="decision" aria-labelledby="decision-3">
-          <div class="decision-top">
-            <div>
-              <p class="decision-no">Decision 03 / End-to-end journey</p>
-              <h3 id="decision-3">Design for both people in a referral — not just the one sharing.</h3>
-              <div class="prose"><p>The experience doesn't end when an existing client shares a link. The invited friend enters through Saxo's public website and needs to understand the offer and the next step without already knowing the platform.</p><p>I worked with the web design team, providing UX direction and a design foundation for the public-facing journey. Aligning language, incentives and next steps mattered even when different teams owned the screens.</p></div>
-            </div>
-            <aside class="decision-aside"><span class="label">Collaboration</span><p>I shaped the UX direction across surfaces; the web design team owned its public-facing implementation.</p></aside>
-          </div>
-          <figure class="single-visual visual-breakout"><div class="media-frame"><img data-portfolio-image src="images/refer-web.png" loading="lazy" alt="Public-facing Saxo Bank referral landing page" /></div><figcaption>The invited friend's landing experience — part of the same journey, across a different team and surface.</figcaption></figure>
-        </article>
-
-        <article class="decision" aria-labelledby="decision-4">
-          <div class="decision-top">
-            <div>
-              <p class="decision-no">Decision 04 / Global scale</p>
-              <h3 id="decision-4">Keep the structure consistent, but allow markets to differ where they must.</h3>
-              <div class="prose"><p>Fourteen markets brought different reward rules, legal requirements and cultural expectations. A rigid, identical experience would not work everywhere; designing 14 unrelated versions would be difficult to maintain.</p><p>We used a shared design foundation while accommodating market-specific content and constraints. I also created culturally adapted assets and a composition guideline so future regional updates could remain consistent without being recreated from scratch.</p></div>
-            </div>
-            <aside class="decision-aside"><span class="label">The trade-off</span><p>Consistency should reduce complexity, not erase real differences in compliance, rewards or customer expectations.</p></aside>
-          </div>
-          <figure class="single-visual visual-breakout"><div class="media-frame"><img data-portfolio-image src="images/refer-banners.png" loading="lazy" alt="Regional visual adaptations for referral programme banners" /></div><figcaption>Regional asset examples — one recognisable system with locally appropriate visuals.</figcaption></figure>
-        </article>
-      </div>
-    </section>
-
-    <!-- 05 / Validation, scope control, shipping -->
-    <section class="chapter" id="delivery" aria-labelledby="delivery-title">
-      <div class="container">
-        <div class="chapter-heading">
-          <p class="eyebrow">05 / Validation &amp; delivery</p>
-          <h2 id="delivery-title">From design rationale to something the organisation could ship.</h2>
-          <p class="deck">Testing helped evaluate the clarity of the experience. Delivery required that the proposed solutions also fit the design system, engineering capacity and market-level constraints.</p>
-        </div>
-        <div class="delivery-columns">
-          <div>
-            <h3>Testing the experience</h3>
-            <p>Speak-aloud sessions with existing referrers and invited users were used across the existing and redesigned flows to examine comprehension, trust and the next step in the referral process.</p>
-            <ul>
-              <li>Could participants find the programme?</li>
-              <li>Could they explain the incentive without assistance?</li>
-              <li>Did the transition from platform to public website make sense?</li>
-            </ul>
-            <p>The emphasis was on resolving observed confusion, not on treating the first concept as final.</p>
-          </div>
-          <div>
-            <h3>Working through constraints</h3>
-            <p>My role grew from initial discovery/UX work into broader end-to-end design ownership. I coordinated with the product owner, analysts, engineering, compliance and the web design team as the experience took shape.</p>
-            <ul>
-              <li>Used Saxo's established design system rather than building disconnected UI.</li>
-              <li>Accounted for market differences and legal requirements.</li>
-              <li>Prioritised a feasible scope around the main acquisition journey.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="delivery-note">
-          <strong>What didn't ship matters, too.</strong>
-          <p>A referral-status / leaderboard concept explored the need for progress feedback, but it was parked following compliance review. It remained a design concept, not a released feature. The case study's business results should not be attributed to it.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 / Results: keep programme-level attribution qualified. -->
-    <section class="chapter alt" id="results" aria-labelledby="results-title">
-      <div class="container">
-        <div class="results-top">
-          <div class="chapter-heading">
-            <p class="eyebrow">06 / Results &amp; impact</p>
-            <h2 id="results-title">A clearer experience, alongside strong programme growth.</h2>
-            <p class="deck">The product team reported positive business results following the redesign. The figures below represent programme performance, not the isolated effect of UX changes.</p>
-          </div>
-        </div>
-        <!-- EDITORIAL CHECK BEFORE PUBLISHING:
+<div aria-label="Existing customer insights" class="problem-grid">
+<article class="problem-card"><span class="number">73%</span><div class="name">Low awareness in Asia</div><p>Of clients in the Asian markets measured had not encountered the programme.</p></article>
+<article class="problem-card"><span class="number">52%</span><div class="name">Low awareness in Europe</div><p>Of clients in the European markets measured did not know it existed.</p></article>
+<article class="problem-card"><span class="number">1 in 4</span><div class="name">Unclear incentives</div><p>Clients could not clearly explain what commission credits were worth or how to use them.</p></article>
+</div>
+<p class="source-note">Source: existing product and customer insights shared by the product owner. These figures describe the groups measured, not the entire global client base.</p>
+<blockquote>
+<p>“I sent the link to a friend but I have no idea if he ever did anything with it.”</p>
+<footer>Client feedback highlighted a missing sense of progress after sharing.</footer>
+</blockquote>
+</div>
+</section>
+<!-- 02 / Discovery -->
+<section aria-labelledby="discovery-title" class="chapter alt" id="discovery">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">02 / Discovery &amp; insight</p>
+<h2 id="discovery-title">Starting with evidence, not a list of features.</h2>
+<p class="deck">The starting point was not a blank research plan. The product owner already had a substantial body of product analytics and customer insight. My job was to turn that evidence into a clear design direction and investigate where the experience broke down.</p>
+</div>
+<div class="evidence-grid">
+<article class="evidence-card">
+<span class="tag">Input 01 / Existing evidence</span>
+<h3>Product owner data &amp; customer insight</h3>
+<p>I worked from the existing product analytics and customer findings supplied by the product owner, including programme awareness, reward comprehension and evidence about where clients expected to find the feature.</p>
+</article>
+<article class="evidence-card">
+<span class="tag">Input 02 / Experience evaluation</span>
+<h3>Speak-aloud usability sessions</h3>
+<p>Seven sessions involving referrers and referred users helped examine the existing and redesigned journeys, particularly whether incentives and next steps were clear to the people using them.</p>
+</article>
+</div>
+<h3 class="priority-head">Three problems became the design priorities.</h3>
+<div aria-label="Insights translated to design priorities" class="priorities">
+<div class="priority-row"><span class="index">01</span><h3>People could not find it</h3><p>Make the programme discoverable at relevant, high-traffic touchpoints — without filling the product with promotions.</p></div>
+<div class="priority-row"><span class="index">02</span><h3>People did not understand the reward</h3><p>Explain both sides of the incentive and what commission credits mean in practical terms, before asking people to share.</p></div>
+<div class="priority-row"><span class="index">03</span><h3>The journey felt disconnected</h3><p>Connect the referrer's platform experience with the invited friend's public-facing journey and make the next step clear.</p></div>
+</div>
+<div class="callout">
+<p class="eyebrow">The design question</p>
+<h3>How might we make referrals easy to find and trust — without adding unnecessary complexity?</h3>
+<p>That question kept the work focused on the underlying acquisition problem instead of treating “more visibility” as the solution by default.</p>
+</div>
+</div>
+</section>
+<!-- 03 / Design direction -->
+<section aria-labelledby="direction-title" class="chapter" id="direction">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">03 / Design direction</p>
+<h2 id="direction-title">One coherent journey, built for fourteen markets.</h2>
+<p class="deck">The design had to serve three interests at once: business growth, client clarity and the realities of compliance and delivery.</p>
+</div>
+<div aria-label="End-to-end referral journey" class="journey">
+<div class="journey-step"><span class="num">01</span><h3>Discover</h3><p>Find Refer a Friend in a relevant part of the platform.</p></div>
+<div class="journey-step"><span class="num">02</span><h3>Understand</h3><p>See the rewards, eligibility and what happens next.</p></div>
+<div class="journey-step"><span class="num">03</span><h3>Share &amp; land</h3><p>Invite a friend and connect them to a credible web journey.</p></div>
+<div class="journey-step"><span class="num">04</span><h3>Complete</h3><p>Help the referred client understand the steps to sign up and fund an account.</p></div>
+</div>
+<div class="prose" style="margin-top:2rem">
+<p>Rather than multiplying independent screens and entry points, I focused on a small set of improvements that would make the experience easier to understand from first discovery through to the invited friend's next step.</p>
+<p>That meant working within Saxo's design system, coordinating with product and development, and accounting for different local reward and legal requirements from the outset.</p>
+</div>
+</div>
+</section>
+<!-- 04 / Key design decisions. All image edges align with section text, with an alternating before/after showcase. -->
+<section aria-labelledby="solution-title" class="chapter alt" id="solution">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">04 / Design decisions</p>
+<h2 id="solution-title">Four decisions that shaped the experience.</h2>
+<p class="deck">Each addressed a specific friction point — and each involved a trade-off between what was desirable, useful and feasible.</p>
+</div>
+<article aria-labelledby="decision-1" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no">Decision 01 / Discoverability</p>
+<h3 id="decision-1">Increase visibility without turning the platform into an advert.</h3>
+<div class="prose"><p>I looked at the platform's most visited areas and proposed a focused set of entry points: a more recognizable referral icon, a presence on the portfolio page and access through the profile card.</p><p>Leadership initially wanted broader promotion. I challenged whether additional placements would add enough value to justify the extra interface clutter. We discussed the trade-off and agreed on the focused approach.</p></div>
+</div>
+<aside class="decision-aside"><span class="label">Why this mattered</span><p>This wasn't a choice between supporting the business and protecting the experience. The goal was to make visibility intentional rather than simply adding more of it.</p></aside>
+</div>
+<div class="compare visual-breakout">
+<figure><p class="image-label">Before</p><div class="media-frame"><img alt="Original Refer a Friend entry point with the older speakerphone icon" data-portfolio-image="" loading="lazy" src="images/refer-before-entrypoints.png"/></div><figcaption>Previous entry-point treatment.</figcaption></figure>
+<figure><p class="image-label">After</p><div class="media-frame"><img alt="Updated Refer a Friend entry point with a gift symbol" data-portfolio-image="" loading="lazy" src="images/refer-after-entrypoints.png"/></div><figcaption>Revised icon and more intentional placement.</figcaption></figure>
+</div>
+</article>
+<article aria-labelledby="decision-2" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no">Decision 02 / Clarity</p>
+<h3 id="decision-2">Explain the value before asking someone to refer a friend.</h3>
+<div class="prose"><p>Commission credits are not immediately intuitive: they offset trading fees over time rather than behaving like a simple cash reward. Clients had questions about what they would actually receive, and what their friend would receive.</p><p>I moved the experience from a cramped dialog toward a dedicated page with more room for the incentive, clearer explanations and an obvious next step. The content separated the two sides of the reward and made commission credits easier to understand.</p></div>
+</div>
+<aside class="decision-aside"><span class="label">Design principle</span><p>Remove ambiguity at the decision point. Don't ask users to commit to an action while the value proposition is still unclear.</p></aside>
+</div>
+<div aria-label="Referral experience before and after redesign" class="story-compare">
+<div class="story-row story-row--before">
+<div class="story-copy">
+<p class="eyebrow">01 / Before</p>
+<h4>Too much to explain in a dialog.</h4>
+<p>The original referral dialog gave clients limited room to understand the programme, what commission credits meant or why they should share an invitation.</p>
+</div>
+<figure class="story-media">
+<p class="image-label">Before <span class="image-label-detail">/ Dialog</span></p><div class="media-frame"><img alt="Original referral experience presented in a small dialog" data-portfolio-image="" loading="lazy" src="images/refer-old.png"/></div>
+<figcaption>Original referral experience.</figcaption>
+</figure>
+</div>
+<div class="story-row story-row--after">
+<figure class="story-media">
+<p class="image-label">After <span class="image-label-detail">/ Dedicated page</span></p><div class="media-frame"><img alt="Redesigned dedicated Refer a Friend page" data-portfolio-image="" loading="lazy" src="images/refer-new.png"/></div>
+<figcaption>Redesigned referral page with space for the incentive and next steps.</figcaption>
+</figure>
+<div class="story-copy">
+<p class="eyebrow">02 / After</p>
+<h4>Give the journey room to make sense.</h4>
+<p>A dedicated page allowed the team to explain both sides of the incentive, clarify the proposition and make the next action easier to identify.</p>
+</div>
+</div>
+</div>
+<div class="reward-showcase">
+<div class="showcase-head">
+<p class="eyebrow">03 / Reward clarity</p>
+<h4>Make commission credits understandable.</h4>
+<p>A closer look at how the redesign explains the reward mechanics in the experience itself.</p>
+</div>
+<figure class="single-visual visual-breakout">
+<div class="media-frame"><img alt="Redesigned reward explanation showing how commission credits work" data-portfolio-image="" loading="lazy" src="images/refer-rewards.png"/></div>
+<figcaption>Reward explanation — turning a financial mechanism into something clients can understand.</figcaption>
+</figure>
+</div>
+</article>
+<article aria-labelledby="decision-3" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no">Decision 03 / End-to-end journey</p>
+<h3 id="decision-3">Design for both people in a referral — not just the one sharing.</h3>
+<div class="prose"><p>The experience doesn't end when an existing client shares a link. The invited friend enters through Saxo's public website and needs to understand the offer and the next step without already knowing the platform.</p><p>I worked with the web design team, providing UX direction and a design foundation for the public-facing journey. Aligning language, incentives and next steps mattered even when different teams owned the screens.</p></div>
+</div>
+<aside class="decision-aside"><span class="label">Collaboration</span><p>I shaped the UX direction across surfaces; the web design team owned its public-facing implementation.</p></aside>
+</div>
+<figure class="single-visual visual-breakout"><div class="media-frame"><img alt="Public-facing Saxo Bank referral landing page" data-portfolio-image="" loading="lazy" src="images/refer-web.png"/></div><figcaption>The invited friend's landing experience — part of the same journey, across a different team and surface.</figcaption></figure>
+</article>
+<article aria-labelledby="decision-4" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no">Decision 04 / Global scale</p>
+<h3 id="decision-4">Keep the structure consistent, but allow markets to differ where they must.</h3>
+<div class="prose"><p>Fourteen markets brought different reward rules, legal requirements and cultural expectations. A rigid, identical experience would not work everywhere; designing 14 unrelated versions would be difficult to maintain.</p><p>We used a shared design foundation while accommodating market-specific content and constraints. I also created culturally adapted assets and a composition guideline so future regional updates could remain consistent without being recreated from scratch.</p></div>
+</div>
+<aside class="decision-aside"><span class="label">The trade-off</span><p>Consistency should reduce complexity, not erase real differences in compliance, rewards or customer expectations.</p></aside>
+</div>
+<figure class="single-visual visual-breakout"><div class="media-frame"><img alt="Regional visual adaptations for referral programme banners" data-portfolio-image="" loading="lazy" src="images/refer-banners.png"/></div><figcaption>Regional asset examples — one recognisable system with locally appropriate visuals.</figcaption></figure>
+</article>
+</div>
+</section>
+<!-- 05 / Validation, scope control, shipping -->
+<section aria-labelledby="delivery-title" class="chapter" id="delivery">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">05 / Validation &amp; delivery</p>
+<h2 id="delivery-title">From design rationale to something the organisation could ship.</h2>
+<p class="deck">Testing helped evaluate the clarity of the experience. Delivery required that the proposed solutions also fit the design system, engineering capacity and market-level constraints.</p>
+</div>
+<div class="delivery-columns">
+<div>
+<h3>Testing the experience</h3>
+<p>Speak-aloud sessions with existing referrers and invited users were used across the existing and redesigned flows to examine comprehension, trust and the next step in the referral process.</p>
+<ul>
+<li>Could participants find the programme?</li>
+<li>Could they explain the incentive without assistance?</li>
+<li>Did the transition from platform to public website make sense?</li>
+</ul>
+<p>The emphasis was on resolving observed confusion, not on treating the first concept as final.</p>
+</div>
+<div>
+<h3>Working through constraints</h3>
+<p>My role grew from initial discovery/UX work into broader end-to-end design ownership. I coordinated with the product owner, analysts, engineering, compliance and the web design team as the experience took shape.</p>
+<ul>
+<li>Used Saxo's established design system rather than building disconnected UI.</li>
+<li>Accounted for market differences and legal requirements.</li>
+<li>Prioritised a feasible scope around the main acquisition journey.</li>
+</ul>
+</div>
+</div>
+<div class="delivery-note">
+<strong>What didn't ship matters, too.</strong>
+<p>A referral-status / leaderboard concept explored the need for progress feedback, but it was parked following compliance review. It remained a design concept, not a released feature. The case study's business results should not be attributed to it.</p>
+</div>
+</div>
+</section>
+<!-- 06 / Results: keep programme-level attribution qualified. -->
+<section aria-labelledby="results-title" class="chapter alt" id="results">
+<div class="container">
+<div class="results-top">
+<div class="chapter-heading">
+<p class="eyebrow">06 / Results &amp; impact</p>
+<h2 id="results-title">A clearer experience, alongside strong programme growth.</h2>
+<p class="deck">The product team reported positive business results following the redesign. The figures below represent programme performance, not the isolated effect of UX changes.</p>
+</div>
+</div>
+<!-- EDITORIAL CHECK BEFORE PUBLISHING:
              Confirm all four metric definitions, baselines, periods and whether +25% describes
              referred sign-ups vs another sign-up measure. These figures came from earlier
              portfolio/interview discussions and were not independently verified here. -->
-        <div class="results-grid" aria-label="Reported programme results">
-          <div class="metric"><strong>~3×</strong><span>Year-over-year referral growth reported by the product owner</span></div>
-          <div class="metric"><strong>+25%</strong><span>Reported referral-related sign-ups</span></div>
-          <div class="metric"><strong>+20%</strong><span>Reported funded accounts</span></div>
-          <div class="metric"><strong>−50%</strong><span>Reported support questions about the referral programme</span></div>
-        </div>
-        <p class="results-qualifier"><strong>Attribution note:</strong> These are team-reported results across the referral programme. Marketing, other business activity and the design changes all contributed. The metrics may refer to different time windows, so they should not be read as a single controlled before-and-after experiment.</p>
-        <div class="delivered-list">
-          <p class="eyebrow">What we delivered</p>
-          <ul class="impact-groups" aria-label="Three areas of product impact">
-            <li class="impact-group">
-              <span class="impact-group-label">01 / Experience</span>
-              <p>A dedicated referral journey with clearer reward communication.</p>
-            </li>
-            <li class="impact-group">
-              <span class="impact-group-label">02 / Discoverability</span>
-              <p>More intentional platform entry points and an aligned web direction.</p>
-            </li>
-            <li class="impact-group">
-              <span class="impact-group-label">03 / Scalability</span>
-              <p>A reusable design foundation across 14 markets.</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 07 / Reflection -->
-    <section class="chapter" id="reflection" aria-labelledby="reflection-title">
-      <div class="container">
-        <div class="reflection">
-          <p class="eyebrow">07 / Reflection</p>
-          <h2 id="reflection-title">The real work was deciding what mattered.</h2>
-          <p>This project pushed me to think beyond individual screens. The business wanted growth, users needed clarity, and the solution had to work with limited development capacity and across different regulatory environments.</p>
-          <p>The most valuable decision wasn't a visual one: it was aligning the team around a focused referral journey rather than adding promotion everywhere. Equally important was knowing when a promising idea — such as referral status tracking — couldn't be shipped as planned.</p>
-          <p><strong style="color:#f5efe4">What I'd improve next time:</strong> establish shared measurement definitions earlier for discovery, sharing, sign-up and funding. That would make it easier to separate the effects of design changes from campaigns and other acquisition activity.</p>
-        </div>
-      </div>
-    </section>
-
-    <div class="container cta">
-      <div>
-        <h2>More than the final screens.</h2>
-        <p>This is a selected view of the project. I can walk through additional context, constraints and design decisions in a conversation.</p>
-      </div>
-      <a class="button-link" href="index.html#work">Back to selected work <span aria-hidden="true">↗</span></a>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner"><span>© <span id="year">2026</span> Semir Ugljanin</span><a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
-  </footer>
-
-  <script>
+<div aria-label="Reported programme results" class="results-grid">
+<div class="metric"><strong>~3×</strong><span>Year-over-year referral growth reported by the product owner</span></div>
+<div class="metric"><strong>+25%</strong><span>Reported referral-related sign-ups</span></div>
+<div class="metric"><strong>+20%</strong><span>Reported funded accounts</span></div>
+<div class="metric"><strong>−50%</strong><span>Reported support questions about the referral programme</span></div>
+</div>
+<p class="results-qualifier"><strong>Attribution note:</strong> These are team-reported results across the referral programme. Marketing, other business activity and the design changes all contributed. The metrics may refer to different time windows, so they should not be read as a single controlled before-and-after experiment.</p>
+<div class="delivered-list">
+<p class="eyebrow">What we delivered</p>
+<ul aria-label="Three areas of product impact" class="impact-groups">
+<li class="impact-group">
+<span class="impact-group-label">01 / Experience</span>
+<p>A dedicated referral journey with clearer reward communication.</p>
+</li>
+<li class="impact-group">
+<span class="impact-group-label">02 / Discoverability</span>
+<p>More intentional platform entry points and an aligned web direction.</p>
+</li>
+<li class="impact-group">
+<span class="impact-group-label">03 / Scalability</span>
+<p>A reusable design foundation across 14 markets.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- 07 / Reflection -->
+<section aria-labelledby="reflection-title" class="chapter" id="reflection">
+<div class="container">
+<div class="reflection">
+<p class="eyebrow">07 / Reflection</p>
+<h2 id="reflection-title">The real work was deciding what mattered.</h2>
+<p>This project pushed me to think beyond individual screens. The business wanted growth, users needed clarity, and the solution had to work with limited development capacity and across different regulatory environments.</p>
+<p>The most valuable decision wasn't a visual one: it was aligning the team around a focused referral journey rather than adding promotion everywhere. Equally important was knowing when a promising idea — such as referral status tracking — couldn't be shipped as planned.</p>
+<p><strong style="color:#f5efe4">What I'd improve next time:</strong> establish shared measurement definitions earlier for discovery, sharing, sign-up and funding. That would make it easier to separate the effects of design changes from campaigns and other acquisition activity.</p>
+</div>
+</div>
+</section>
+<div class="container cta">
+<div>
+<h2>More than the final screens.</h2>
+<p>This is a selected view of the project. I can walk through additional context, constraints and design decisions in a conversation.</p>
+</div>
+<a class="button-link" href="index.html#work">Back to selected work <span aria-hidden="true">↗</span></a>
+</div>
+</main>
+<footer class="site-footer">
+<div class="container footer-inner"><span>© <span id="year">2026</span> Semir Ugljanin</span><a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a></div>
+</footer>
+<script>
     // Mobile navigation works with keyboard, click, and Escape.
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
