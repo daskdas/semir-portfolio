@@ -168,6 +168,8 @@
     /* Before/after identifiers sit ABOVE the screenshots, not inside a frame.
        Captions remain below; the comparison rows themselves provide separation. */
     .image-label { margin: 0 0 .55rem; padding: 0; border: 0; color: var(--orange); font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; line-height: 1.4; }
+    /* Keep before/after orange, while naming the screenshot type in dark ink. */
+    .image-label .image-label-detail { color: var(--ink); font-weight: 600; }
     .full-visual { margin-top: 1.8rem; }
     .visual-caption { color: var(--faint); font-size: .78rem; margin-top: .6rem; }
     .media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 1.5rem; }
@@ -487,13 +489,13 @@
                 <p>The original referral dialog gave clients limited room to understand the programme, what commission credits meant or why they should share an invitation.</p>
               </div>
               <figure class="story-media">
-                <p class="image-label">Before / Dialog</p><div class="media-frame"><img data-portfolio-image src="images/refer-old.png" loading="lazy" alt="Original referral experience presented in a small dialog" /></div>
+                <p class="image-label">Before <span class="image-label-detail">/ Dialog</span></p><div class="media-frame"><img data-portfolio-image src="images/refer-old.png" loading="lazy" alt="Original referral experience presented in a small dialog" /></div>
                 <figcaption>Original referral experience.</figcaption>
               </figure>
             </div>
             <div class="story-row story-row--after">
               <figure class="story-media">
-                <p class="image-label">After / Dedicated page</p><div class="media-frame"><img data-portfolio-image src="images/refer-new.png" loading="lazy" alt="Redesigned dedicated Refer a Friend page" /></div>
+                <p class="image-label">After <span class="image-label-detail">/ Dedicated page</span></p><div class="media-frame"><img data-portfolio-image src="images/refer-new.png" loading="lazy" alt="Redesigned dedicated Refer a Friend page" /></div>
                 <figcaption>Redesigned referral page with space for the incentive and next steps.</figcaption>
               </figure>
               <div class="story-copy">
