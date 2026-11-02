@@ -80,13 +80,16 @@
     .project-meta dt { margin-bottom: .18rem; font-weight: 700; font-size: .67rem; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); }
     .project-meta dd { margin: 0; font-size: .89rem; color: var(--muted); }
     .hero-image { margin: 2.7rem 0 0; }
-    .media-frame { background: var(--paper-deep); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    .media-frame img { display: block; margin: auto; width: 100%; height: auto; object-fit: contain; }
+    /* Screenshot presentation: unframed, like the original case study.
+       The image itself has only a quiet 4px corner radius — no border,
+       tinted background, inner padding or surrounding card. */
+    .media-frame { background: transparent; border: 0; border-radius: 0; overflow: visible; }
+    .media-frame img { display: block; margin: 0; width: 100%; height: auto; object-fit: contain; border: 0; border-radius: 4px; }
     /* Every screenshot follows the same left and right edges as its section.
        Nothing uses a 100vw breakout, so smaller screens cannot overflow. */
     .visual-breakout { width: 100%; max-width: 100%; margin-inline: 0; }
     .media-frame { width: 100%; max-width: 100%; }
-    .hero-image .media-frame { background: #e8e0d5; }
+    .hero-image .media-frame { background: transparent; }
     figcaption { margin-top: .65rem; font-size: .78rem; color: var(--faint); line-height: 1.55; }
     .overview { margin-top: 3.4rem; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
     .overview-item { padding: 1.65rem 1.5rem; background: var(--paper-light); }
@@ -162,7 +165,9 @@
     .reward-showcase .showcase-head { margin: 0 0 1.6rem; max-width: 760px; }
     .reward-showcase .showcase-head h4 { font: 400 clamp(1.5rem, 2.5vw, 2.15rem)/1.2 var(--serif); letter-spacing: -.02em; margin: 0 0 .5rem; }
     .reward-showcase .showcase-head p:not(.eyebrow) { color: var(--muted); margin: 0; max-width: 660px; }
-    .image-label { padding: .45rem .75rem; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+    /* Before/after identifiers sit ABOVE the screenshots, not inside a frame.
+       Captions remain below; the comparison rows themselves provide separation. */
+    .image-label { margin: 0 0 .55rem; padding: 0; border: 0; color: var(--orange); font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; line-height: 1.4; }
     .full-visual { margin-top: 1.8rem; }
     .visual-caption { color: var(--faint); font-size: .78rem; margin-top: .6rem; }
     .media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 1.5rem; }
@@ -460,8 +465,8 @@
             <aside class="decision-aside"><span class="label">Why this mattered</span><p>This wasn't a choice between supporting the business and protecting the experience. The goal was to make visibility intentional rather than simply adding more of it.</p></aside>
           </div>
           <div class="compare visual-breakout">
-            <figure><div class="media-frame"><div class="image-label">Before</div><img data-portfolio-image src="images/refer-before-entrypoints.png" loading="lazy" alt="Original Refer a Friend entry point with the older speakerphone icon" /></div><figcaption>Previous entry-point treatment.</figcaption></figure>
-            <figure><div class="media-frame"><div class="image-label">After</div><img data-portfolio-image src="images/refer-after-entrypoints.png" loading="lazy" alt="Updated Refer a Friend entry point with a gift symbol" /></div><figcaption>Revised icon and more intentional placement.</figcaption></figure>
+            <figure><p class="image-label">Before</p><div class="media-frame"><img data-portfolio-image src="images/refer-before-entrypoints.png" loading="lazy" alt="Original Refer a Friend entry point with the older speakerphone icon" /></div><figcaption>Previous entry-point treatment.</figcaption></figure>
+            <figure><p class="image-label">After</p><div class="media-frame"><img data-portfolio-image src="images/refer-after-entrypoints.png" loading="lazy" alt="Updated Refer a Friend entry point with a gift symbol" /></div><figcaption>Revised icon and more intentional placement.</figcaption></figure>
           </div>
         </article>
 
@@ -482,13 +487,13 @@
                 <p>The original referral dialog gave clients limited room to understand the programme, what commission credits meant or why they should share an invitation.</p>
               </div>
               <figure class="story-media">
-                <div class="media-frame"><div class="image-label">Before / Dialog</div><img data-portfolio-image src="images/refer-old.png" loading="lazy" alt="Original referral experience presented in a small dialog" /></div>
+                <p class="image-label">Before / Dialog</p><div class="media-frame"><img data-portfolio-image src="images/refer-old.png" loading="lazy" alt="Original referral experience presented in a small dialog" /></div>
                 <figcaption>Original referral experience.</figcaption>
               </figure>
             </div>
             <div class="story-row story-row--after">
               <figure class="story-media">
-                <div class="media-frame"><div class="image-label">After / Dedicated page</div><img data-portfolio-image src="images/refer-new.png" loading="lazy" alt="Redesigned dedicated Refer a Friend page" /></div>
+                <p class="image-label">After / Dedicated page</p><div class="media-frame"><img data-portfolio-image src="images/refer-new.png" loading="lazy" alt="Redesigned dedicated Refer a Friend page" /></div>
                 <figcaption>Redesigned referral page with space for the incentive and next steps.</figcaption>
               </figure>
               <div class="story-copy">
