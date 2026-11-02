@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#f5efe4" name="theme-color"/>
+<meta content="How a product design redesign made Saxo Bank's Refer a Friend programme easier to discover and understand across 14 markets." name="description"/>
+<title>Refer a Friend — Saxo Bank | Semir Ugljanin</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>/* Refer a Friend · case study design system
+   1 / Foundations  2 / Type  3 / Layout  4 / Navigation  5 / Media
+   6 / Data grids  7 / Chapters  8 / Decisions  9 / Supporting content  10 / Responsive
+   All components use the same tokens. No section-specific patch cascade.
+*/
+:root {
+  --paper: #f5efe4;
+  --panel: #fbf8f2;
+  --ink: #171715;
+  --text: #403d39;
+  --muted: #625d56;
+  --faint: #797269;
+  --line: #d9cebf;
+  --accent: #c9521a;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', Arial, sans-serif;
+  --page-max: 1536px;
+  --gutter: clamp(24px, 4.5vw, 68px);
+  --reading: 760px;
+  --nav-height: 70px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --image-radius: 4px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 132px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.container { width: 100%; max-width: var(--page-max); margin: 0 auto; padding-inline: var(--gutter); }
+.skip { position: fixed; z-index: 200; left: 20px; top: -90px; padding: 10px 14px; background: var(--ink); color: var(--paper); }
+.skip:focus { top: 16px; }
+
+/* Type scale: chapter > decision > subhead. One eyebrow pattern. */
+h1,h2,h3,h4,p { overflow-wrap: break-word; }
+h1,h2,h3,h4 { margin: 0; font-weight: 400; }
+h1,h2,h3,h4 { font-family: var(--serif); letter-spacing: -.025em; }
+h1 { font-size: clamp(2.8rem, 6.1vw, 5.65rem); line-height: 1.05; max-width: 1040px; }
+h2 { font-size: clamp(2.25rem, 3.9vw, 3.45rem); line-height: 1.12; }
+h3 { font-size: clamp(1.75rem, 2.8vw, 2.45rem); line-height: 1.17; }
+h4 { font-size: clamp(1.5rem, 2.1vw, 1.9rem); line-height: 1.2; }
+p { margin: 0 0 1rem; color: var(--text); }
+p:last-child { margin-bottom: 0; }
+.prose { max-width: var(--reading); }
+.prose p { margin: 0 0 1rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong, p strong { color: var(--ink); font-weight: 600; }
+.eyebrow, .decision-no, .support-note .label, .overview-item .label,
+.evidence-card .tag, .chapter-index-label, .impact-group-label {
+  margin: 0; color: var(--accent); font: 700 .72rem/1.45 var(--sans);
+  text-transform: uppercase; letter-spacing: .115em;
+}
+.subtle { color: var(--muted); }
+
+/* Page navigation */
+.site-header { position: sticky; z-index: 90; top: 0; background: rgba(245,239,228,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.nav-inner { min-height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.site-logo { font: italic 1.25rem var(--serif); letter-spacing: -.02em; text-decoration: none; }
+.site-logo span { font-style: normal; color: var(--faint); margin: 0 .1em; }
+.nav-links { margin: 0; padding: 0; display: flex; gap: .2rem; list-style: none; align-items: center; }
+.nav-links a { font-size: .82rem; font-weight: 500; padding: .55rem .8rem; border-radius: 999px; text-decoration: none; }
+.nav-links a:hover { background: #eae0d2; color: var(--accent); }
+.nav-links a.is-active { background: var(--ink); color: var(--paper); }
+.menu-toggle { display: none; min-width: 42px; min-height: 42px; align-items: center; justify-content: center; border: 1px solid var(--line); background: transparent; border-radius: var(--image-radius); cursor: pointer; }
+.mobile-menu { padding: .6rem var(--gutter) 1rem; border-top: 1px solid var(--line); background: var(--paper); }
+.mobile-menu[hidden] { display: none; }
+.mobile-menu a { display: block; padding: .75rem 0; border-bottom: 1px solid var(--line); text-decoration: none; font-weight: 500; }
+.mobile-menu a:last-child { border: 0; }
+
+/* Hero and case summary */
+.hero { padding-block: clamp(3.5rem,7vw,6.5rem) 0; }
+.hero > .eyebrow { margin-bottom: 1rem; }
+.hero .lead { max-width: 790px; margin: 1.6rem 0 2rem; font-size: clamp(1.1rem, 1.7vw, 1.35rem); line-height: 1.58; color: var(--muted); }
+.project-meta { display: flex; gap: 1rem 2rem; flex-wrap: wrap; border-top: 1px solid var(--line); padding: 1.35rem 0 0; margin: 0; }
+.project-meta div { min-width: 125px; }
+.project-meta dt { font-size: .7rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: var(--accent); }
+.project-meta dd { margin: .15rem 0 0; color: var(--muted); font-size: .89rem; }
+.hero-image { margin: 3rem 0 0; }
+
+/* Media — consistent radius, no cards/frames; aligned to the shared container. */
+.media-frame, .visual-breakout { display: block; width: 100%; max-width: 100%; margin-inline: 0; background: transparent; border: none; }
+.media-frame img { width: 100%; height: auto; border: none; border-radius: var(--image-radius); object-fit: contain; }
+figure, .single-visual { margin: 0; min-width: 0; }
+figcaption, .visual-caption { margin: .65rem 0 0; font-size: .78rem; line-height: 1.55; color: var(--faint); }
+.full-visual { margin-top: var(--space-4); }
+.media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-3); margin-top: var(--space-3); }
+
+/* Data grid: ONE component language for summary, evidence, statistics, journey and results. */
+.overview, .problem-grid, .evidence-grid, .journey, .results-grid {
+  display: grid; gap: 1px; border: 1px solid var(--line); background: var(--line);
+  width: 100%; margin-inline: 0;
+}
+.overview { margin-top: var(--space-6); grid-template-columns: repeat(3,minmax(0,1fr)); }
+.problem-grid { grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: var(--space-5); }
+.evidence-grid { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: var(--space-4); }
+.journey { grid-template-columns: repeat(4,minmax(0,1fr)); margin-top: var(--space-4); }
+.results-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.overview-item, .problem-card, .evidence-card, .journey-step, .metric {
+  min-width: 0; padding: var(--space-4); border: 0; border-radius: 0; background: var(--panel);
+}
+.overview-item .label { margin-bottom: .65rem; }
+.overview-item p { font-size: .94rem; line-height: 1.6; }
+.overview-item .key-number { display: block; margin: .1rem 0 .3rem; font: 400 2.6rem/1.05 var(--serif); color: var(--accent); }
+.overview-item .fineprint { font-size: .76rem; color: var(--faint); margin-top: .65rem; }
+.problem-card .number, .metric strong { display: block; font: 400 clamp(2.3rem,3.3vw,3.1rem)/1.05 var(--serif); letter-spacing: -.025em; color: var(--accent); }
+.problem-card .name { margin: .9rem 0 .35rem; font-size: .92rem; font-weight: 600; color: var(--ink); }
+.problem-card p, .metric span { font-size: .9rem; line-height: 1.6; color: var(--muted); }
+.evidence-card .tag { display: block; margin-bottom: .75rem; }
+.evidence-card h3, .journey-step h3 { font: 600 1.03rem/1.35 var(--sans); letter-spacing: 0; margin: 0 0 .7rem; }
+.evidence-card p { font-size: .91rem; color: var(--muted); }
+.journey-step .num { display: block; font: 400 1.4rem/1.2 var(--serif); color: var(--accent); margin-bottom: .65rem; }
+.journey-step p { color: var(--muted); font-size: .86rem; line-height: 1.55; }
+.metric strong { margin-bottom: .75rem; }
+.metric span { display: block; }
+.source-note, .results-qualifier { margin: 1rem 0 0; color: var(--faint); font-size: .79rem; line-height: 1.6; }
+.results-qualifier { font-size: .88rem; color: var(--muted); max-width: 1000px; }
+
+/* One list pattern: numbered findings, with rules only between list items. */
+.priority-head { margin: var(--space-6) 0 var(--space-3); font-size: clamp(1.7rem,2.3vw,2.2rem); }
+.priorities { width: 100%; border-top: 1px solid var(--line); }
+.priority-row { display: grid; grid-template-columns: 62px minmax(0,.95fr) minmax(0,1.35fr); align-items: start; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
+.priority-row .index { font: 400 1.4rem/1.3 var(--serif); color: var(--accent); }
+.priority-row h3 { font: 600 1rem/1.45 var(--sans); letter-spacing: 0; }
+.priority-row p { color: var(--muted); font-size: .91rem; }
+
+/* Chapters: one left edge, one label, one h2, one introduction. */
+.chapter { padding-block: clamp(4.75rem,7.7vw,7.5rem); }
+.chapter.alt { background: transparent; }
+.chapter-heading { margin-bottom: var(--space-5); max-width: 1160px; }
+.chapter-heading .eyebrow { margin-bottom: 1.15rem; }
+.chapter-heading h2 { max-width: 1150px; }
+.chapter-heading .deck { margin: 1.45rem 0 0; max-width: 920px; font-size: 1.09rem; line-height: 1.7; color: var(--muted); }
+#challenge .chapter-heading { margin-bottom: var(--space-3); }
+#challenge .challenge-copy { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(2rem,5vw,5rem); }
+#challenge .challenge-copy .deck { margin: 0; font-size: 1.08rem; line-height: 1.72; color: var(--muted); }
+#challenge .challenge-copy .prose { max-width: none; }
+.direction-copy { margin-top: var(--space-5); }
+
+/* Supporting notes: quote, rationale, research question and scope note use
+   the same accent rule and no floating card or rounded tinted background. */
+.support-note, .decision-aside, .delivery-note, .callout, blockquote {
+  display: block; width: 100%; border: 0; border-left: 2px solid var(--accent);
+  border-radius: 0; background: transparent; box-shadow: none;
+  padding: .15rem 0 .15rem var(--space-3); margin: var(--space-4) 0 0;
+}
+.support-note .label { display: block; margin: 0 0 .65rem; }
+.support-note p { font-size: .96rem; line-height: 1.7; color: var(--muted); }
+blockquote { margin-top: var(--space-5); max-width: none; }
+blockquote p { font: italic clamp(1.2rem,1.7vw,1.55rem)/1.5 var(--serif); color: var(--ink); max-width: 1000px; }
+blockquote footer { margin-top: .6rem; font-size: .78rem; line-height: 1.55; color: var(--muted); }
+.callout { margin-top: var(--space-5); }
+.callout .eyebrow { margin-bottom: .7rem; }
+.callout h3 { max-width: 980px; margin-bottom: .65rem; font-size: clamp(1.55rem,2.2vw,2rem); }
+.callout p:last-child { max-width: 800px; color: var(--muted); }
+
+/* Decisions: one chapter unit; decision headline is visually distinct from
+   caption/compare headings. No stray separators between decisions. */
+.decision { margin: 0; padding: 0 0 clamp(5rem,8vw,8rem); }
+.decision:last-child { padding-bottom: 0; }
+.decision + .decision { margin-top: 0; }
+.decision-top { display: block; margin-bottom: var(--space-4); }
+.decision-no { display: flex; gap: .55rem; flex-wrap: wrap; align-items: baseline; margin-bottom: 1.2rem; }
+.decision-marker-word { font: 700 .72rem/1.4 var(--sans); letter-spacing: .115em; color: var(--faint); }
+.decision-marker-number { font: 400 1.65rem/1 var(--serif); letter-spacing: 0; color: var(--accent); }
+.decision-marker-category { font: 700 .78rem/1.4 var(--sans); letter-spacing: .1em; color: var(--ink); }
+.decision-marker-category::before { content: '/'; color: var(--faint); padding-right: .6rem; }
+.decision-top h3 { margin: 0 0 var(--space-4); max-width: 1130px; }
+.decision-top .prose { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(2rem,5vw,5rem); max-width: none; }
+.decision-top .prose p { margin: 0; min-width: 0; }
+.decision-aside { margin-top: var(--space-4); }
+.decision-aside .label { color: var(--accent); }
+.decision-aside p { max-width: 950px; margin: 0; }
+.story-compare { margin-top: var(--space-4); }
+.story-row { display: grid; gap: clamp(2rem,4.5vw,4.5rem); align-items: center; padding-block: var(--space-4); min-width: 0; }
+.story-row--before { grid-template-columns: minmax(0,.78fr) minmax(0,1.32fr); }
+.story-row--after { grid-template-columns: minmax(0,1.32fr) minmax(0,.78fr); }
+.story-row > * { min-width: 0; }
+.story-copy { max-width: 480px; }
+/* Before and After share a single large, dark identifier. No duplicate label on image. */
+.comparison-eyebrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: .55rem; margin: 0 0 .85rem; line-height: 1.3; }
+.comparison-status { font: 700 .8rem/1.3 var(--sans); text-transform: uppercase; letter-spacing: .1em; color: var(--ink); }
+.comparison-context { font: 500 .75rem/1.3 var(--sans); color: var(--accent); text-transform: uppercase; letter-spacing: .095em; }
+.comparison-context::before { content: '/'; padding-right: .55rem; color: var(--faint); }
+.story-copy h4, .showcase-head h4 { margin: 0 0 .9rem; }
+.story-copy p:not(.comparison-eyebrow), .showcase-head p:not(.comparison-eyebrow) { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.72; }
+.story-media { margin: 0; }
+.reward-showcase { margin-top: var(--space-5); }
+.reward-showcase .showcase-head { margin: 0 0 var(--space-3); max-width: 860px; }
+.reward-showcase .showcase-head h4 { max-width: 700px; }
+
+/* Delivery and impact */
+.delivery-columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(2rem,5vw,5rem); }
+.delivery-columns > * { min-width: 0; }
+.delivery-columns h3 { font-size: clamp(1.5rem,2.2vw,1.95rem); margin-bottom: .9rem; }
+.delivery-columns p, .delivery-columns ul { font-size: .95rem; line-height: 1.7; color: var(--text); }
+.delivery-columns ul { margin: 1rem 0; padding-left: 1.2rem; }
+.delivery-columns li { padding-left: .2rem; margin-bottom: .55rem; }
+.delivery-note { margin-top: var(--space-5); }
+.delivery-note strong { display: block; margin-bottom: .45rem; }
+.delivery-note p { max-width: 950px; }
+.results-top .chapter-heading { margin-bottom: var(--space-5); }
+.delivered-list { margin-top: var(--space-6); }
+.delivered-list > .eyebrow { margin-bottom: var(--space-3); }
+.impact-groups { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(1.4rem,3vw,3rem); }
+.impact-group { min-width: 0; border-left: 2px solid var(--accent); padding: .15rem 0 .15rem 1.2rem; }
+.impact-group-label { display: block; margin-bottom: .6rem; }
+.impact-group p { font-size: .96rem; color: var(--text); }
+.reflection { padding: clamp(2rem,5vw,4rem); background: var(--ink); color: var(--paper); border-radius: 0; }
+.reflection .eyebrow { margin-bottom: 1.1rem; }
+.reflection h2 { color: var(--paper); margin-bottom: 1.5rem; }
+.reflection p { color: #cbc1b5; max-width: 940px; margin: 0 0 1rem; }
+.reflection p:last-child { margin-bottom: 0; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: var(--space-6); }
+.cta h2 { margin-bottom: .4rem; font-size: 2rem; }
+.cta p { max-width: 550px; color: var(--muted); }
+.button-link { display: inline-flex; align-items: center; gap: .7rem; padding: .85rem 1.35rem; border-radius: 999px; background: var(--ink); color: var(--paper); text-decoration: none; font-size: .85rem; font-weight: 600; }
+.button-link:hover { background: var(--accent); }
+.site-footer { background: var(--ink); color: #a69d91; padding: 1.65rem 0; }
+.footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; font-size: .78rem; }
+.footer-inner a { color: #e0d7ca; text-decoration: none; }
+.footer-inner a:hover { text-decoration: underline; }
+
+/* Chapter index: fixed-width desktop row; mobile becomes a vertical list. */
+.chapter-nav { position: sticky; top: var(--nav-height); z-index: 70; border-block: 1px solid var(--line); background: rgba(245,239,228,.98); margin-top: var(--space-6); }
+.chapter-index-label { display: none; }
+.chapter-inner { display: flex; align-items: center; justify-content: space-between; gap: clamp(.4rem,.8vw,1rem); white-space: nowrap; }
+.chapter-inner a { display: inline-flex; flex: none; align-items: center; gap: .35rem; padding: .95rem 0; text-decoration: none; border-bottom: 2px solid transparent; color: var(--muted); font-size: .78rem; font-weight: 600; }
+.chapter-inner a:hover, .chapter-inner a:focus-visible { color: var(--accent); border-color: var(--accent); }
+.chapter-number { font-variant-numeric: tabular-nums; }
+.chapter-arrow { display: none; }
+
+/* Breakpoints */
+@media (max-width: 1150px) {
+  .story-row--before, .story-row--after { grid-template-columns: minmax(0,1fr); gap: var(--space-3); }
+  .story-row--after .story-copy { order: 0; }
+  .story-row--after .story-media { order: 1; }
+  .story-copy { max-width: 760px; }
+  .story-row { padding-block: var(--space-4); }
+}
+@media (max-width: 960px) {
+  html { scroll-padding-top: calc(var(--nav-height) + 18px); }
+  .chapter-nav { position: static; margin-top: var(--space-5); padding-block: 1.2rem 1.5rem; background: transparent; }
+  .chapter-index-label { display: block; margin-bottom: .5rem; }
+  .chapter-inner { display: block; white-space: normal; }
+  .chapter-inner a { display: flex; width: 100%; min-height: 48px; gap: .85rem; padding: .85rem 0; border: none; border-bottom: 1px solid var(--line); color: var(--ink); font-size: .92rem; font-weight: 500; }
+  .chapter-inner a:first-child { border-top: 1px solid var(--line); }
+  .chapter-inner a:hover, .chapter-inner a:focus-visible { border-bottom-color: var(--line); }
+  .chapter-number { flex: 0 0 28px; color: var(--accent); font-size: .76rem; font-weight: 600; }
+  .chapter-text { flex: 1 1 auto; min-width: 0; }
+  .chapter-arrow { display: block; flex: 0 0 17px; width: 17px; height: 17px; color: var(--faint); margin-left: auto; }
+  #challenge .challenge-copy, .decision-top .prose { grid-template-columns: minmax(0,1fr); gap: 1rem; }
+  .evidence-grid, .delivery-columns { grid-template-columns: minmax(0,1fr); }
+  .journey, .results-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 720px) {
+  :root { --nav-height: 62px; --gutter: clamp(24px,7vw,32px); }
+  html { scroll-padding-top: 80px; }
+  .container { max-width: 100%; padding-inline: var(--gutter); }
+  .nav-links { display: none; }
+  .menu-toggle { display: flex; }
+  .hero { padding-top: 3.2rem; }
+  .project-meta { gap: 1rem; }
+  .project-meta div { min-width: 42%; }
+  .chapter { padding-block: var(--space-6); }
+  .chapter-heading { margin-bottom: var(--space-4); }
+  .chapter-heading .deck { margin-top: 1rem; font-size: 1rem; }
+  .chapter-nav { margin-top: 2.7rem; }
+  .overview, .problem-grid { grid-template-columns: minmax(0,1fr); }
+  .overview-item, .problem-card, .evidence-card, .journey-step, .metric { padding: var(--space-3); }
+  .priority-row { grid-template-columns: 34px minmax(0,1fr); gap: .75rem; }
+  .priority-row p { grid-column: 2; }
+  .decision { padding-bottom: var(--space-6); }
+  .decision-top h3 { margin-bottom: var(--space-3); }
+  .decision-top { margin-bottom: var(--space-3); }
+  .story-row { padding-block: var(--space-3); }
+  .story-compare { margin-top: 0; }
+  .impact-groups { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+  .media-grid { grid-template-columns: minmax(0,1fr); }
+  .reflection { padding: 1.65rem; }
+  .cta { align-items: flex-start; }
+}
+@media (max-width: 370px) {
+  .journey, .results-grid { grid-template-columns: minmax(0,1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to case study</a>
+<header class="site-header">
+<nav aria-label="Main navigation" class="container nav-inner">
+<a aria-label="Semir Ugljanin — home" class="site-logo" href="index.html"><em>S</em><span>—</span><em>U</em></a>
+<ul class="nav-links">
+<li><a class="is-active" href="index.html#work">Work</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#experience">Experience</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu" class="menu-toggle" id="menu-toggle" type="button">
+<svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+</nav>
+<nav aria-label="Mobile navigation" class="mobile-menu" hidden="" id="mobile-menu">
+<a href="index.html#work">Work</a>
+<a href="index.html#about">About</a>
+<a href="index.html#experience">Experience</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+</header>
+<main id="main">
+<!-- CASE STUDY / OPENING: understandable on a quick scan. -->
+<section aria-labelledby="case-title" class="hero container">
+<p class="eyebrow">Saxo Bank <span aria-hidden="true">/</span> Refer a Friend</p>
+<h1 id="case-title">Making referrals easier to discover, understand and act on.</h1>
+<p class="lead">Redesigning a fragmented referral experience into a clearer journey across Saxo Bank’s platforms and public website, while building a structure that could work across 14 global markets.</p>
+<dl class="project-meta">
+<div><dt>Role</dt><dd>Product Designer · UX/UI</dd></div>
+<div><dt>Scope</dt><dd>Discovery to delivery</dd></div>
+<div><dt>Timeline</dt><dd>1–3 months</dd></div>
+<div><dt>Markets</dt><dd>14 markets</dd></div>
+</dl>
+<figure class="hero-image visual-breakout">
+<div class="media-frame"><img alt="Redesigned Saxo Bank Refer a Friend experience shown across product screens" data-portfolio-image="" fetchpriority="high" src="images/refer-hero.png"/></div>
+<figcaption>Final design direction — a more coherent referral experience across Saxo's digital touchpoints.</figcaption>
+</figure>
+<div aria-label="Project at a glance" class="overview">
+<div class="overview-item">
+<p class="label">Business opportunity</p>
+<p><strong>Increase referral participation and client acquisition</strong> by making the programme easier to find and the incentives easier to understand.</p>
+</div>
+<div class="overview-item">
+<p class="label">My contribution</p>
+<p><strong>Translate product insights into design decisions,</strong> test key journeys and lead UX/UI work across platform, web and market constraints.</p>
+</div>
+<div class="overview-item">
+<p class="label">Reported outcome</p>
+<span class="key-number">~3×</span>
+<p>Year-over-year referral growth reported by the product owner.</p>
+<p class="fineprint">Programme-level result; other initiatives contributed.</p>
+</div>
+</div>
+</section>
+<nav aria-label="Case study sections" class="chapter-nav">
+<div class="container">
+<p class="chapter-index-label">In this case study</p>
+<div class="chapter-inner">
+<a href="#challenge"><span class="chapter-number">01</span><span class="chapter-text">The challenge</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#discovery"><span class="chapter-number">02</span><span class="chapter-text">Discovery &amp; insights</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#direction"><span class="chapter-number">03</span><span class="chapter-text">Design direction</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#solution"><span class="chapter-number">04</span><span class="chapter-text">Key design decisions</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#delivery"><span class="chapter-number">05</span><span class="chapter-text">Delivery &amp; validation</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#results"><span class="chapter-number">06</span><span class="chapter-text">Results &amp; impact</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+<a href="#reflection"><span class="chapter-number">07</span><span class="chapter-text">Reflection</span><svg aria-hidden="true" class="chapter-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+</div>
+</div>
+</nav>
+<!-- 01 / Challenge -->
+<section aria-labelledby="challenge-title" class="chapter" id="challenge">
+<div class="container">
+<div class="challenge-intro"><div class="chapter-heading">
+<p class="eyebrow">01 / The challenge</p>
+<h2 id="challenge-title">The programme existed. The experience was holding it back.</h2>
+</div><div class="challenge-copy"><p class="deck">Refer a Friend was a business priority at Saxo Bank — internally a “Must Win Battle”. But a programme can only contribute to acquisition if clients notice it, understand its value and feel confident sharing it.</p><div class="prose">
+<p>Clients struggled to find the programme and make sense of its commission-credit rewards. Referrers also lacked clarity about what happened after sending an invitation. At the same time, the journey crossed platforms, teams and markets with different requirements.</p>
+<p><strong>The product challenge:</strong> create a referral experience that could support acquisition without overloading the interface or introducing 14 separate design solutions.</p>
+</div></div></div>
+<div aria-label="Existing customer insights" class="problem-grid">
+<article class="problem-card"><span class="number">73%</span><div class="name">Low awareness in Asia</div><p>Of clients in the Asian markets measured had not encountered the programme.</p></article>
+<article class="problem-card"><span class="number">52%</span><div class="name">Low awareness in Europe</div><p>Of clients in the European markets measured did not know it existed.</p></article>
+<article class="problem-card"><span class="number">1 in 4</span><div class="name">Unclear incentives</div><p>Clients could not clearly explain what commission credits were worth or how to use them.</p></article>
+</div>
+<p class="source-note">Source: existing product and customer insights shared by the product owner. These figures describe the groups measured, not the entire global client base.</p>
+<blockquote>
+<p>“I sent the link to a friend but I have no idea if he ever did anything with it.”</p>
+<footer>Client feedback highlighted a missing sense of progress after sharing.</footer>
+</blockquote>
+</div>
+</section>
+<!-- 02 / Discovery -->
+<section aria-labelledby="discovery-title" class="chapter alt" id="discovery">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">02 / Discovery &amp; insight</p>
+<h2 id="discovery-title">Starting with evidence, not a list of features.</h2>
+<p class="deck">The starting point was not a blank research plan. The product owner already had a substantial body of product analytics and customer insight. My job was to turn that evidence into a clear design direction and investigate where the experience broke down.</p>
+</div>
+<div class="evidence-grid">
+<article class="evidence-card">
+<span class="tag">Input 01 / Existing evidence</span>
+<h3>Product owner data &amp; customer insight</h3>
+<p>I worked from the existing product analytics and customer findings supplied by the product owner, including programme awareness, reward comprehension and evidence about where clients expected to find the feature.</p>
+</article>
+<article class="evidence-card">
+<span class="tag">Input 02 / Experience evaluation</span>
+<h3>Speak-aloud usability sessions</h3>
+<p>Seven sessions involving referrers and referred users helped examine the existing and redesigned journeys, particularly whether incentives and next steps were clear to the people using them.</p>
+</article>
+</div>
+<h3 class="priority-head">Three problems became the design priorities.</h3>
+<div aria-label="Insights translated to design priorities" class="priorities">
+<div class="priority-row"><span class="index">01</span><h3>People could not find it</h3><p>Make the programme discoverable at relevant, high-traffic touchpoints — without filling the product with promotions.</p></div>
+<div class="priority-row"><span class="index">02</span><h3>People did not understand the reward</h3><p>Explain both sides of the incentive and what commission credits mean in practical terms, before asking people to share.</p></div>
+<div class="priority-row"><span class="index">03</span><h3>The journey felt disconnected</h3><p>Connect the referrer's platform experience with the invited friend's public-facing journey and make the next step clear.</p></div>
+</div>
+<div class="callout">
+<p class="eyebrow">The design question</p>
+<h3>How might we make referrals easy to find and trust — without adding unnecessary complexity?</h3>
+<p>That question kept the work focused on the underlying acquisition problem instead of treating “more visibility” as the solution by default.</p>
+</div>
+</div>
+</section>
+<!-- 03 / Design direction -->
+<section aria-labelledby="direction-title" class="chapter" id="direction">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">03 / Design direction</p>
+<h2 id="direction-title">One coherent journey, built for fourteen markets.</h2>
+<p class="deck">The design had to serve three interests at once: business growth, client clarity and the realities of compliance and delivery.</p>
+</div>
+<div aria-label="End-to-end referral journey" class="journey">
+<div class="journey-step"><span class="num">01</span><h3>Discover</h3><p>Find Refer a Friend in a relevant part of the platform.</p></div>
+<div class="journey-step"><span class="num">02</span><h3>Understand</h3><p>See the rewards, eligibility and what happens next.</p></div>
+<div class="journey-step"><span class="num">03</span><h3>Share &amp; land</h3><p>Invite a friend and connect them to a credible web journey.</p></div>
+<div class="journey-step"><span class="num">04</span><h3>Complete</h3><p>Help the referred client understand the steps to sign up and fund an account.</p></div>
+</div>
+<div class="direction-copy prose">
+<p>Rather than multiplying independent screens and entry points, I focused on a small set of improvements that would make the experience easier to understand from first discovery through to the invited friend's next step.</p>
+<p>That meant working within Saxo's design system, coordinating with product and development, and accounting for different local reward and legal requirements from the outset.</p>
+</div>
+</div>
+</section>
+<!-- 04 / Key design decisions. All image edges align with section text, with an alternating before/after showcase. -->
+<section aria-labelledby="solution-title" class="chapter alt" id="solution">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">04 / Design decisions</p>
+<h2 id="solution-title">Four decisions that shaped the experience.</h2>
+<p class="deck">Each addressed a specific friction point — and each involved a trade-off between what was desirable, useful and feasible.</p>
+</div>
+<article aria-labelledby="decision-1" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no"><span class="decision-marker-word">Decision</span><span class="decision-marker-number">01</span><span class="decision-marker-category">Discoverability</span></p>
+<h3 id="decision-1">Increase visibility without turning the platform into an advert.</h3>
+<div class="prose"><p>I looked at the platform's most visited areas and proposed a focused set of entry points: a more recognizable referral icon, a presence on the portfolio page and access through the profile card.</p><p>Leadership initially wanted broader promotion. I challenged whether additional placements would add enough value to justify the extra interface clutter. We discussed the trade-off and agreed on the focused approach.</p></div>
+</div>
+<aside class="support-note decision-aside"><span class="label">Why this mattered</span><p>This wasn't a choice between supporting the business and protecting the experience. The goal was to make visibility intentional rather than simply adding more of it.</p></aside>
+</div>
+<div aria-label="Entry point before and after redesign" class="story-compare entry-compare">
+<div class="story-row story-row--before">
+<div class="story-copy">
+<p class="comparison-eyebrow"><span class="comparison-status">Before</span><span class="comparison-context">Original entry point</span></p>
+<h4>The entry point wasn't immediately recognisable.</h4>
+<p>The original speakerphone icon offered little indication that it led to a referral programme, making an already under-discovered feature harder to recognise.</p>
+</div>
+<figure class="story-media">
+
+<div class="media-frame"><img alt="Original Refer a Friend entry point with the older speakerphone icon" data-portfolio-image="" loading="lazy" src="images/refer-before-entrypoints.png"/></div>
+<figcaption>Original referral entry point.</figcaption>
+</figure>
+</div>
+<div class="story-row story-row--after">
+<figure class="story-media">
+
+<div class="media-frame"><img alt="Updated Refer a Friend entry point with a gift symbol" data-portfolio-image="" loading="lazy" src="images/refer-after-entrypoints.png"/></div>
+<figcaption>Revised icon and more intentional placement.</figcaption>
+</figure>
+<div class="story-copy">
+<p class="comparison-eyebrow"><span class="comparison-status">After</span><span class="comparison-context">Updated entry point</span></p>
+<h4>A clearer cue, placed where it counts.</h4>
+<p>The gift icon and a focused set of high-traffic placements made the programme easier to recognise without filling the platform with additional promotions.</p>
+</div>
+</div>
+</div>
+</article>
+<article aria-labelledby="decision-2" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no"><span class="decision-marker-word">Decision</span><span class="decision-marker-number">02</span><span class="decision-marker-category">Clarity</span></p>
+<h3 id="decision-2">Explain the value before asking someone to refer a friend.</h3>
+<div class="prose"><p>Commission credits are not immediately intuitive: they offset trading fees over time rather than behaving like a simple cash reward. Clients had questions about what they would actually receive, and what their friend would receive.</p><p>I moved the experience from a cramped dialog toward a dedicated page with more room for the incentive, clearer explanations and an obvious next step. The content separated the two sides of the reward and made commission credits easier to understand.</p></div>
+</div>
+<aside class="support-note decision-aside"><span class="label">Design principle</span><p>Remove ambiguity at the decision point. Don't ask users to commit to an action while the value proposition is still unclear.</p></aside>
+</div>
+<div aria-label="Referral experience before and after redesign" class="story-compare">
+<div class="story-row story-row--before">
+<div class="story-copy">
+<p class="comparison-eyebrow"><span class="comparison-status">Before</span><span class="comparison-context">Original dialog</span></p>
+<h4>Too much to explain in a dialog.</h4>
+<p>The original referral dialog gave clients limited room to understand the programme, what commission credits meant or why they should share an invitation.</p>
+</div>
+<figure class="story-media">
+<div class="media-frame"><img alt="Original referral experience presented in a small dialog" data-portfolio-image="" loading="lazy" src="images/refer-old.png"/></div>
+<figcaption>Original referral experience.</figcaption>
+</figure>
+</div>
+<div class="story-row story-row--after">
+<figure class="story-media">
+<div class="media-frame"><img alt="Redesigned dedicated Refer a Friend page" data-portfolio-image="" loading="lazy" src="images/refer-new.png"/></div>
+<figcaption>Redesigned referral page with space for the incentive and next steps.</figcaption>
+</figure>
+<div class="story-copy">
+<p class="comparison-eyebrow"><span class="comparison-status">After</span><span class="comparison-context">Dedicated page</span></p>
+<h4>Give the journey room to make sense.</h4>
+<p>A dedicated page allowed the team to explain both sides of the incentive, clarify the proposition and make the next action easier to identify.</p>
+</div>
+</div>
+</div>
+<div class="reward-showcase">
+<div class="showcase-head">
+<p class="comparison-eyebrow"><span class="comparison-status">Detail</span><span class="comparison-context">Reward explanation</span></p>
+<h4>Make commission credits understandable.</h4>
+<p>A closer look at how the redesign explains the reward mechanics in the experience itself.</p>
+</div>
+<figure class="single-visual visual-breakout">
+<div class="media-frame"><img alt="Redesigned reward explanation showing how commission credits work" data-portfolio-image="" loading="lazy" src="images/refer-rewards.png"/></div>
+<figcaption>Reward explanation — turning a financial mechanism into something clients can understand.</figcaption>
+</figure>
+</div>
+</article>
+<article aria-labelledby="decision-3" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no"><span class="decision-marker-word">Decision</span><span class="decision-marker-number">03</span><span class="decision-marker-category">End-to-end journey</span></p>
+<h3 id="decision-3">Design for both people in a referral — not just the one sharing.</h3>
+<div class="prose"><p>The experience doesn't end when an existing client shares a link. The invited friend enters through Saxo's public website and needs to understand the offer and the next step without already knowing the platform.</p><p>I worked with the web design team, providing UX direction and a design foundation for the public-facing journey. Aligning language, incentives and next steps mattered even when different teams owned the screens.</p></div>
+</div>
+<aside class="support-note decision-aside"><span class="label">Collaboration</span><p>I shaped the UX direction across surfaces; the web design team owned its public-facing implementation.</p></aside>
+</div>
+<figure class="single-visual visual-breakout"><div class="media-frame"><img alt="Public-facing Saxo Bank referral landing page" data-portfolio-image="" loading="lazy" src="images/refer-web.png"/></div><figcaption>The invited friend's landing experience — part of the same journey, across a different team and surface.</figcaption></figure>
+</article>
+<article aria-labelledby="decision-4" class="decision">
+<div class="decision-top">
+<div>
+<p class="decision-no"><span class="decision-marker-word">Decision</span><span class="decision-marker-number">04</span><span class="decision-marker-category">Global scale</span></p>
+<h3 id="decision-4">Keep the structure consistent, but allow markets to differ where they must.</h3>
+<div class="prose"><p>Fourteen markets brought different reward rules, legal requirements and cultural expectations. A rigid, identical experience would not work everywhere; designing 14 unrelated versions would be difficult to maintain.</p><p>We used a shared design foundation while accommodating market-specific content and constraints. I also created culturally adapted assets and a composition guideline so future regional updates could remain consistent without being recreated from scratch.</p></div>
+</div>
+<aside class="support-note decision-aside"><span class="label">The trade-off</span><p>Consistency should reduce complexity, not erase real differences in compliance, rewards or customer expectations.</p></aside>
+</div>
+<figure class="single-visual visual-breakout"><div class="media-frame"><img alt="Regional visual adaptations for referral programme banners" data-portfolio-image="" loading="lazy" src="images/refer-banners.png"/></div><figcaption>Regional asset examples — one recognisable system with locally appropriate visuals.</figcaption></figure>
+</article>
+</div>
+</section>
+<!-- 05 / Validation, scope control, shipping -->
+<section aria-labelledby="delivery-title" class="chapter" id="delivery">
+<div class="container">
+<div class="chapter-heading">
+<p class="eyebrow">05 / Validation &amp; delivery</p>
+<h2 id="delivery-title">From design rationale to something the organisation could ship.</h2>
+<p class="deck">Testing helped evaluate the clarity of the experience. Delivery required that the proposed solutions also fit the design system, engineering capacity and market-level constraints.</p>
+</div>
+<div class="delivery-columns">
+<div>
+<h3>Testing the experience</h3>
+<p>Speak-aloud sessions with existing referrers and invited users were used across the existing and redesigned flows to examine comprehension, trust and the next step in the referral process.</p>
+<ul>
+<li>Could participants find the programme?</li>
+<li>Could they explain the incentive without assistance?</li>
+<li>Did the transition from platform to public website make sense?</li>
+</ul>
+<p>The emphasis was on resolving observed confusion, not on treating the first concept as final.</p>
+</div>
+<div>
+<h3>Working through constraints</h3>
+<p>My role grew from initial discovery/UX work into broader end-to-end design ownership. I coordinated with the product owner, analysts, engineering, compliance and the web design team as the experience took shape.</p>
+<ul>
+<li>Used Saxo's established design system rather than building disconnected UI.</li>
+<li>Accounted for market differences and legal requirements.</li>
+<li>Prioritised a feasible scope around the main acquisition journey.</li>
+</ul>
+</div>
+</div>
+<div class="support-note delivery-note">
+<strong>What didn't ship matters, too.</strong>
+<p>A referral-status / leaderboard concept explored the need for progress feedback, but it was parked following compliance review. It remained a design concept, not a released feature. The case study's business results should not be attributed to it.</p>
+</div>
+</div>
+</section>
+<!-- 06 / Results: keep programme-level attribution qualified. -->
+<section aria-labelledby="results-title" class="chapter alt" id="results">
+<div class="container">
+<div class="results-top">
+<div class="chapter-heading">
+<p class="eyebrow">06 / Results &amp; impact</p>
+<h2 id="results-title">A clearer experience, alongside strong programme growth.</h2>
+<p class="deck">The product team reported positive business results following the redesign. The figures below represent programme performance, not the isolated effect of UX changes.</p>
+</div>
+</div>
+<!-- EDITORIAL CHECK BEFORE PUBLISHING:
+             Confirm all four metric definitions, baselines, periods and whether +25% describes
+             referred sign-ups vs another sign-up measure. These figures came from earlier
+             portfolio/interview discussions and were not independently verified here. -->
+<div aria-label="Reported programme results" class="results-grid">
+<div class="metric"><strong>~3×</strong><span>Year-over-year referral growth reported by the product owner</span></div>
+<div class="metric"><strong>+25%</strong><span>Reported referral-related sign-ups</span></div>
+<div class="metric"><strong>+20%</strong><span>Reported funded accounts</span></div>
+<div class="metric"><strong>−50%</strong><span>Reported support questions about the referral programme</span></div>
+</div>
+<p class="results-qualifier"><strong>Attribution note:</strong> These are team-reported results across the referral programme. Marketing, other business activity and the design changes all contributed. The metrics may refer to different time windows, so they should not be read as a single controlled before-and-after experiment.</p>
+<div class="delivered-list">
+<p class="eyebrow">What we delivered</p>
+<ul aria-label="Three areas of product impact" class="impact-groups">
+<li class="impact-group">
+<span class="impact-group-label">01 / Experience</span>
+<p>A dedicated referral journey with clearer reward communication.</p>
+</li>
+<li class="impact-group">
+<span class="impact-group-label">02 / Discoverability</span>
+<p>More intentional platform entry points and an aligned web direction.</p>
+</li>
+<li class="impact-group">
+<span class="impact-group-label">03 / Scalability</span>
+<p>A reusable design foundation across 14 markets.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- 07 / Reflection -->
+<section aria-labelledby="reflection-title" class="chapter" id="reflection">
+<div class="container">
+<div class="reflection">
+<p class="eyebrow">07 / Reflection</p>
+<h2 id="reflection-title">The real work was deciding what mattered.</h2>
+<p>This project pushed me to think beyond individual screens. The business wanted growth, users needed clarity, and the solution had to work with limited development capacity and across different regulatory environments.</p>
+<p>The most valuable decision wasn't a visual one: it was aligning the team around a focused referral journey rather than adding promotion everywhere. Equally important was knowing when a promising idea — such as referral status tracking — couldn't be shipped as planned.</p>
+<p><strong style="color:#f5efe4">What I'd improve next time:</strong> establish shared measurement definitions earlier for discovery, sharing, sign-up and funding. That would make it easier to separate the effects of design changes from campaigns and other acquisition activity.</p>
+</div>
+</div>
+</section>
+<div class="container cta">
+<div>
+<h2>More than the final screens.</h2>
+<p>This is a selected view of the project. I can walk through additional context, constraints and design decisions in a conversation.</p>
+</div>
+<a class="button-link" href="index.html#work">Back to selected work <span aria-hidden="true">↗</span></a>
+</div>
+</main>
+<footer class="site-footer">
+<div class="container footer-inner"><span>© <span id="year">2026</span> Semir Ugljanin</span><a href="https://www.linkedin.com/in/semir-ugljanin-b9054140/" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a></div>
+</footer>
+<script>
+    // Mobile navigation works with keyboard, click, and Escape.
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    function setMenuOpen(open) {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      menu.hidden = !open;
+    }
+    toggle.addEventListener('click', () => setMenuOpen(menu.hidden));
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.hidden) { setMenuOpen(false); toggle.focus(); }
+    });
+    document.addEventListener('click', (event) => {
+      if (!menu.hidden && !menu.contains(event.target) && !toggle.contains(event.target)) setMenuOpen(false);
+    });
+    window.addEventListener('resize', () => { if (window.innerWidth > 680) setMenuOpen(false); });
+    document.getElementById('year').textContent = String(new Date().getFullYear());
+
+    // Image filenames remain identical to the original project.
+    // When opened as a downloaded local HTML file, load the images from the
+    // published portfolio as a preview fallback; on GitHub Pages use relative paths.
+    if (window.location.protocol === 'file:') {
+      const publishedAssets = 'https://daskdas.github.io/semir-portfolio/';
+      document.querySelectorAll('img[data-portfolio-image]').forEach((img) => {
+        img.src = new URL(img.getAttribute('src'), publishedAssets).href;
+      });
+    }
+  </script>
+</body>
+</html>
