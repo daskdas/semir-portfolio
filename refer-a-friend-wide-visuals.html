@@ -22,7 +22,8 @@
       --orange-light: #f4e1d3;
       --serif: 'DM Serif Display', Georgia, serif;
       --sans: 'DM Sans', Arial, sans-serif;
-      --wide: 1100px;
+      /* 1536px container - 2 x 68px gutters = 1400px available media width. */
+      --wide: 1536px;
       --media-max: 1400px;
       --reading: 730px;
       --gutter: clamp(22px, 5vw, 68px);
@@ -38,7 +39,11 @@
     :focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; }
     .skip { position: fixed; z-index: 1000; top: -90px; left: 20px; padding: 9px 14px; background: var(--ink); color: var(--paper); }
     .skip:focus { top: 16px; }
-    .container { max-width: var(--wide); padding: 0 var(--gutter); margin: 0 auto; }
+    .container { width: 100%; max-width: var(--wide); padding: 0 var(--gutter); margin: 0 auto; }
+    /* Secondary content can remain compact without shifting its left edge. */
+    .overview, .problem-grid, .evidence-grid, .priorities, .journey,
+    .delivery-columns, .results-grid, .delivered-list, .reflection,
+    .callout { max-width: 1100px; }
     .prose { max-width: var(--reading); }
     .prose p { margin: 0 0 1.15rem; color: #403d39; }
     .prose p:last-child { margin-bottom: 0; }
@@ -77,17 +82,10 @@
     .hero-image { margin: 2.7rem 0 0; }
     .media-frame { background: var(--paper-deep); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
     .media-frame img { display: block; margin: auto; width: 100%; height: auto; object-fit: contain; }
-    /* Wide editorial showcase: screenshots expand independently from the readable text column.
-       The centered breakout is desktop-only; tablet/mobile retain their existing gutters. */
-    @media (min-width: 1101px) {
-      .visual-breakout {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(var(--media-max), calc(100vw - var(--gutter) - var(--gutter)));
-        max-width: none;
-      }
-    }
+    /* Every screenshot follows the same left and right edges as its section.
+       Nothing uses a 100vw breakout, so smaller screens cannot overflow. */
+    .visual-breakout { width: 100%; max-width: 100%; margin-inline: 0; }
+    .media-frame { width: 100%; max-width: 100%; }
     .hero-image .media-frame { background: #e8e0d5; }
     figcaption { margin-top: .65rem; font-size: .78rem; color: var(--faint); line-height: 1.55; }
     .overview { margin-top: 3.4rem; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
@@ -145,6 +143,25 @@
     .decision-aside p { margin: .5rem 0 0; font-size: .87rem; color: #4d4740; line-height: 1.55; }
     .compare { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.1rem; }
     .compare figure, .single-visual { margin: 0; }
+    /* Larger, alternating before/after showcase in decision 02. */
+    .story-compare { margin-top: 0.25rem; }
+    .story-row { display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center; min-width: 0;
+                 padding-block: clamp(2.3rem, 5vw, 4.25rem); border-top: 1px solid var(--line); }
+    .story-row--before { grid-template-columns: minmax(0, .64fr) minmax(0, 1.56fr); }
+    .story-row--after  { grid-template-columns: minmax(0, 1.56fr) minmax(0, .64fr); }
+    .story-row > * { min-width: 0; }
+    .story-copy { max-width: 390px; }
+    .story-copy .eyebrow { margin-bottom: .75rem; }
+    .story-copy h4 { margin: 0 0 .85rem; font: 400 clamp(1.5rem, 2.2vw, 2.15rem)/1.2 var(--serif); letter-spacing: -.02em; }
+    .story-copy p:not(.eyebrow) { margin: 0; color: var(--muted); font-size: .97rem; line-height: 1.7; }
+    .story-media { margin: 0; min-width: 0; }
+    .story-media img { width: 100%; height: auto; }
+    .story-media figcaption { margin-top: .65rem; }
+    /* Keep full-width reward detail separate and prominent after the comparison. */
+    .reward-showcase { margin-top: 0; padding-top: clamp(2.3rem, 5vw, 4rem); border-top: 1px solid var(--line); }
+    .reward-showcase .showcase-head { margin: 0 0 1.6rem; max-width: 760px; }
+    .reward-showcase .showcase-head h4 { font: 400 clamp(1.5rem, 2.5vw, 2.15rem)/1.2 var(--serif); letter-spacing: -.02em; margin: 0 0 .5rem; }
+    .reward-showcase .showcase-head p:not(.eyebrow) { color: var(--muted); margin: 0; max-width: 660px; }
     .image-label { padding: .45rem .75rem; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
     .full-visual { margin-top: 1.8rem; }
     .visual-caption { color: var(--faint); font-size: .78rem; margin-top: .6rem; }
@@ -199,6 +216,13 @@
     .footer-inner a { color: #e0d7ca; text-decoration: none; }
     .footer-inner a:hover { text-decoration: underline; }
 
+    /* On smaller desktops/tablets, images get the entire available width. */
+    @media (max-width: 1100px) {
+      .story-row--before, .story-row--after { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+      .story-row--after .story-copy { order: 0; }
+      .story-row--after .story-media { order: 1; }
+      .story-copy { max-width: 740px; }
+    }
     @media (max-width: 850px) {
       .decision-top { grid-template-columns: 1fr; gap: 1.35rem; }
       .results-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
@@ -417,7 +441,7 @@
       </div>
     </section>
 
-    <!-- 04 / Key design decisions. Visuals are deliberately placed next to their rationale. -->
+    <!-- 04 / Key design decisions. All image edges align with section text, with an alternating before/after showcase. -->
     <section class="chapter alt" id="solution" aria-labelledby="solution-title">
       <div class="container">
         <div class="chapter-heading">
@@ -450,11 +474,41 @@
             </div>
             <aside class="decision-aside"><span class="label">Design principle</span><p>Remove ambiguity at the decision point. Don't ask users to commit to an action while the value proposition is still unclear.</p></aside>
           </div>
-          <div class="compare visual-breakout">
-            <figure><div class="media-frame"><div class="image-label">Before / Dialog</div><img data-portfolio-image src="images/refer-old.png" loading="lazy" alt="Original referral experience presented in a small dialog" /></div><figcaption>The old experience had limited space to explain the programme.</figcaption></figure>
-            <figure><div class="media-frame"><div class="image-label">After / Dedicated page</div><img data-portfolio-image src="images/refer-new.png" loading="lazy" alt="Redesigned dedicated Refer a Friend page" /></div><figcaption>More room for a clear proposition, rewards and next steps.</figcaption></figure>
+          <div class="story-compare" aria-label="Referral experience before and after redesign">
+            <div class="story-row story-row--before">
+              <div class="story-copy">
+                <p class="eyebrow">01 / Before</p>
+                <h4>Too much to explain in a dialog.</h4>
+                <p>The original referral dialog gave clients limited room to understand the programme, what commission credits meant or why they should share an invitation.</p>
+              </div>
+              <figure class="story-media">
+                <div class="media-frame"><div class="image-label">Before / Dialog</div><img data-portfolio-image src="images/refer-old.png" loading="lazy" alt="Original referral experience presented in a small dialog" /></div>
+                <figcaption>Original referral experience.</figcaption>
+              </figure>
+            </div>
+            <div class="story-row story-row--after">
+              <figure class="story-media">
+                <div class="media-frame"><div class="image-label">After / Dedicated page</div><img data-portfolio-image src="images/refer-new.png" loading="lazy" alt="Redesigned dedicated Refer a Friend page" /></div>
+                <figcaption>Redesigned referral page with space for the incentive and next steps.</figcaption>
+              </figure>
+              <div class="story-copy">
+                <p class="eyebrow">02 / After</p>
+                <h4>Give the journey room to make sense.</h4>
+                <p>A dedicated page allowed the team to explain both sides of the incentive, clarify the proposition and make the next action easier to identify.</p>
+              </div>
+            </div>
           </div>
-          <figure class="single-visual full-visual visual-breakout"><div class="media-frame"><img data-portfolio-image src="images/refer-rewards.png" loading="lazy" alt="Redesigned reward explanation showing how commission credits work" /></div><figcaption>Reward explanation — turning a financial mechanism into something clients can understand.</figcaption></figure>
+          <div class="reward-showcase">
+            <div class="showcase-head">
+              <p class="eyebrow">03 / Reward clarity</p>
+              <h4>Make commission credits understandable.</h4>
+              <p>A closer look at how the redesign explains the reward mechanics in the experience itself.</p>
+            </div>
+            <figure class="single-visual visual-breakout">
+              <div class="media-frame"><img data-portfolio-image src="images/refer-rewards.png" loading="lazy" alt="Redesigned reward explanation showing how commission credits work" /></div>
+              <figcaption>Reward explanation — turning a financial mechanism into something clients can understand.</figcaption>
+            </figure>
+          </div>
         </article>
 
         <article class="decision" aria-labelledby="decision-3">
@@ -478,7 +532,7 @@
             </div>
             <aside class="decision-aside"><span class="label">The trade-off</span><p>Consistency should reduce complexity, not erase real differences in compliance, rewards or customer expectations.</p></aside>
           </div>
-          <figure class="single-visual"><div class="media-frame"><img data-portfolio-image src="images/refer-banners.png" loading="lazy" alt="Regional visual adaptations for referral programme banners" /></div><figcaption>Regional asset examples — one recognisable system with locally appropriate visuals.</figcaption></figure>
+          <figure class="single-visual visual-breakout"><div class="media-frame"><img data-portfolio-image src="images/refer-banners.png" loading="lazy" alt="Regional visual adaptations for referral programme banners" /></div><figcaption>Regional asset examples — one recognisable system with locally appropriate visuals.</figcaption></figure>
         </article>
       </div>
     </section>
